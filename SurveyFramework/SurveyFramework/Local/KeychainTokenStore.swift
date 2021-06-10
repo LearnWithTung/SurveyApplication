@@ -75,11 +75,6 @@ extension KeychainTokenStore: TokenSaver {
         }
     }
 }
-
-protocol TokenLoader {
-    typealias TokenSaverResult = Result<Token, Swift.Error>
-    func load(completion: @escaping (Result<Token, Swift.Error>) -> Void)
-}
     
 extension KeychainTokenStore: TokenLoader {
     public func load(completion: @escaping (Result<Token, Swift.Error>) -> Void) {
