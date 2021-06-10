@@ -83,16 +83,19 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        var requestedURLs = [URLRequest]()
-        var completions = [(HTTPClient.HTTPClientResult) -> Void]()
+        private var messages = [(urlRequest: URLRequest,
+                                 completion: (HTTPClient.HTTPClientResult) -> Void)]()
+        
+        var requestedURLs: [URLRequest] {
+            return messages.map {$0.urlRequest}
+        }
         
         func post(with request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
-            requestedURLs.append(request)
-            completions.append(completion)
+            messages.append((request, completion))
         }
         
         func completeWithError(_ error: Error, at index: Int = 0){
-            completions[index](error)
+            messages[index].completion(error)
         }
         
     }
