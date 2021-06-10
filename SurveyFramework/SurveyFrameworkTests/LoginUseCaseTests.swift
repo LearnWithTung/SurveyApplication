@@ -68,7 +68,7 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: .init(email: "any email", password: "any password"))
+        sut.login(with: anyLoginInfo())
         
         XCTAssertEqual(client.requestedURL?.url, url)
     }
@@ -77,14 +77,13 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: .init(email: "any email", password: "any password"))
-        sut.login(with: .init(email: "any email", password: "any password"))
+        sut.login(with: anyLoginInfo())
+        sut.login(with: anyLoginInfo())
 
         XCTAssertEqual(client.requestedURLs.map{$0.url}, [url, url])
     }
     
     func test_login_signsRequestWithBodyParams() {
-        let url = URL(string: "https://a-url.com")!
         let credentials = Credentials(client_id: "a clientId", client_secret: "a secret")
         let info = LoginInfo(email: "an email", password: "a password")
         let body = [
@@ -94,7 +93,7 @@ class LoginUseCaseTests: XCTestCase {
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret
         ]
-        let (sut, client) = makeSUT(url: url, credentials: credentials)
+        let (sut, client) = makeSUT(credentials: credentials)
         
         sut.login(with: info)
         
@@ -110,6 +109,10 @@ class LoginUseCaseTests: XCTestCase {
         let sut = RemoteLoginService(url: url, client: client, credentials: credentials)
         
         return (sut, client)
+    }
+    
+    private func anyLoginInfo() -> LoginInfo {
+        .init(email: "any email", password: "any password")
     }
 
 }
