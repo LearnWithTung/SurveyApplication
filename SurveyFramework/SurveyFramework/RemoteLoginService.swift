@@ -28,6 +28,8 @@ public class RemoteLoginService {
         case invalidData
     }
     
+    public typealias RemoteLoginResult = Result<Token, Error>
+    
     public init(url: URL, client: HTTPClient, credentials: Credentials, currentDate: @escaping () -> Date) {
         self.client = client
         self.url = url
@@ -35,7 +37,7 @@ public class RemoteLoginService {
         self.currentDate = currentDate
     }
     
-    public func login(with info: LoginInfo, completion: @escaping (Result<Token, Error>) -> Void) {
+    public func login(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
         client.post(with: makeURLRequest(with: info)) {[weak self] result in
             guard let self = self else {return}
             switch result {

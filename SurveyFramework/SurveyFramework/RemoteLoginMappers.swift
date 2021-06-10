@@ -29,7 +29,7 @@ final class RemoteLoginMappers {
 
     private init() {}
     
-    static func map(data: Data, response: HTTPURLResponse, currentDate: Date) -> Result<Token, RemoteLoginService.Error> {
+    static func map(data: Data, response: HTTPURLResponse, currentDate: Date) -> RemoteLoginService.RemoteLoginResult {
         if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.attributes.toModel(currentDate: currentDate))
         }

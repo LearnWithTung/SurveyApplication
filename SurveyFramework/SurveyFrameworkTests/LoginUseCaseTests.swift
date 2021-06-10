@@ -117,7 +117,7 @@ class LoginUseCaseTests: XCTestCase {
         let credentials = Credentials(client_id: "any", client_secret: "any")
         var sut: RemoteLoginService? = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: {Date()})
         
-        var capturedResult: Result<Token, RemoteLoginService.Error>?
+        var capturedResult: RemoteLoginService.RemoteLoginResult?
         sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
 
         sut = nil
