@@ -91,9 +91,9 @@
 		DFEC163226723F33008990FB /* SurveyFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 				DFEC164D26725FA5008990FB /* API */,
 				DFEC163526723F33008990FB /* Info.plist */,
-				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 			);
 			path = SurveyFrameworkTests;
 			sourceTree = "<group>";

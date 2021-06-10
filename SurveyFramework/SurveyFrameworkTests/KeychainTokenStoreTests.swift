@@ -38,7 +38,16 @@ class KeychainTokenStoreTests: XCTestCase {
     
     // MARK: - Helpers
     func makeSUT() -> KeychainTokenStore {
-        return KeychainTokenStore()
+        let sut = KeychainTokenStore()
+        checkForMemoryLeaks(sut)
+        
+        return sut
+    }
+    
+    func checkForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
     }
 
 }
