@@ -70,6 +70,20 @@ class LoginUseCaseTests: XCTestCase {
         XCTAssertEqual(capturedError, .connectivity)
     }
     
+    func test_login_deliversErrorOnNon200HTTPResponse() {
+        let url = URL(string: "https://a-url.com")!
+        let (sut, client) = makeSUT(url: url)
+
+        var capturedError: RemoteLoginService.Error?
+        sut.login(with: anyLoginInfo()) { error in
+            capturedError = error
+        }
+
+        client.completeWithStatusCode(199)
+
+        XCTAssertEqual(capturedError, .invalidData)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -95,7 +109,12 @@ class LoginUseCaseTests: XCTestCase {
         }
         
         func completeWithError(_ error: Error, at index: Int = 0){
-            messages[index].completion(error)
+            messages[index].completion(.failure(error))
+        }
+        
+        func completeWithStatusCode(_ code: Int, at index: Int = 0) {
+            let httpResponse = HTTPURLResponse(url: requestedURLs[index].url!, statusCode: code, httpVersion: nil, headerFields: nil)!
+            messages[index].completion(.success(httpResponse))
         }
         
     }

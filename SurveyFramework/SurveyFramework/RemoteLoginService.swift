@@ -24,6 +24,7 @@ public class RemoteLoginService {
     
     public enum Error: Swift.Error {
         case connectivity
+        case invalidData
     }
     
     public init(url: URL, client: HTTPClient, credentials: Credentials) {
@@ -33,8 +34,13 @@ public class RemoteLoginService {
     }
     
     public func login(with info: LoginInfo, completion: @escaping (Error) -> Void = {_ in}) {
-        client.post(with: makeURLRequest(with: info)) { _ in
-            completion(.connectivity)
+        client.post(with: makeURLRequest(with: info)) { result in
+            switch result {
+            case .failure:
+                completion(.connectivity)
+            case .success:
+                completion(.invalidData)
+            }
         }
     }
     
