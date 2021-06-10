@@ -19,6 +19,7 @@
 		DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16542672664A008990FB /* KeychainTokenStore.swift */; };
 		DFEC16572672668D008990FB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16562672668D008990FB /* TestHelpers.swift */; };
 		DFEC165926726850008990FB /* TokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165826726850008990FB /* TokenLoader.swift */; };
+		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		DFEC16542672664A008990FB /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 		DFEC16562672668D008990FB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		DFEC165826726850008990FB /* TokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoader.swift; sourceTree = "<group>"; };
+		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				DFEC16542672664A008990FB /* KeychainTokenStore.swift */,
 				DFEC165826726850008990FB /* TokenLoader.swift */,
+				DFEC165A26726883008990FB /* TokenSaver.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
+				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
 				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 			);

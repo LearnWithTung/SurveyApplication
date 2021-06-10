@@ -47,11 +47,6 @@ public class KeychainTokenStore {
     }
 }
 
-protocol TokenSaver {
-    typealias TokenSaverResult = Result<Void, Swift.Error>
-    func save(token: Token, completion: @escaping (TokenSaverResult) -> Void)
-}
-
 extension KeychainTokenStore: TokenSaver {
     public func save(token: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         do {
