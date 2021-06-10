@@ -95,16 +95,21 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_login_succeedsOn200HTTPResponseWithTokenJSON() {
-        let (sut, client) = makeSUT()
+        let currentDate = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let expiresIn = 60
+        let expiredDate = calendar.date(byAdding: .second, value: expiresIn, to: currentDate)!
+        let (sut, client) = makeSUT(currentDate: { currentDate })
+        
         let token = Token(accessToken: "access token",
                           tokenType: "token type",
-                          expiredDate: Date(),
+                          expiredDate: expiredDate,
                           refreshToken: "refresh token")
 
         let tokenJSON = [
             "access_token": token.accessToken,
             "token_type": token.tokenType,
-            "expires_in": 60,
+            "expires_in": expiresIn,
             "refresh_token": token.refreshToken
         ] as [String : Any]
 
@@ -113,8 +118,8 @@ class LoginUseCaseTests: XCTestCase {
         let exp = expectation(description: "wait for completion")
         sut.login(with: anyLoginInfo()) { result in
             switch result {
-            case .success:
-                break
+            case let .success(receivedToken):
+                XCTAssertEqual(receivedToken, token)
             default:
                 XCTFail("Expected success but got \(result) instead")
             }
@@ -128,9 +133,9 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any"), currentDate: @escaping () -> Date = { Date() }) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLoginService(url: url, client: client, credentials: credentials)
+        let sut = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: currentDate)
         
         return (sut, client)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Token {
+public struct Token: Equatable {
     public let accessToken: String
     public let tokenType: String
     public let expiredDate: Date
