@@ -74,14 +74,16 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        var capturedError: RemoteLoginService.Error?
-        sut.login(with: anyLoginInfo()) { error in
-            capturedError = error
+        let samples = [199, 201, 300, 400, 500]
+        samples.enumerated().forEach { index, code in
+            var capturedError: RemoteLoginService.Error?
+            sut.login(with: anyLoginInfo()) { error in
+                capturedError = error
+            }
+            client.completeWithStatusCode(code, at: index)
+            XCTAssertEqual(capturedError, .invalidData)
         }
-
-        client.completeWithStatusCode(199)
-
-        XCTAssertEqual(capturedError, .invalidData)
+        
     }
     
     // MARK: - Helpers
