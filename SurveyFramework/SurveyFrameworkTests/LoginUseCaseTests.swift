@@ -56,6 +56,20 @@ class LoginUseCaseTests: XCTestCase {
         XCTAssertEqual(requestedBody, body)
     }
     
+    func test_login_deliversErrorOnClientError() {
+        let clientError = NSError(domain: "test", code: 0, userInfo: nil)
+        let (sut, client) = makeSUT()
+        
+        var capturedError: RemoteLoginService.Error?
+        sut.login(with: anyLoginInfo()) { error in
+            capturedError = error
+        }
+        
+        client.completeWithError(clientError)
+        
+        XCTAssertEqual(capturedError, .connectivity)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -70,9 +84,15 @@ class LoginUseCaseTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClient {
         var requestedURLs = [URLRequest]()
-
-        func post(with request: URLRequest) {
+        var completions = [(HTTPClient.HTTPClientResult) -> Void]()
+        
+        func post(with request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
             requestedURLs.append(request)
+            completions.append(completion)
+        }
+        
+        func completeWithError(_ error: Error, at index: Int = 0){
+            completions[index](error)
         }
         
     }

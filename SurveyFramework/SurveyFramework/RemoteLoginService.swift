@@ -22,14 +22,20 @@ public class RemoteLoginService {
     private let client: HTTPClient
     private let credentials: Credentials
     
+    public enum Error: Swift.Error {
+        case connectivity
+    }
+    
     public init(url: URL, client: HTTPClient, credentials: Credentials) {
         self.client = client
         self.url = url
         self.credentials = credentials
     }
     
-    public func login(with info: LoginInfo) {
-        client.post(with: makeURLRequest(with: info))
+    public func login(with info: LoginInfo, completion: @escaping (Error) -> Void = {_ in}) {
+        client.post(with: makeURLRequest(with: info)) { _ in
+            completion(.connectivity)
+        }
     }
     
     private func makeURLRequest(with info: LoginInfo) -> URLRequest {

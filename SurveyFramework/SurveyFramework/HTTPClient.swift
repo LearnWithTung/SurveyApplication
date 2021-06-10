@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol HTTPClient {
-    func post(with request: URLRequest)
+    typealias HTTPClientResult = Error
+    func post(with request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
 }
 
