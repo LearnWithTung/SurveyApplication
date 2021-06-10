@@ -47,8 +47,12 @@ public class KeychainTokenStore {
     }
 }
 
-extension KeychainTokenStore {
-    
+protocol TokenSaver {
+    typealias TokenSaverResult = Result<Void, Swift.Error>
+    func save(token: Token, completion: @escaping (TokenSaverResult) -> Void)
+}
+
+extension KeychainTokenStore: TokenSaver {
     public func save(token: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         do {
             let data = try JSONEncoder().encode(LocalToken(tokens: token))
@@ -70,10 +74,14 @@ extension KeychainTokenStore {
             completion(.failure(error))
         }
     }
-    
+}
+
+protocol TokenLoader {
+    typealias TokenSaverResult = Result<Token, Swift.Error>
+    func load(completion: @escaping (Result<Token, Swift.Error>) -> Void)
 }
     
-extension KeychainTokenStore {
+extension KeychainTokenStore: TokenLoader {
     public func load(completion: @escaping (Result<Token, Swift.Error>) -> Void) {
         let query = [
             kSecClass: kSecClassGenericPassword,
