@@ -46,14 +46,8 @@ class RemoteLoginService {
     }
 }
 
-class HTTPClient {
-    var requestedURL: URLRequest?
-    var requestedURLs = [URLRequest]()
-
-    func post(with request: URLRequest) {
-        requestedURL = request
-        requestedURLs.append(request)
-    }
+protocol HTTPClient {
+    func post(with request: URLRequest)
 }
 
 class LoginUseCaseTests: XCTestCase {
@@ -104,8 +98,8 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClient) {
-        let client = HTTPClient()
+    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
         let sut = RemoteLoginService(url: url, client: client, credentials: credentials)
         
         return (sut, client)
@@ -113,6 +107,16 @@ class LoginUseCaseTests: XCTestCase {
     
     private func anyLoginInfo() -> LoginInfo {
         .init(email: "any email", password: "any password")
+    }
+    
+    private class HTTPClientSpy: HTTPClient {
+        var requestedURL: URLRequest?
+        var requestedURLs = [URLRequest]()
+
+        func post(with request: URLRequest) {
+            requestedURL = request
+            requestedURLs.append(request)
+        }
     }
 
 }
