@@ -55,7 +55,3 @@ public class RemoteLoginService {
         client.post(with: request)
     }
 }
-
-public protocol HTTPClient {
-    func post(with request: URLRequest)
-}
