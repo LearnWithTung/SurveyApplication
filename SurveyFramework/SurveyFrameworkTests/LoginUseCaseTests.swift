@@ -13,7 +13,7 @@ class LoginUseCaseTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
 
-        XCTAssertNil(client.requestedURL)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_login_requestsDataFromURL() {
@@ -22,7 +22,7 @@ class LoginUseCaseTests: XCTestCase {
 
         sut.login(with: anyLoginInfo())
         
-        XCTAssertEqual(client.requestedURL?.url, url)
+        XCTAssertEqual(client.requestedURLs.map {$0.url}, [url])
     }
     
     func test_loginTwice_requestsDataFromURLTwice() {
@@ -49,9 +49,10 @@ class LoginUseCaseTests: XCTestCase {
         
         sut.login(with: info)
         
-        let requestedBody = try! JSONSerialization.jsonObject(with: client.requestedURL!.httpBody!) as! [String: String] 
+        let urlRequest = client.requestedURLs[0]
+        let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
         
-        XCTAssertEqual(client.requestedURL?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest.httpMethod, "POST")
         XCTAssertEqual(requestedBody, body)
     }
     
@@ -68,13 +69,12 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        var requestedURL: URLRequest?
         var requestedURLs = [URLRequest]()
 
         func post(with request: URLRequest) {
-            requestedURL = request
             requestedURLs.append(request)
         }
+        
     }
 
 }
