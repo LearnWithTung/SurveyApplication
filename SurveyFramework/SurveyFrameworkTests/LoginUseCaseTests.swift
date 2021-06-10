@@ -104,21 +104,10 @@ class LoginUseCaseTests: XCTestCase {
                                       refreshToken: "refresh token",
                                       expiresIn: 60)
 
-        let exp = expectation(description: "wait for completion")
-        sut.login(with: anyLoginInfo()) { result in
-            switch result {
-            case let .success(receivedToken):
-                XCTAssertEqual(receivedToken, token.model)
-            default:
-                XCTFail("Expected success but got \(result) instead")
-            }
-            exp.fulfill()
+        expect(sut, toCompleteWithToken: token.model) {
+            let jsonData = makeTokenJSONData(from: token.json)
+            client.completeWithStatusCode(200, data: jsonData)
         }
-
-        let jsonData = makeTokenJSONData(from: token.json)
-        client.completeWithStatusCode(200, data: jsonData)
-        
-        wait(for: [exp], timeout: 0.1)
     }
     
     func test_login_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
@@ -172,6 +161,26 @@ class LoginUseCaseTests: XCTestCase {
         let json = ["attributes": dict]
 
         return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "wait for completion")
+        
+        var capturedToken: Token?
+        sut.login(with: anyLoginInfo()) { result in
+            switch result {
+            case let .success(receivedToken):
+                capturedToken = receivedToken
+            default:
+                break
+            }
+            exp.fulfill()
+        }
+            
+        action()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(capturedToken, token, file: file, line: line)
     }
     
     private func expect(_ sut: RemoteLoginService, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
