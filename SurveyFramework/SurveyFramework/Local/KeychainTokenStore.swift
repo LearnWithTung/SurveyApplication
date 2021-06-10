@@ -45,6 +45,9 @@ public class KeychainTokenStore {
         
         SecItemDelete(query)
     }
+}
+
+extension KeychainTokenStore {
     
     public func save(token: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         do {
@@ -68,6 +71,9 @@ public class KeychainTokenStore {
         }
     }
     
+}
+    
+extension KeychainTokenStore {
     public func load(completion: @escaping (Result<Token, Swift.Error>) -> Void) {
         let query = [
             kSecClass: kSecClassGenericPassword,
