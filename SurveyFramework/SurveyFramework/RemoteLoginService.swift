@@ -42,11 +42,7 @@ public class RemoteLoginService {
                 completion(.failure(.connectivity))
             case let .success((data, _)):
                 if let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    let localToken = root.attributes
-                    let calendar = Calendar(identifier: .gregorian)
-                    let expiredDate = calendar.date(byAdding: .second, value: localToken.expires_in, to: self.currentDate())!
-                    let token = Token(accessToken: localToken.access_token, tokenType: localToken.token_type, expiredDate: expiredDate, refreshToken: localToken.refresh_token)
-                    return completion(.success(token))
+                    return completion(.success(root.attributes.toModel(currentDate: self.currentDate())))
                 }
                 completion(.failure(.invalidData))
             }
@@ -80,11 +76,12 @@ private struct Root: Decodable {
         let expires_in: Int
         let refresh_token: String
         
-        func toModel() -> Token {
+        func toModel(currentDate: Date) -> Token {
             let calendar = Calendar(identifier: .gregorian)
-            let expiredDate = calendar.date(byAdding: .second, value: expires_in, to: Date())!
+            let expiredDate = calendar.date(byAdding: .second, value: expires_in, to: currentDate)!
+            let token = Token(accessToken: access_token, tokenType: token_type, expiredDate: expiredDate, refreshToken: refresh_token)
             
-            return Token(accessToken: access_token, tokenType: token_type, expiredDate: expiredDate, refreshToken: refresh_token)
+            return token
         }
     }
 }
