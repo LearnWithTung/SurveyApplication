@@ -48,9 +48,11 @@ class RemoteLoginService {
 
 class HTTPClient {
     var requestedURL: URLRequest?
+    var requestedURLs = [URLRequest]()
 
     func post(with request: URLRequest) {
         requestedURL = request
+        requestedURLs.append(request)
     }
 }
 
@@ -69,6 +71,16 @@ class LoginUseCaseTests: XCTestCase {
         sut.login(with: .init(email: "any email", password: "any password"))
         
         XCTAssertEqual(client.requestedURL?.url, url)
+    }
+    
+    func test_loginTwice_requestsDataFromURLTwice() {
+        let url = URL(string: "https://a-url.com")!
+        let (sut, client) = makeSUT(url: url)
+
+        sut.login(with: .init(email: "any email", password: "any password"))
+        sut.login(with: .init(email: "any email", password: "any password"))
+
+        XCTAssertEqual(client.requestedURLs.map{$0.url}, [url, url])
     }
     
     func test_login_signsRequestWithBodyParams() {
