@@ -22,7 +22,7 @@ class KeychainTokenStore {
 class KeychainTokenStoreTests: XCTestCase {
 
     func test_load_returnsErrorWhenNothingSaved() {
-        let sut = KeychainTokenStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for completion")
 
         var capturedResult: Result<Any, Error>?
@@ -34,6 +34,11 @@ class KeychainTokenStoreTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
 
         XCTAssertThrowsError(try capturedResult?.get())
+    }
+    
+    // MARK: - Helpers
+    func makeSUT() -> KeychainTokenStore {
+        return KeychainTokenStore()
     }
 
 }
