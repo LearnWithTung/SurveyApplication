@@ -45,9 +45,9 @@ class KeychainTokenStore {
         SecItemDelete(query)
     }
     
-    func save(tokens: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
+    func save(token: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
         do {
-            let data = try JSONEncoder().encode(LocalToken(tokens: tokens))
+            let data = try JSONEncoder().encode(LocalToken(tokens: token))
             
             let query = [
                 kSecClass: kSecClassGenericPassword,
@@ -93,39 +93,20 @@ class KeychainTokenStoreTests: XCTestCase {
 
     func test_load_returnsErrorWhenNothingSaved() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for completion")
 
-        var capturedResult: Result<Token, Error>?
-        sut.load {
-            capturedResult = $0.mapError { $0 as NSError }
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 0.1)
+        let capturedResult = loadTokenFrom(sut)
 
         XCTAssertThrowsError(try capturedResult?.get())
     }
     
     func test_load_returnsSavedToken() {
         let sut = KeychainTokenStore()
-        let saveExp = expectation(description: "Wait for saving completion")
-        let loadExp = expectation(description: "Wait for loading completion")
         let token = makeToken()
         
-        sut.save(tokens: token) { _ in
-            saveExp.fulfill()
-        }
-        
-        wait(for: [saveExp], timeout: 0.1)
-        
-        var capturedResult: Result<Token, Error>?
-        sut.load {
-            capturedResult = $0
-            loadExp.fulfill()
-        }
-        
-        wait(for: [loadExp], timeout: 0.1)
-        
+        saveTokenWith(sut, token: token)
+                
+        let capturedResult = loadTokenFrom(sut)
+
         XCTAssertEqual(try? capturedResult?.get(), token)
     }
     
@@ -135,6 +116,29 @@ class KeychainTokenStoreTests: XCTestCase {
         KeychainTokenStore().clear()
         checkForMemoryLeaks(sut)
         return sut
+    }
+    
+    private func saveTokenWith(_ sut: KeychainTokenStore, token: Token) {
+        let exp = expectation(description: "Wait for saving completion")
+        
+        sut.save(token: token) { _ in
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
+    private func loadTokenFrom(_ sut: KeychainTokenStore) -> Result<Token, Error>? {
+        let exp = expectation(description: "Wait for saving completion")
+        
+        var capturedResult: Result<Token, Error>?
+        sut.load {
+            capturedResult = $0
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+        return capturedResult
     }
     
     private func makeToken(accessToken: String = "any", tokenType: String = "any", expiredDate: Date = Date(), refreshToken: String = "any") -> Token {
