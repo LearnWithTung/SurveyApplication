@@ -15,6 +15,7 @@
 		DFEC164826724A1F008990FB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164726724A1F008990FB /* Credentials.swift */; };
 		DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */; };
 		DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */; };
+		DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		DFEC164726724A1F008990FB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMappers.swift; sourceTree = "<group>"; };
 		DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
+		DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		DFEC163226723F33008990FB /* SurveyFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC1652267263DE008990FB /* Helpers */,
 				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 				DFEC164D26725FA5008990FB /* API */,
 				DFEC163526723F33008990FB /* Info.plist */,
@@ -123,6 +126,14 @@
 				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		DFEC1652267263DE008990FB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
+				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
