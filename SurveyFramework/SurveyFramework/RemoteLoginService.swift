@@ -41,8 +41,8 @@ public class RemoteLoginService {
             switch result {
             case .failure:
                 completion(.failure(.connectivity))
-            case let .success((data, _)):
-                if let root = try? JSONDecoder().decode(Root.self, from: data) {
+            case let .success((data, response)):
+                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
                     return completion(.success(root.attributes.toModel(currentDate: self.currentDate())))
                 }
                 completion(.failure(.invalidData))

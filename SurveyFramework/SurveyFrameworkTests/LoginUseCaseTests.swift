@@ -71,7 +71,8 @@ class LoginUseCaseTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWithError: .invalidData) {
-                client.completeWithStatusCode(code, at: index)
+                let jsonData = makeTokenJSONData(from: makeTokenJSONWith().json)
+                client.completeWithStatusCode(code, data: jsonData, at: index)
             }
         }
     }
