@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
+		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,7 @@
 		DFEC162926723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC162E26723F33008990FB /* SurveyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEC163526723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFEC163F26723FFF008990FB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEC162926723F33008990FB /* Info.plist */,
+				DFEC163F26723FFF008990FB /* Token.swift */,
 			);
 			path = SurveyFramework;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				TargetAttributes = {
 					DFEC162426723F33008990FB = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					DFEC162D26723F33008990FB = {
 						CreatedOnToolsVersion = 12.5;
@@ -187,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC164026723FFF008990FB /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +337,7 @@
 		DFEC163A26723F33008990FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -348,6 +354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = vn.learnwithtung.surveyframework.SurveyFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -355,6 +362,7 @@
 		DFEC163B26723F33008990FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -378,6 +386,7 @@
 		DFEC163D26723F33008990FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SurveyFrameworkTests/Info.plist;
@@ -395,6 +404,7 @@
 		DFEC163E26723F33008990FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SurveyFrameworkTests/Info.plist;
