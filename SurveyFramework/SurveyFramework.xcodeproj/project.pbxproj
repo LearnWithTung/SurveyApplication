@@ -104,7 +104,7 @@
 			children = (
 				DFEC1652267263DE008990FB /* Helpers */,
 				DFEC164D26725FA5008990FB /* API */,
-				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
+				DFEC165C267268FB008990FB /* Local */,
 				DFEC163526723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFrameworkTests;
@@ -152,6 +152,14 @@
 				DFEC16542672664A008990FB /* KeychainTokenStore.swift */,
 				DFEC165826726850008990FB /* TokenLoader.swift */,
 				DFEC165A26726883008990FB /* TokenSaver.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		DFEC165C267268FB008990FB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
