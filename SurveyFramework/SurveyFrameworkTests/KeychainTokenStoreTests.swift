@@ -16,7 +16,19 @@ class KeychainTokenStore {
     func load(completion: @escaping (Result<Any, Swift.Error>) -> Void) {
         completion(.failure(Error.dataNotFound))
     }
+    
+    private var key: String {
+        return "KeychainTokenStore.AccessToken"
+    }
 
+    func clear() {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
+        ] as CFDictionary
+        
+        SecItemDelete(query)
+    }
 }
 
 class KeychainTokenStoreTests: XCTestCase {
@@ -39,6 +51,7 @@ class KeychainTokenStoreTests: XCTestCase {
     // MARK: - Helpers
     func makeSUT() -> KeychainTokenStore {
         let sut = KeychainTokenStore()
+        KeychainTokenStore().clear()
         checkForMemoryLeaks(sut)
         return sut
     }

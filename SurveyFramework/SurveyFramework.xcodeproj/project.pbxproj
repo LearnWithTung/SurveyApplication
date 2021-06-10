@@ -94,8 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				DFEC1652267263DE008990FB /* Helpers */,
-				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 				DFEC164D26725FA5008990FB /* API */,
+				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 				DFEC163526723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFrameworkTests;
