@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KeychainTokenStore {
+public final class KeychainTokenStore {
     struct LocalToken: Codable {
         let accessToken: String
         let tokenType: String
