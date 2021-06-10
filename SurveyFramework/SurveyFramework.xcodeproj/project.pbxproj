@@ -20,6 +20,7 @@
 		DFEC16572672668D008990FB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16562672668D008990FB /* TestHelpers.swift */; };
 		DFEC165926726850008990FB /* TokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165826726850008990FB /* TokenLoader.swift */; };
 		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
+		DFEC165E26726AE6008990FB /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165D26726AE6008990FB /* Survey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		DFEC16562672668D008990FB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		DFEC165826726850008990FB /* TokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoader.swift; sourceTree = "<group>"; };
 		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
+		DFEC165D26726AE6008990FB /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			children = (
 				DFEC163F26723FFF008990FB /* Token.swift */,
 				DFEC164726724A1F008990FB /* Credentials.swift */,
+				DFEC165D26726AE6008990FB /* Survey.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC165E26726AE6008990FB /* Survey.swift in Sources */,
 				DFEC164026723FFF008990FB /* Token.swift in Sources */,
 				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
