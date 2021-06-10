@@ -79,12 +79,9 @@
 		DFEC162726723F33008990FB /* SurveyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC164B26725F8A008990FB /* Feature */,
+				DFEC164C26725F9E008990FB /* API */,
 				DFEC162926723F33008990FB /* Info.plist */,
-				DFEC163F26723FFF008990FB /* Token.swift */,
-				DFEC164326724958008990FB /* RemoteLoginService.swift */,
-				DFEC164726724A1F008990FB /* Credentials.swift */,
-				DFEC164526724A03008990FB /* HTTPClient.swift */,
-				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
 			);
 			path = SurveyFramework;
 			sourceTree = "<group>";
@@ -92,10 +89,37 @@
 		DFEC163226723F33008990FB /* SurveyFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC164D26725FA5008990FB /* API */,
 				DFEC163526723F33008990FB /* Info.plist */,
-				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
 			);
 			path = SurveyFrameworkTests;
+			sourceTree = "<group>";
+		};
+		DFEC164B26725F8A008990FB /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC163F26723FFF008990FB /* Token.swift */,
+				DFEC164726724A1F008990FB /* Credentials.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		DFEC164C26725F9E008990FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164326724958008990FB /* RemoteLoginService.swift */,
+				DFEC164526724A03008990FB /* HTTPClient.swift */,
+				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		DFEC164D26725FA5008990FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
