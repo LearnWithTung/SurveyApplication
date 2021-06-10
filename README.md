@@ -26,3 +26,35 @@
 #### Invalid data error - error course:
 1. System delivers invalid data error.
 
+### Load Token From Cache Use Case
+
+#### Data:
+
+#### Primary course:
+1. Execute "load token from cache" command with above data.
+2. System fetches data from the cache.
+3. System validates fetched data.
+4. System delivers cached token.
+
+#### Token not found error - error course:
+1. System delivers error.
+
+#### Invalid data error - error course:
+1. System delivers error.
+
+### Cache Token Use Case
+
+#### Data:
+
+#### Primary course:
+1. Execute "cache token" command with above data.
+2. System deletes old cache.
+2. System encodes token.
+3. System save new cache data.
+4. System delivers success message.
+
+#### Delete cache error - error course:
+1. System delivers error.
+
+#### Saving error - error course:
+1. System delivers error.
