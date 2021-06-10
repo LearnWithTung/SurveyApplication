@@ -17,7 +17,8 @@
 2. System creates request with above data.
 3. System sends created request to the backend.
 4. System validates response data.
-5. System persist tokens.
+5. System creatse token.
+5. System delivers token.
 
 #### Connectivity error - error course:
 1. System delivers connectivity error.
