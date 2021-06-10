@@ -131,15 +131,9 @@ class LoginUseCaseTests: XCTestCase {
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any"), currentDate: @escaping () -> Date = { Date() }) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: currentDate)
-        
+        checkForMemoryLeaks(client)
+        checkForMemoryLeaks(sut)
         return (sut, client)
-    }
-    
-    private func makeToken(accessToken: String, tokenType: String, expiredDate: Date, refreshToken: String) -> Token {
-        Token(accessToken: accessToken,
-              tokenType: tokenType,
-              expiredDate: expiredDate,
-              refreshToken: refreshToken)
     }
     
     private func makeTokenJSONWith(accessToken: String = "any", tokenType: String = "any", currentDate: Date = Date(), refreshToken: String = "any", expiresIn: Int = 0) -> (model: Token, json: [String: Any]) {

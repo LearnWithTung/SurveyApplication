@@ -14,6 +14,12 @@
 		DFEC164626724A03008990FB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164526724A03008990FB /* HTTPClient.swift */; };
 		DFEC164826724A1F008990FB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164726724A1F008990FB /* Credentials.swift */; };
 		DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */; };
+		DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */; };
+		DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */; };
+		DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16542672664A008990FB /* KeychainTokenStore.swift */; };
+		DFEC16572672668D008990FB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16562672668D008990FB /* TestHelpers.swift */; };
+		DFEC165926726850008990FB /* TokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165826726850008990FB /* TokenLoader.swift */; };
+		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +43,12 @@
 		DFEC164526724A03008990FB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		DFEC164726724A1F008990FB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMappers.swift; sourceTree = "<group>"; };
+		DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
+		DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
+		DFEC16542672664A008990FB /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
+		DFEC16562672668D008990FB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		DFEC165826726850008990FB /* TokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoader.swift; sourceTree = "<group>"; };
+		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +93,7 @@
 			children = (
 				DFEC164B26725F8A008990FB /* Feature */,
 				DFEC164C26725F9E008990FB /* API */,
+				DFEC165326726643008990FB /* Local */,
 				DFEC162926723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFramework;
@@ -89,7 +102,9 @@
 		DFEC163226723F33008990FB /* SurveyFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC1652267263DE008990FB /* Helpers */,
 				DFEC164D26725FA5008990FB /* API */,
+				DFEC165C267268FB008990FB /* Local */,
 				DFEC163526723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFrameworkTests;
@@ -120,6 +135,33 @@
 				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		DFEC1652267263DE008990FB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */,
+				DFEC16562672668D008990FB /* TestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DFEC165326726643008990FB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16542672664A008990FB /* KeychainTokenStore.swift */,
+				DFEC165826726850008990FB /* TokenLoader.swift */,
+				DFEC165A26726883008990FB /* TokenSaver.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		DFEC165C267268FB008990FB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +278,9 @@
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
+				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
+				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
+				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
+				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
+				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
+				DFEC16572672668D008990FB /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
