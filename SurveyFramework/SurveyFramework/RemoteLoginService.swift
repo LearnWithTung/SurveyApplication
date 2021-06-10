@@ -17,16 +17,6 @@ public struct LoginInfo {
     }
 }
 
-public struct Credentials {
-    public let client_id: String
-    public let client_secret: String
-    
-    public init(client_id: String, client_secret: String) {
-        self.client_id = client_id
-        self.client_secret = client_secret
-    }
-}
-
 public class RemoteLoginService {
     private let url: URL
     private let client: HTTPClient

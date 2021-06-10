@@ -12,6 +12,7 @@
 		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
 		DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164326724958008990FB /* RemoteLoginService.swift */; };
 		DFEC164626724A03008990FB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164526724A03008990FB /* HTTPClient.swift */; };
+		DFEC164826724A1F008990FB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164726724A1F008990FB /* Credentials.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		DFEC16412672405B008990FB /* LoginUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseTests.swift; sourceTree = "<group>"; };
 		DFEC164326724958008990FB /* RemoteLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginService.swift; sourceTree = "<group>"; };
 		DFEC164526724A03008990FB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		DFEC164726724A1F008990FB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				DFEC162926723F33008990FB /* Info.plist */,
 				DFEC163F26723FFF008990FB /* Token.swift */,
 				DFEC164326724958008990FB /* RemoteLoginService.swift */,
+				DFEC164726724A1F008990FB /* Credentials.swift */,
 				DFEC164526724A03008990FB /* HTTPClient.swift */,
 			);
 			path = SurveyFramework;
@@ -203,6 +206,7 @@
 			files = (
 				DFEC164026723FFF008990FB /* Token.swift in Sources */,
 				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
+				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
