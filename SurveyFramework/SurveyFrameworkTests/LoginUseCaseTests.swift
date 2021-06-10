@@ -60,30 +60,20 @@ class LoginUseCaseTests: XCTestCase {
         let clientError = NSError(domain: "test", code: 0, userInfo: nil)
         let (sut, client) = makeSUT()
         
-        var capturedError: RemoteLoginService.Error?
-        sut.login(with: anyLoginInfo()) { error in
-            capturedError = error
+        expect(sut, toCompleteWithError: .connectivity) {
+            client.completeWithError(clientError)
         }
-        
-        client.completeWithError(clientError)
-        
-        XCTAssertEqual(capturedError, .connectivity)
     }
     
     func test_login_deliversErrorOnNon200HTTPResponse() {
-        let url = URL(string: "https://a-url.com")!
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
 
         let samples = [199, 201, 300, 400, 500]
         samples.enumerated().forEach { index, code in
-            var capturedError: RemoteLoginService.Error?
-            sut.login(with: anyLoginInfo()) { error in
-                capturedError = error
+            expect(sut, toCompleteWithError: .invalidData) {
+                client.completeWithStatusCode(code, at: index)
             }
-            client.completeWithStatusCode(code, at: index)
-            XCTAssertEqual(capturedError, .invalidData)
         }
-        
     }
     
     // MARK: - Helpers
@@ -92,6 +82,21 @@ class LoginUseCaseTests: XCTestCase {
         let sut = RemoteLoginService(url: url, client: client, credentials: credentials)
         
         return (sut, client)
+    }
+    
+    private func expect(_ sut: RemoteLoginService, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "wait for completion")
+        
+        var capturedError: RemoteLoginService.Error?
+        sut.login(with: anyLoginInfo()) { error in
+            capturedError = error
+            exp.fulfill()
+        }
+            
+        action()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(capturedError, error, file: file, line: line)
     }
     
     private func anyLoginInfo() -> LoginInfo {
