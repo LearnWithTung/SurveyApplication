@@ -17,6 +17,7 @@
 		DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */; };
 		DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */; };
 		DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16542672664A008990FB /* KeychainTokenStore.swift */; };
+		DFEC16572672668D008990FB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16562672668D008990FB /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
 		DFEC16542672664A008990FB /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
+		DFEC16562672668D008990FB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */,
+				DFEC16562672668D008990FB /* TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
 				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
+				DFEC16572672668D008990FB /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

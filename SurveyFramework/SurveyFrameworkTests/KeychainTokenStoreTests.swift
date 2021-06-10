@@ -73,12 +73,5 @@ class KeychainTokenStoreTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
         return capturedResult
     }
-    
-    private func makeToken(accessToken: String = "any", tokenType: String = "any", expiredDate: Date = Date(), refreshToken: String = "any") -> Token {
-        Token(accessToken: accessToken,
-              tokenType: tokenType,
-              expiredDate: expiredDate,
-              refreshToken: refreshToken)
-    }
 
 }

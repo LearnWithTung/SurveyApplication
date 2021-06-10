@@ -136,13 +136,6 @@ class LoginUseCaseTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeToken(accessToken: String, tokenType: String, expiredDate: Date, refreshToken: String) -> Token {
-        Token(accessToken: accessToken,
-              tokenType: tokenType,
-              expiredDate: expiredDate,
-              refreshToken: refreshToken)
-    }
-    
     private func makeTokenJSONWith(accessToken: String = "any", tokenType: String = "any", currentDate: Date = Date(), refreshToken: String = "any", expiresIn: Int = 0) -> (model: Token, json: [String: Any]) {
         let calendar = Calendar(identifier: .gregorian)
         let expiredDate = calendar.date(byAdding: .second, value: expiresIn, to: currentDate)!
