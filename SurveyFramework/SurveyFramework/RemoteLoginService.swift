@@ -42,10 +42,7 @@ public class RemoteLoginService {
             case .failure:
                 completion(.failure(.connectivity))
             case let .success((data, response)):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    return completion(.success(root.attributes.toModel(currentDate: self.currentDate())))
-                }
-                completion(.failure(.invalidData))
+                completion(RemoteLoginMappers.map(data: data, response: response, currentDate: self.currentDate()))
             }
         }
     }
@@ -65,24 +62,5 @@ public class RemoteLoginService {
         request.httpBody = bodyData
         
         return request
-    }
-}
-
-private struct Root: Decodable {
-    let attributes: RemoteToken
-    
-    struct RemoteToken: Decodable {
-        let access_token: String
-        let token_type: String
-        let expires_in: Int
-        let refresh_token: String
-        
-        func toModel(currentDate: Date) -> Token {
-            let calendar = Calendar(identifier: .gregorian)
-            let expiredDate = calendar.date(byAdding: .second, value: expires_in, to: currentDate)!
-            let token = Token(accessToken: access_token, tokenType: token_type, expiredDate: expiredDate, refreshToken: refresh_token)
-            
-            return token
-        }
     }
 }
