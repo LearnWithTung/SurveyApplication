@@ -10,6 +10,7 @@
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
 		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
 		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
+		DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164326724958008990FB /* RemoteLoginService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		DFEC163526723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC163F26723FFF008990FB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		DFEC16412672405B008990FB /* LoginUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseTests.swift; sourceTree = "<group>"; };
+		DFEC164326724958008990FB /* RemoteLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				DFEC162926723F33008990FB /* Info.plist */,
 				DFEC163F26723FFF008990FB /* Token.swift */,
+				DFEC164326724958008990FB /* RemoteLoginService.swift */,
 			);
 			path = SurveyFramework;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC164026723FFF008990FB /* Token.swift in Sources */,
+				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
