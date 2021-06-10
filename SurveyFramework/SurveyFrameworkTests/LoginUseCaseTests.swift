@@ -20,7 +20,7 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: anyLoginInfo())
+        sut.login(with: anyLoginInfo()) {_ in}
         
         XCTAssertEqual(client.requestedURLs.map {$0.url}, [url])
     }
@@ -29,8 +29,8 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: anyLoginInfo())
-        sut.login(with: anyLoginInfo())
+        sut.login(with: anyLoginInfo()) {_ in}
+        sut.login(with: anyLoginInfo()) {_ in}
 
         XCTAssertEqual(client.requestedURLs.map{$0.url}, [url, url])
     }
@@ -47,7 +47,7 @@ class LoginUseCaseTests: XCTestCase {
         ]
         let (sut, client) = makeSUT(credentials: credentials)
         
-        sut.login(with: info)
+        sut.login(with: info) {_ in}
         
         let urlRequest = client.requestedURLs[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
