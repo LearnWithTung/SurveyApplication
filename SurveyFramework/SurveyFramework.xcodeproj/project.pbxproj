@@ -16,6 +16,7 @@
 		DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */; };
 		DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */; };
 		DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */; };
+		DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16542672664A008990FB /* KeychainTokenStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMappers.swift; sourceTree = "<group>"; };
 		DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStoreTests.swift; sourceTree = "<group>"; };
 		DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
+		DFEC16542672664A008990FB /* KeychainTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				DFEC164B26725F8A008990FB /* Feature */,
 				DFEC164C26725F9E008990FB /* API */,
+				DFEC165326726643008990FB /* Local */,
 				DFEC162926723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFramework;
@@ -134,6 +137,14 @@
 				DFEC1650267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DFEC165326726643008990FB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16542672664A008990FB /* KeychainTokenStore.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +261,7 @@
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
+				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
