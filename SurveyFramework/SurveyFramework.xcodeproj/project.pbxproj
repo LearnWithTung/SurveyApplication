@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
+		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
+		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
+		DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164326724958008990FB /* RemoteLoginService.swift */; };
+		DFEC164626724A03008990FB /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164526724A03008990FB /* HTTPClient.swift */; };
+		DFEC164826724A1F008990FB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164726724A1F008990FB /* Credentials.swift */; };
+		DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +31,12 @@
 		DFEC162926723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC162E26723F33008990FB /* SurveyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEC163526723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFEC163F26723FFF008990FB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		DFEC16412672405B008990FB /* LoginUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCaseTests.swift; sourceTree = "<group>"; };
+		DFEC164326724958008990FB /* RemoteLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginService.swift; sourceTree = "<group>"; };
+		DFEC164526724A03008990FB /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		DFEC164726724A1F008990FB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMappers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +79,8 @@
 		DFEC162726723F33008990FB /* SurveyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC164B26725F8A008990FB /* Feature */,
+				DFEC164C26725F9E008990FB /* API */,
 				DFEC162926723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFramework;
@@ -75,9 +89,37 @@
 		DFEC163226723F33008990FB /* SurveyFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC164D26725FA5008990FB /* API */,
 				DFEC163526723F33008990FB /* Info.plist */,
 			);
 			path = SurveyFrameworkTests;
+			sourceTree = "<group>";
+		};
+		DFEC164B26725F8A008990FB /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC163F26723FFF008990FB /* Token.swift */,
+				DFEC164726724A1F008990FB /* Credentials.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		DFEC164C26725F9E008990FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164326724958008990FB /* RemoteLoginService.swift */,
+				DFEC164526724A03008990FB /* HTTPClient.swift */,
+				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		DFEC164D26725FA5008990FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +182,11 @@
 				TargetAttributes = {
 					DFEC162426723F33008990FB = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					DFEC162D26723F33008990FB = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -187,6 +231,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC164026723FFF008990FB /* Token.swift in Sources */,
+				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
+				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
+				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
+				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +382,7 @@
 		DFEC163A26723F33008990FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -348,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = vn.learnwithtung.surveyframework.SurveyFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -355,6 +407,7 @@
 		DFEC163B26723F33008990FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -378,6 +431,8 @@
 		DFEC163D26723F33008990FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SurveyFrameworkTests/Info.plist;
@@ -388,6 +443,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.learnwithtung.surveyframework.SurveyFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -395,6 +451,8 @@
 		DFEC163E26723F33008990FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SurveyFrameworkTests/Info.plist;
