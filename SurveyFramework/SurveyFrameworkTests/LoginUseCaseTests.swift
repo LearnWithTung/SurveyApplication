@@ -104,8 +104,6 @@ class LoginUseCaseTests: XCTestCase {
                                       refreshToken: "refresh token",
                                       expiresIn: 60)
 
-        let json = ["attributes": token.json]
-
         let exp = expectation(description: "wait for completion")
         sut.login(with: anyLoginInfo()) { result in
             switch result {
@@ -117,7 +115,7 @@ class LoginUseCaseTests: XCTestCase {
             exp.fulfill()
         }
 
-        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        let jsonData = makeTokenJSONData(from: token.json)
         client.completeWithStatusCode(200, data: jsonData)
         
         wait(for: [exp], timeout: 0.1)
@@ -152,6 +150,12 @@ class LoginUseCaseTests: XCTestCase {
         ] as [String : Any]
 
         return (token, tokenJSON)
+    }
+    
+    private func makeTokenJSONData(from dict: [String: Any]) -> Data {
+        let json = ["attributes": dict]
+
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func expect(_ sut: RemoteLoginService, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
