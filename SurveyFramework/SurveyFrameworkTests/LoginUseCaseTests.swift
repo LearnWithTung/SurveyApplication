@@ -76,6 +76,15 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
+    func test_login_deliversErrorOn200HTTPResponseInvalidJSON() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWithError: .invalidData) {
+            let invalidJSON = Data("invalid data".utf8)
+            client.completeWithStatusCode(200, data: invalidJSON)
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -119,9 +128,9 @@ class LoginUseCaseTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
         
-        func completeWithStatusCode(_ code: Int, at index: Int = 0) {
+        func completeWithStatusCode(_ code: Int, data: Data = Data(), at index: Int = 0) {
             let httpResponse = HTTPURLResponse(url: requestedURLs[index].url!, statusCode: code, httpVersion: nil, headerFields: nil)!
-            messages[index].completion(.success(httpResponse))
+            messages[index].completion(.success((data, httpResponse)))
         }
         
     }
