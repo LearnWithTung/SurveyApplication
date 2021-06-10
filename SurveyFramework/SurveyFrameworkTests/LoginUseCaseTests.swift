@@ -7,6 +7,11 @@
 
 import XCTest
 
+struct LoginInfo {
+    let email: String
+    let password: String
+}
+
 class RemoteLoginService {
     private let url: URL
     private let client: HTTPClient
@@ -16,7 +21,7 @@ class RemoteLoginService {
         self.url = url
     }
     
-    func login() {
+    func login(with info: LoginInfo) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         client.post(with: request)
@@ -43,7 +48,7 @@ class LoginUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.login()
+        sut.login(with: .init(email: "any email", password: "any password"))
         
         XCTAssertEqual(client.requestedURL?.url, url)
     }
