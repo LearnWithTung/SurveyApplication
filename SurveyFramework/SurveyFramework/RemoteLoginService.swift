@@ -29,6 +29,10 @@ public class RemoteLoginService {
     }
     
     public func login(with info: LoginInfo) {
+        client.post(with: makeURLRequest(with: info))
+    }
+    
+    private func makeURLRequest(with info: LoginInfo) -> URLRequest {
         let body = [
             "grant_type": "password",
             "email": info.email,
@@ -42,6 +46,6 @@ public class RemoteLoginService {
         request.httpMethod = "POST"
         request.httpBody = bodyData
         
-        client.post(with: request)
+        return request
     }
 }
