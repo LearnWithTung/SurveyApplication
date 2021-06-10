@@ -96,30 +96,21 @@ class LoginUseCaseTests: XCTestCase {
     
     func test_login_succeedsOn200HTTPResponseWithTokenJSON() {
         let currentDate = Date()
-        let calendar = Calendar(identifier: .gregorian)
-        let expiresIn = 60
-        let expiredDate = calendar.date(byAdding: .second, value: expiresIn, to: currentDate)!
         let (sut, client) = makeSUT(currentDate: { currentDate })
         
-        let token = Token(accessToken: "access token",
-                          tokenType: "token type",
-                          expiredDate: expiredDate,
-                          refreshToken: "refresh token")
+        let token = makeTokenJSONWith(accessToken: "access token",
+                                      tokenType: "token type",
+                                      currentDate: currentDate,
+                                      refreshToken: "refresh token",
+                                      expiresIn: 60)
 
-        let tokenJSON = [
-            "access_token": token.accessToken,
-            "token_type": token.tokenType,
-            "expires_in": expiresIn,
-            "refresh_token": token.refreshToken
-        ] as [String : Any]
-
-        let json = ["attributes": tokenJSON]
+        let json = ["attributes": token.json]
 
         let exp = expectation(description: "wait for completion")
         sut.login(with: anyLoginInfo()) { result in
             switch result {
             case let .success(receivedToken):
-                XCTAssertEqual(receivedToken, token)
+                XCTAssertEqual(receivedToken, token.model)
             default:
                 XCTFail("Expected success but got \(result) instead")
             }
@@ -138,6 +129,29 @@ class LoginUseCaseTests: XCTestCase {
         let sut = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: currentDate)
         
         return (sut, client)
+    }
+    
+    private func makeToken(accessToken: String, tokenType: String, expiredDate: Date, refreshToken: String) -> Token {
+        Token(accessToken: accessToken,
+              tokenType: tokenType,
+              expiredDate: expiredDate,
+              refreshToken: refreshToken)
+    }
+    
+    private func makeTokenJSONWith(accessToken: String, tokenType: String, currentDate: Date, refreshToken: String, expiresIn: Int = 0) -> (model: Token, json: [String: Any]) {
+        let calendar = Calendar(identifier: .gregorian)
+        let expiredDate = calendar.date(byAdding: .second, value: expiresIn, to: currentDate)!
+        
+        let token = makeToken(accessToken: accessToken, tokenType: tokenType, expiredDate: expiredDate, refreshToken: refreshToken)
+
+        let tokenJSON = [
+            "access_token": token.accessToken,
+            "token_type": token.tokenType,
+            "expires_in": expiresIn,
+            "refresh_token": token.refreshToken
+        ] as [String : Any]
+
+        return (token, tokenJSON)
     }
     
     private func expect(_ sut: RemoteLoginService, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
