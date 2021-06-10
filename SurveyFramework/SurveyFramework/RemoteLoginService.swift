@@ -36,7 +36,8 @@ public class RemoteLoginService {
     }
     
     public func login(with info: LoginInfo, completion: @escaping (Result<Token, Error>) -> Void = {_ in}) {
-        client.post(with: makeURLRequest(with: info)) { result in
+        client.post(with: makeURLRequest(with: info)) {[weak self] result in
+            guard let self = self else {return}
             switch result {
             case .failure:
                 completion(.failure(.connectivity))

@@ -121,6 +121,22 @@ class LoginUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
     
+    func test_login_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
+        let url = URL(string: "https://a-url.com")!
+        let client = HTTPClientSpy()
+        let credentials = Credentials(client_id: "any", client_secret: "any")
+        var sut: RemoteLoginService? = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: {Date()})
+        
+        var capturedResult: Result<Token, RemoteLoginService.Error>?
+        sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
+
+        sut = nil
+        
+        client.completeWithStatusCode(199)
+        
+        XCTAssertNil(capturedResult)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any"), currentDate: @escaping () -> Date = { Date() }) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
@@ -136,7 +152,7 @@ class LoginUseCaseTests: XCTestCase {
               refreshToken: refreshToken)
     }
     
-    private func makeTokenJSONWith(accessToken: String, tokenType: String, currentDate: Date, refreshToken: String, expiresIn: Int = 0) -> (model: Token, json: [String: Any]) {
+    private func makeTokenJSONWith(accessToken: String = "any", tokenType: String = "any", currentDate: Date = Date(), refreshToken: String = "any", expiresIn: Int = 0) -> (model: Token, json: [String: Any]) {
         let calendar = Calendar(identifier: .gregorian)
         let expiredDate = calendar.date(byAdding: .second, value: expiresIn, to: currentDate)!
         
