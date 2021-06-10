@@ -21,6 +21,7 @@
 		DFEC165926726850008990FB /* TokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165826726850008990FB /* TokenLoader.swift */; };
 		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
 		DFEC165E26726AE6008990FB /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165D26726AE6008990FB /* Survey.swift */; };
+		DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		DFEC165826726850008990FB /* TokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoader.swift; sourceTree = "<group>"; };
 		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
 		DFEC165D26726AE6008990FB /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSurveysFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
+				DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
+				DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */,
 				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
 				DFEC16572672668D008990FB /* TestHelpers.swift in Sources */,
