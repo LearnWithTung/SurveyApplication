@@ -9,11 +9,17 @@ import Foundation
 import SurveyFramework
 
 class HTTPClientSpy: HTTPClient {
+    // MARK: - Load
+    
     private var messages = [(urlRequest: URLRequest,
                              completion: (HTTPClient.HTTPClientResult) -> Void)]()
     
-    var requestedURLs: [URLRequest] {
+    var requestedURLRequests: [URLRequest] {
         return messages.map {$0.urlRequest}
+    }
+    
+    var requestedURLs: [URL] {
+        return requestedURLRequests.map{$0.url!}
     }
     
     func post(with request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
@@ -25,8 +31,15 @@ class HTTPClientSpy: HTTPClient {
     }
     
     func completeWithStatusCode(_ code: Int, data: Data = Data(), at index: Int = 0) {
-        let httpResponse = HTTPURLResponse(url: requestedURLs[index].url!, statusCode: code, httpVersion: nil, headerFields: nil)!
+        let httpResponse = HTTPURLResponse(url: requestedURLs[index], statusCode: code, httpVersion: nil, headerFields: nil)!
         messages[index].completion(.success((data, httpResponse)))
+    }
+    
+    // MARK: - Get
+    var requestedGETURLRequests = [URLRequest]()
+    
+    func get(from request: URLRequest) {
+        requestedGETURLRequests.append(request)
     }
     
 }

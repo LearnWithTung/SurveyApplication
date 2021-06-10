@@ -22,7 +22,7 @@ class LoginUseCaseTests: XCTestCase {
 
         sut.login(with: anyLoginInfo()) {_ in}
         
-        XCTAssertEqual(client.requestedURLs.map {$0.url}, [url])
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loginTwice_requestsDataFromURLTwice() {
@@ -32,7 +32,7 @@ class LoginUseCaseTests: XCTestCase {
         sut.login(with: anyLoginInfo()) {_ in}
         sut.login(with: anyLoginInfo()) {_ in}
 
-        XCTAssertEqual(client.requestedURLs.map{$0.url}, [url, url])
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_login_signsRequestWithBodyParams() {
@@ -49,7 +49,7 @@ class LoginUseCaseTests: XCTestCase {
         
         sut.login(with: info) {_ in}
         
-        let urlRequest = client.requestedURLs[0]
+        let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
         
         XCTAssertEqual(urlRequest.httpMethod, "POST")
