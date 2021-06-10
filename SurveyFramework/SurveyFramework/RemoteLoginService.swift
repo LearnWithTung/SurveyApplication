@@ -37,9 +37,12 @@ public class RemoteLoginService {
         client.post(with: makeURLRequest(with: info)) { result in
             switch result {
             case .failure:
-                completion(.connectivity)
-            case .success:
-                completion(.invalidData)
+                completion(.failure(.connectivity))
+            case let .success((data, _)):
+                if let _ = try? JSONSerialization.jsonObject(with: data) {
+                    return completion(.success(()))
+                }
+                completion(.failure(.invalidData))
             }
         }
     }

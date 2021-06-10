@@ -94,6 +94,39 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
+    func test_login_succeedsOn200HTTPResponseWithTokenJSON() {
+        let (sut, client) = makeSUT()
+        let token = Token(accessToken: "access token",
+                          tokenType: "token type",
+                          expiredDate: Date(),
+                          refreshToken: "refresh token")
+
+        let tokenJSON = [
+            "access_token": token.accessToken,
+            "token_type": token.tokenType,
+            "expires_in": 60,
+            "refresh_token": token.refreshToken
+        ] as [String : Any]
+
+        let json = ["attributes": tokenJSON]
+
+        let exp = expectation(description: "wait for completion")
+        sut.login(with: anyLoginInfo()) { result in
+            switch result {
+            case .success:
+                break
+            default:
+                XCTFail("Expected success but got \(result) instead")
+            }
+            exp.fulfill()
+        }
+
+        let jsonData = try! JSONSerialization.data(withJSONObject: json)
+        client.completeWithStatusCode(200, data: jsonData)
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
