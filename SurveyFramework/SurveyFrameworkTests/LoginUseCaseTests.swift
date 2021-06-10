@@ -85,6 +85,15 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
+    func test_login_deliversErrorOn200HTTPResponseEmptyJSON() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWithError: .invalidData) {
+            let emptyData = Data()
+            client.completeWithStatusCode(200, data: emptyData)
+        }
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any")) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
