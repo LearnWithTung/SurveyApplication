@@ -56,6 +56,18 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requestedGETURLRequests.map {$0.url}, [expectedURL])
     }
     
+    func test_loadTwice_requestsDataFromURLTwice() {
+        let url = URL(string: "https://a-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        let query = SurveyQuery(pageNumber: 1, pageSize: 2)
+        let expectedURL = makeURL(from: url, query: query)
+        
+        sut.load(query: query)
+        sut.load(query: query)
+
+        XCTAssertEqual(client.requestedGETURLRequests.map {$0.url}, [expectedURL, expectedURL])
+    }
+    
     // MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteSurveysLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
