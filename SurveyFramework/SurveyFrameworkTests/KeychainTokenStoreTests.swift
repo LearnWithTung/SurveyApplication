@@ -55,6 +55,8 @@ class KeychainTokenStore {
                 kSecValueData: data
             ] as CFDictionary
             
+            SecItemDelete(query)
+            
             guard SecItemAdd(query, nil) == noErr else {
                 throw Error.saveFailed
             }
@@ -100,7 +102,7 @@ class KeychainTokenStoreTests: XCTestCase {
     }
     
     func test_load_returnsSavedToken() {
-        let sut = KeychainTokenStore()
+        let sut = makeSUT()
         let token = makeToken()
         
         saveTokenWith(sut, token: token)
@@ -108,6 +110,20 @@ class KeychainTokenStoreTests: XCTestCase {
         let capturedResult = loadTokenFrom(sut)
 
         XCTAssertEqual(try? capturedResult?.get(), token)
+    }
+    
+    func test_load_returnsLastSavedToken() {
+        let sut1 = makeSUT()
+        let sut2 = makeSUT()
+        let token1 = makeToken(accessToken: "access token 1")
+        let token2 = makeToken(accessToken: "access token 2")
+        
+        saveTokenWith(sut1, token: token1)
+        saveTokenWith(sut1, token: token2)
+        
+        let capturedResult = loadTokenFrom(sut2)
+        
+        XCTAssertEqual(try? capturedResult?.get(), token2)
     }
     
     // MARK: - Helpers
