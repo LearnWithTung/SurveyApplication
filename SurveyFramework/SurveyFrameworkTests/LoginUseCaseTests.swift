@@ -17,15 +17,17 @@ class RemoteLoginService {
     }
     
     func login() {
-        client.post(with: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        client.post(with: request)
     }
 }
 
 class HTTPClient {
-    var requestedURL: URL?
+    var requestedURL: URLRequest?
 
-    func post(with url: URL) {
-        requestedURL = url
+    func post(with request: URLRequest) {
+        requestedURL = request
     }
 }
 
@@ -43,7 +45,7 @@ class LoginUseCaseTests: XCTestCase {
 
         sut.login()
         
-        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.requestedURL?.url, url)
     }
     
     // MARK: - Helpers
