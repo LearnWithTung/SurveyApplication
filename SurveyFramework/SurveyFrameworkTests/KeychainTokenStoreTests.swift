@@ -43,6 +43,20 @@ class KeychainTokenStoreTests: XCTestCase {
         XCTAssertEqual(try? capturedResult?.get(), token2)
     }
     
+    func test_clear_emptiesCache() {
+        let sut1 = makeSUT()
+        let sut2 = makeSUT()
+        let sut3 = makeSUT()
+        let token = makeToken(accessToken: "access token 1")
+        
+        saveTokenWith(sut1, token: token)
+        sut2.clear()
+        
+        let capturedResult = loadTokenFrom(sut3)
+        
+        XCTAssertThrowsError(try capturedResult?.get())
+    }
+    
     // MARK: - Helpers
     func makeSUT() -> KeychainTokenStore {
         let sut = KeychainTokenStore()
