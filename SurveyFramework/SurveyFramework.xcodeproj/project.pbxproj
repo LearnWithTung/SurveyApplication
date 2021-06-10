@@ -22,6 +22,7 @@
 		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
 		DFEC165E26726AE6008990FB /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165D26726AE6008990FB /* Survey.swift */; };
 		DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */; };
+		DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166226726BC5008990FB /* HTTPClientSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
 		DFEC165D26726AE6008990FB /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSurveysFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		DFEC166226726BC5008990FB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		DFEC164D26725FA5008990FB /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC166126726BBD008990FB /* Helpers */,
 				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
 				DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */,
 			);
@@ -168,6 +171,14 @@
 				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		DFEC166126726BBD008990FB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC166226726BC5008990FB /* HTTPClientSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
+				DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */,
 				DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */,
 				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
