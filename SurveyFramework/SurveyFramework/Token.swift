@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct Token {
-    let accessToken: String
-    let tokenType: String
-    let expiredDate: Date
-    let refreshToken: String
+public struct Token {
+    public let accessToken: String
+    public let tokenType: String
+    public let expiredDate: Date
+    public let refreshToken: String
+    
+    public init(accessToken: String, tokenType: String, expiredDate: Date, refreshToken: String) {
+        self.accessToken = accessToken
+        self.tokenType = tokenType
+        self.expiredDate = expiredDate
+        self.refreshToken = refreshToken
+    }
 }

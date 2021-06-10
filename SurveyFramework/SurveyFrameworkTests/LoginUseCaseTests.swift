@@ -106,8 +106,13 @@ class LoginUseCaseTests: XCTestCase {
         let exp = expectation(description: "wait for completion")
         
         var capturedError: RemoteLoginService.Error?
-        sut.login(with: anyLoginInfo()) { error in
-            capturedError = error
+        sut.login(with: anyLoginInfo()) { result in
+            switch result {
+            case let .failure(error):
+                capturedError = error
+            default:
+                break
+            }
             exp.fulfill()
         }
             

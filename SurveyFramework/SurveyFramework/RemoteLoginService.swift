@@ -33,7 +33,7 @@ public class RemoteLoginService {
         self.credentials = credentials
     }
     
-    public func login(with info: LoginInfo, completion: @escaping (Error) -> Void = {_ in}) {
+    public func login(with info: LoginInfo, completion: @escaping (Result<Void, Error>) -> Void = {_ in}) {
         client.post(with: makeURLRequest(with: info)) { result in
             switch result {
             case .failure:
