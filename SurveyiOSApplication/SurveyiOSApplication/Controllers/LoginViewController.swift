@@ -35,8 +35,18 @@ public class LoginViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
+        appearingAnimation()
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
+        
+        delegate?.login()
+    }
+    
+    private func appearingAnimation() {
         self.fieldsContainer.alpha = 0
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5) {
                 self.logoImageCenterYConstraint.isActive = false
@@ -50,12 +60,6 @@ public class LoginViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }
         }
-    }
-    
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
-        
-        delegate?.login()
     }
     
     private func setupViewsAttributes() {
