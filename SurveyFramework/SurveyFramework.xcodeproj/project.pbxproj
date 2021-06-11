@@ -26,6 +26,7 @@
 		DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */; };
 		DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */; };
 		DFEC166A2672EFB6008990FB /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16692672EFB6008990FB /* HTTPURLResponse+StatusCode.swift */; };
+		DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysLoader.swift; sourceTree = "<group>"; };
 		DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysMappers.swift; sourceTree = "<group>"; };
 		DFEC16692672EFB6008990FB /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
+		DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelperMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEC166226726BC5008990FB /* HTTPClientSpy.swift */,
+				DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
 				DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */,
+				DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */,
 				DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */,
 				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,

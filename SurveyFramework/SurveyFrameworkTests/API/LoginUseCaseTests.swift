@@ -157,10 +157,6 @@ class LoginUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func anyURL() -> URL {
-        return URL(string: "https://any-url.com")!
-    }
-    
     private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
