@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90A0B6624D6CF988258EF6E4 /* Pods_SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FD7C411DCF465115A66891 /* Pods_SurveyFramework.framework */; };
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
 		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
 		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B1457FBF92197305C333795 /* Pods-SurveyFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.debug.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		C45FC90E3D339BD850D5D3A0 /* Pods-SurveyFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.release.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.release.xcconfig"; sourceTree = "<group>"; };
 		DFEC162526723F33008990FB /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEC162926723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC162E26723F33008990FB /* SurveyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +74,7 @@
 		DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTokenLoader.swift; sourceTree = "<group>"; };
 		DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTokenMappers.swift; sourceTree = "<group>"; };
 		DFEC16772672F90F008990FB /* RemoteToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteToken.swift; sourceTree = "<group>"; };
+		E5FD7C411DCF465115A66891 /* Pods_SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A0B6624D6CF988258EF6E4 /* Pods_SurveyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,12 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D61592924D35B67886CD7B45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5FD7C411DCF465115A66891 /* Pods_SurveyFramework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DFEC161B26723F33008990FB = {
 			isa = PBXGroup;
 			children = (
 				DFEC162726723F33008990FB /* SurveyFramework */,
 				DFEC163226723F33008990FB /* SurveyFrameworkTests */,
 				DFEC162626723F33008990FB /* Products */,
+				EA0AB9F5EC9E866052D130DC /* Pods */,
+				D61592924D35B67886CD7B45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,6 +276,16 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
+		EA0AB9F5EC9E866052D130DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5B1457FBF92197305C333795 /* Pods-SurveyFramework.debug.xcconfig */,
+				C45FC90E3D339BD850D5D3A0 /* Pods-SurveyFramework.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../SurveyiOSApplication/Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -278,6 +303,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFEC163926723F33008990FB /* Build configuration list for PBXNativeTarget "SurveyFramework" */;
 			buildPhases = (
+				78F2264902018D40AD2BC1F9 /* [CP] Check Pods Manifest.lock */,
 				DFEC162026723F33008990FB /* Headers */,
 				DFEC162126723F33008990FB /* Sources */,
 				DFEC162226723F33008990FB /* Frameworks */,
@@ -364,6 +390,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		78F2264902018D40AD2BC1F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SurveyFramework-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DFEC162126723F33008990FB /* Sources */ = {
@@ -537,6 +588,7 @@
 		};
 		DFEC163A26723F33008990FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B1457FBF92197305C333795 /* Pods-SurveyFramework.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -564,6 +616,7 @@
 		};
 		DFEC163B26723F33008990FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C45FC90E3D339BD850D5D3A0 /* Pods-SurveyFramework.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

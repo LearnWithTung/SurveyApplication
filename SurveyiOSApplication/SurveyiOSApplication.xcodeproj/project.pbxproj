@@ -22,6 +22,7 @@
 		DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */; };
 		DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A07526734013008FF1D9 /* Main.storyboard */; };
 		DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07826734457008FF1D9 /* String+Extensions.swift */; };
+		F39E3CCC311BB99900BDEA70 /* Pods_SurveyiOSApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyiOSApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.release.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.release.xcconfig"; sourceTree = "<group>"; };
+		9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.debug.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-Book.otf"; sourceTree = "<group>"; };
 		DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-BookHeavy.otf"; sourceTree = "<group>"; };
 		DF3E979E26736825004FA3AE /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39E3CCC311BB99900BDEA70 /* Pods_SurveyiOSApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22CD7CF66473EFC08B08AF74 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */,
+				15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8B09446F6144994F5FD57690 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DF3E97A226737195004FA3AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +172,8 @@
 				DFA8A03826731F37008FF1D9 /* SurveyiOSApplication */,
 				DFA8A04F26731F39008FF1D9 /* SurveyiOSApplicationTests */,
 				DFA8A03726731F37008FF1D9 /* Products */,
+				22CD7CF66473EFC08B08AF74 /* Pods */,
+				8B09446F6144994F5FD57690 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +227,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFA8A06026731F39008FF1D9 /* Build configuration list for PBXNativeTarget "SurveyiOSApplication" */;
 			buildPhases = (
+				1B1CBF21FE04B0712A48839E /* [CP] Check Pods Manifest.lock */,
 				DFA8A03226731F37008FF1D9 /* Sources */,
 				DFA8A03326731F37008FF1D9 /* Frameworks */,
 				DFA8A03426731F37008FF1D9 /* Resources */,
@@ -293,6 +319,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B1CBF21FE04B0712A48839E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SurveyiOSApplication-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DFA8A03226731F37008FF1D9 /* Sources */ = {
@@ -458,6 +509,7 @@
 		};
 		DFA8A06126731F39008FF1D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -477,6 +529,7 @@
 		};
 		DFA8A06226731F39008FF1D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
