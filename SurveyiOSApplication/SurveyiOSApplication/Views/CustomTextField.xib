@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NeuzeitSLTStd-Book.otf">
+            <string>NeuzeitSLTStd-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTextField" customModule="SurveyiOSApplication" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="ana-bu-P9c" id="1gO-wr-hyP"/>
+                <outlet property="inputTextField" destination="MNV-oA-1hk" id="xBX-qt-jqv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ana-bu-P9c">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNV-oA-1hk">
+                            <rect key="frame" x="15" y="0.0" width="384" height="56"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="NeuzeitSLTStd-Book" family="Neuzeit S LT Std" pointSize="0.0"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="MNV-oA-1hk" secondAttribute="bottom" id="4eY-po-Iva"/>
+                        <constraint firstItem="MNV-oA-1hk" firstAttribute="leading" secondItem="ana-bu-P9c" secondAttribute="leading" constant="15" id="Aff-ug-Pbd"/>
+                        <constraint firstAttribute="trailing" secondItem="MNV-oA-1hk" secondAttribute="trailing" constant="15" id="J24-3e-1bR"/>
+                        <constraint firstItem="MNV-oA-1hk" firstAttribute="top" secondItem="ana-bu-P9c" secondAttribute="top" id="ubc-tL-Jna"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ana-bu-P9c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="adI-Wz-aEK"/>
+                <constraint firstItem="ana-bu-P9c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ekS-GG-hFn"/>
+                <constraint firstAttribute="trailing" secondItem="ana-bu-P9c" secondAttribute="trailing" id="ekm-dj-tbM"/>
+                <constraint firstAttribute="bottom" secondItem="ana-bu-P9c" secondAttribute="bottom" id="yAH-f4-pZ5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-17.39130434782609" y="131.25"/>
+        </view>
+    </objects>
+</document>
