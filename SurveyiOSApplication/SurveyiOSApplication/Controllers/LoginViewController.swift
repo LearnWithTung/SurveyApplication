@@ -66,5 +66,12 @@ public class LoginViewController: UIViewController {
         btn.titleLabel?.font = UIFont(name: "NeuzeitSLTStd-Book", size: 15)
         
         passwordTextField.addRightView(btn)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
