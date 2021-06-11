@@ -5,12 +5,24 @@
 //  Created by Tung Vu on 11/06/2021.
 //
 
-import Foundation
+import UIKit
 
-public protocol HomeViewControllerDelegate {}
+public protocol HomeViewControllerDelegate {
+    func loadSurvey()
+}
 
-public class HomeViewController {
+public class HomeViewController: UIViewController {
+    private var delegate: HomeViewControllerDelegate?
     
-    public init(delegate: HomeViewControllerDelegate) {}
+    public convenience init(delegate: HomeViewControllerDelegate) {
+        self.init()
+        self.delegate = delegate
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        delegate?.loadSurvey()
+    }
     
 }
