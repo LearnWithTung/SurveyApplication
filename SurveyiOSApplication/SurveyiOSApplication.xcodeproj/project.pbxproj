@@ -10,6 +10,10 @@
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
 		DFA8A04326731F38008FF1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A04226731F38008FF1D9 /* Assets.xcassets */; };
 		DFA8A04626731F38008FF1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */; };
+		DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */; };
+		DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07126733F75008FF1D9 /* LoginViewController.swift */; };
+		DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */; };
+		DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A07526734013008FF1D9 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +34,10 @@
 		DFA8A04726731F38008FF1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFA8A04C26731F39008FF1D9 /* SurveyiOSApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyiOSApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA8A05226731F39008FF1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
+		DFA8A07126733F75008FF1D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
+		DFA8A07526734013008FF1D9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,9 @@
 				DFA8A04226731F38008FF1D9 /* Assets.xcassets */,
 				DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */,
 				DFA8A04726731F38008FF1D9 /* Info.plist */,
+				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
+				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
+				DFA8A07526734013008FF1D9 /* Main.storyboard */,
 			);
 			path = SurveyiOSApplication;
 			sourceTree = "<group>";
@@ -83,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				DFA8A05226731F39008FF1D9 /* Info.plist */,
+				DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */,
 			);
 			path = SurveyiOSApplicationTests;
 			sourceTree = "<group>";
@@ -139,6 +151,7 @@
 					};
 					DFA8A04B26731F39008FF1D9 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 						TestTargetID = DFA8A03526731F37008FF1D9;
 					};
 				};
@@ -167,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */,
 				DFA8A04626731F38008FF1D9 /* LaunchScreen.storyboard in Resources */,
 				DFA8A04326731F38008FF1D9 /* Assets.xcassets in Resources */,
 			);
@@ -186,7 +200,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
+				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +395,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SurveyiOSApplicationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -388,6 +406,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.learnwithtung.SurveyiOSApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SurveyiOSApplication.app/SurveyiOSApplication";
@@ -399,6 +418,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SurveyiOSApplicationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
