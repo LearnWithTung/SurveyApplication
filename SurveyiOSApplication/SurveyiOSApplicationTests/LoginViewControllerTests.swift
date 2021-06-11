@@ -18,14 +18,28 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoginCallCount, 0)
     }
     
-    func test_login_doesNotRequestLoginOnInvalidEmail() {
+    func test_login_doesNotRequestLoginOnInvalidInputValues() {
         let (sut, delegate) = makeSUT()
         sut.loadViewIfNeeded()
         
         sut.emailTextField.text = "not an email"
-        
+        sut.passwordTextField.text = ""
         sut.loginButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0)
         
+        sut.emailTextField.text = "tungvuduc2805@gmail.com"
+        sut.passwordTextField.text = ""
+        sut.loginButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        
+        sut.emailTextField.text = ""
+        sut.passwordTextField.text = "123456789"
+        sut.loginButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        
+        sut.emailTextField.text = ""
+        sut.passwordTextField.text = ""
+        sut.loginButton.sendActions(for: .touchUpInside)
         XCTAssertEqual(delegate.requestLoginCallCount, 0)
     }
     

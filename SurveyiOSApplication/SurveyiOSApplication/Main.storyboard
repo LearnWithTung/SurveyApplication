@@ -31,6 +31,12 @@
                                     <action selector="loginButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6dd-hH-9Tn"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-br-6G2" userLabel="Password">
+                                <rect key="frame" x="159" y="300" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -38,6 +44,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="5bu-zw-PAL" id="QQl-Ph-QsA"/>
                         <outlet property="loginButton" destination="1gD-Vd-IFR" id="0Nu-JQ-M1L"/>
+                        <outlet property="passwordTextField" destination="YEW-br-6G2" id="obd-ea-ASb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
