@@ -17,7 +17,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
     }
     
     func test_load_requestsDataFromURL() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         let query = SurveyQuery(pageNumber: 1, pageSize: 2)
         let expectedURL = makeURL(from: url, query: query)
@@ -28,7 +28,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         let query = SurveyQuery(pageNumber: 1, pageSize: 2)
         let expectedURL = makeURL(from: url, query: query)
@@ -83,7 +83,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
     
     func test_load_doesNotDeliversErrorAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
-        var sut: RemoteSurveysLoader? = RemoteSurveysLoader(url: URL(string: "https://a-url.com")!, client: client)
+        var sut: RemoteSurveysLoader? = RemoteSurveysLoader(url: anyURL(), client: client)
         
         var capturedResult: Result<[Survey], RemoteSurveysLoader.Error>?
         sut?.load(query: anyQuery()) { capturedResult = $0}
@@ -127,6 +127,10 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         let json = ["data": dict]
 
         return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "https://any-url.com")!
     }
     
     private func expect(_ sut: RemoteSurveysLoader, toCompleteWithError error: RemoteSurveysLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
