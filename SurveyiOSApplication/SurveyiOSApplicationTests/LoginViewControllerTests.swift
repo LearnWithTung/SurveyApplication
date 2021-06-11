@@ -19,11 +19,18 @@ class LoginViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT() -> (sut: LoginViewController, delegate: LoginViewControllerDelegateSpy) {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LoginViewController, delegate: LoginViewControllerDelegateSpy) {
         let delegate = LoginViewControllerDelegateSpy()
         let sut = LoginUIComposer.loginComposedWith(delegate: delegate)
-        
+        checkForMemoryLeaks(delegate, file: file, line: line)
+        checkForMemoryLeaks(sut, file: file, line: line)
         return (sut, delegate)
+    }
+    
+    private func checkForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     private class LoginViewControllerDelegateSpy: LoginViewControllerDelegate {
