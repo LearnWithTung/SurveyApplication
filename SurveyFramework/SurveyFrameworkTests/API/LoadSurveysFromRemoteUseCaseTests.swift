@@ -41,12 +41,30 @@ class RemoteSurveysLoader {
             switch result {
             case .failure:
                 completion(.failure(.connectivity))
-            case .success:
+            case let .success((data, response)):
+                if response.statusCode == 200, let _ = try? JSONDecoder().decode(Root.self, from: data) {
+                    return completion(.success([]))
+                }
                 completion(.failure(.invalidData))
             }
         }
     }
     
+}
+
+private struct Root: Decodable {
+    let data: [RemoteSurvey]
+    
+    struct RemoteSurvey: Decodable {
+        let id: String
+        let attributes: RemoteAttributes
+    }
+    
+    struct RemoteAttributes: Decodable {
+        let title: String
+        let description: String
+        let cover_image_url: String
+    }
 }
 
 class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
@@ -98,6 +116,15 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
                 let jsonData = makeSurveyJSONData(from: makeSurveyJSONWith().json)
                 client.completeWithStatusCode(code, data: jsonData, at: index)
             }
+        }
+    }
+    
+    func test_login_succeedsOn200HTTPResponseEmptyJSONList() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWithSurveys: []) {
+            let emptyData = Data("{\"data\": []}".utf8)
+            client.completeWithStatusCode(200, data: emptyData)
         }
     }
     
@@ -154,6 +181,26 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         
         wait(for: [exp], timeout: 0.1)
         XCTAssertEqual(capturedError, error, file: file, line: line)
+    }
+    
+    private func expect(_ sut: RemoteSurveysLoader, toCompleteWithSurveys surveys: [Survey], when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "wait for completion")
+        
+        var capturedSurveys: [Survey]?
+        sut.load(query: anyQuery()) { result in
+            switch result {
+            case let .success(surveys):
+                capturedSurveys = surveys
+            default:
+                break
+            }
+            exp.fulfill()
+        }
+            
+        action()
+        
+        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(capturedSurveys, surveys, file: file, line: line)
     }
     
     private func anyQuery() -> SurveyQuery {

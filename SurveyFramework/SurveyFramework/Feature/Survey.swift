@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Survey {
+public struct Survey: Equatable {
     public let id: String
     public let attributes: Attributes
     
@@ -17,7 +17,7 @@ public struct Survey {
     }
 }
 
-public struct Attributes {
+public struct Attributes: Equatable {
     public let title: String
     public let description: String
     public let imageURL: String
