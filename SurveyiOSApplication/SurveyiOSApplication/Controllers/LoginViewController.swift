@@ -26,6 +26,12 @@ public class LoginViewController: UIViewController {
     @IBOutlet weak var logoImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var logoImageWidthConstraint: NSLayoutConstraint!
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupViewsAttributes()
+    }
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
@@ -50,5 +56,15 @@ public class LoginViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
         
         delegate?.login()
+    }
+    
+    private func setupViewsAttributes() {
+        loginButton.layer.cornerRadius = 12
+        let btn = UIButton(type: .system)
+        btn.setTitle("Forgot?", for: .normal)
+        btn.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
+        btn.titleLabel?.font = UIFont(name: "NeuzeitSLTStd-Book", size: 15)
+        
+        passwordTextField.addRightView(btn)
     }
 }
