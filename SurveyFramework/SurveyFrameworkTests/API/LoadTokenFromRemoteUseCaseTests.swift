@@ -116,7 +116,7 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         var sut: RemoteLoginService? = RemoteLoginService(url: anyURL(), client: client, credentials: credentials, currentDate: {Date()})
         
         var capturedResult: RemoteLoginService.RemoteLoginResult?
-        sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
+        sut?.load(with: anyLoginInfo()) { capturedResult = $0 }
 
         sut = nil
         

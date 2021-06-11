@@ -37,7 +37,7 @@ public class RemoteLoginService {
         self.currentDate = currentDate
     }
     
-    public func login(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
+    public func load(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
         client.post(with: makeURLRequest(with: info)) {[weak self] result in
             guard let self = self else {return}
             switch result {

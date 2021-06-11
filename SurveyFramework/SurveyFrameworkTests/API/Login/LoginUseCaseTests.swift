@@ -16,26 +16,26 @@ class LoginUseCaseTests: XCTestCase {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
-    func test_login_requestsDataFromURL() {
+    func test_load_requestsDataFromURL() {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: anyLoginInfo()) {_ in}
+        sut.load(with: anyLoginInfo()) {_ in}
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    func test_loginTwice_requestsDataFromURLTwice() {
+    func test_loadTwice_requestsDataFromURLTwice() {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.login(with: anyLoginInfo()) {_ in}
-        sut.login(with: anyLoginInfo()) {_ in}
+        sut.load(with: anyLoginInfo()) {_ in}
+        sut.load(with: anyLoginInfo()) {_ in}
 
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    func test_login_signsRequestWithBodyParams() {
+    func test_load_signsRequestWithBodyParams() {
         let credentials = Credentials(client_id: "a clientId", client_secret: "a secret")
         let info = LoginInfo(email: "an email", password: "a password")
         let body = [
@@ -47,7 +47,7 @@ class LoginUseCaseTests: XCTestCase {
         ]
         let (sut, client) = makeSUT(credentials: credentials)
         
-        sut.login(with: info) {_ in}
+        sut.load(with: info) {_ in}
         
         let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
@@ -56,7 +56,7 @@ class LoginUseCaseTests: XCTestCase {
         XCTAssertEqual(requestedBody, body)
     }
     
-    func test_login_deliversErrorOnClientError() {
+    func test_load_deliversErrorOnClientError() {
         let clientError = NSError(domain: "test", code: 0, userInfo: nil)
         let (sut, client) = makeSUT()
         
@@ -65,7 +65,7 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_deliversErrorOnNon200HTTPResponse() {
+    func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
 
         let samples = [199, 201, 300, 400, 500]
@@ -77,7 +77,7 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_deliversErrorOn200HTTPResponseInvalidJSON() {
+    func test_load_deliversErrorOn200HTTPResponseInvalidJSON() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithError: .invalidData) {
@@ -86,7 +86,7 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_deliversErrorOn200HTTPResponseEmptyJSON() {
+    func test_load_deliversErrorOn200HTTPResponseEmptyJSON() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithError: .invalidData) {
@@ -95,7 +95,7 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_succeedsOn200HTTPResponseWithTokenJSON() {
+    func test_load_succeedsOn200HTTPResponseWithTokenJSON() {
         let currentDate = Date()
         let (sut, client) = makeSUT(currentDate: { currentDate })
         
@@ -111,13 +111,13 @@ class LoginUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_load_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let credentials = Credentials(client_id: "any", client_secret: "any")
         var sut: RemoteLoginService? = RemoteLoginService(url: anyURL(), client: client, credentials: credentials, currentDate: {Date()})
         
         var capturedResult: RemoteLoginService.RemoteLoginResult?
-        sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
+        sut?.load(with: anyLoginInfo()) { capturedResult = $0 }
 
         sut = nil
         
@@ -161,7 +161,7 @@ class LoginUseCaseTests: XCTestCase {
         let exp = expectation(description: "wait for completion")
         
         var capturedToken: Token?
-        sut.login(with: anyLoginInfo()) { result in
+        sut.load(with: anyLoginInfo()) { result in
             switch result {
             case let .success(receivedToken):
                 capturedToken = receivedToken
@@ -181,7 +181,7 @@ class LoginUseCaseTests: XCTestCase {
         let exp = expectation(description: "wait for completion")
         
         var capturedError: RemoteLoginService.Error?
-        sut.login(with: anyLoginInfo()) { result in
+        sut.load(with: anyLoginInfo()) { result in
             switch result {
             case let .failure(error):
                 capturedError = error
