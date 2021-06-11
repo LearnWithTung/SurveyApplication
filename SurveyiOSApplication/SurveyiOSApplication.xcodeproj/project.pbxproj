@@ -12,6 +12,8 @@
 		DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979E26736825004FA3AE /* CustomTextField.xib */; };
 		DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97A0267368AA004FA3AE /* CustomTextField.swift */; };
 		DF3E97AA267375A9004FA3AE /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */; };
+		DF3E97B42673B75D004FA3AE /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */; };
+		DF3E97B52673B75D004FA3AE /* SurveyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -35,6 +37,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DF3E97B62673B75D004FA3AE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DF3E97B52673B75D004FA3AE /* SurveyFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyiOSApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.release.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.release.xcconfig"; sourceTree = "<group>"; };
@@ -44,6 +60,7 @@
 		DF3E979E26736825004FA3AE /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
 		DF3E97A0267368AA004FA3AE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F39E3CCC311BB99900BDEA70 /* Pods_SurveyiOSApplication.framework in Frameworks */,
+				DF3E97B42673B75D004FA3AE /* SurveyFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,13 +103,13 @@
 				9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */,
 				15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		8B09446F6144994F5FD57690 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */,
 				017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */,
 			);
 			name = Frameworks;
@@ -231,6 +249,7 @@
 				DFA8A03226731F37008FF1D9 /* Sources */,
 				DFA8A03326731F37008FF1D9 /* Frameworks */,
 				DFA8A03426731F37008FF1D9 /* Resources */,
+				DF3E97B62673B75D004FA3AE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
