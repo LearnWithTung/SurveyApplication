@@ -42,8 +42,8 @@ class RemoteSurveysLoader {
             case .failure:
                 completion(.failure(.connectivity))
             case let .success((data, response)):
-                if response.statusCode == 200, let _ = try? JSONDecoder().decode(Root.self, from: data) {
-                    return completion(.success([]))
+                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+                    return completion(.success(root.data.map {$0.model}))
                 }
                 completion(.failure(.invalidData))
             }
@@ -58,6 +58,11 @@ private struct Root: Decodable {
     struct RemoteSurvey: Decodable {
         let id: String
         let attributes: RemoteAttributes
+        
+        var model: Survey {
+            return Survey(id: id,
+                          attributes: Attributes(title: attributes.title, description: attributes.description, imageURL: attributes.cover_image_url))
+        }
     }
     
     struct RemoteAttributes: Decodable {
@@ -113,7 +118,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWithError: .invalidData) {
-                let jsonData = makeSurveyJSONData(from: makeSurveyJSONWith().json)
+                let jsonData = makeSurveyJSONData(from: [makeSurveyJSONWith().json])
                 client.completeWithStatusCode(code, data: jsonData, at: index)
             }
         }
@@ -125,6 +130,18 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         expect(sut, toCompleteWithSurveys: []) {
             let emptyData = Data("{\"data\": []}".utf8)
             client.completeWithStatusCode(200, data: emptyData)
+        }
+    }
+    
+    func test_login_succeedsOn200HTTPResponseListJSON() {
+        let (sut, client) = makeSUT()
+        
+        let item1 = makeSurveyJSONWith(id: UUID())
+        let item2 = makeSurveyJSONWith(id: UUID())
+
+        expect(sut, toCompleteWithSurveys: [item1.model, item2.model]) {
+            let data = makeSurveyJSONData(from: [item1.json, item2.json])
+            client.completeWithStatusCode(200, data: data)
         }
     }
     
@@ -157,7 +174,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         return (survey, surveyJSON)
     }
     
-    private func makeSurveyJSONData(from dict: [String: Any]) -> Data {
+    private func makeSurveyJSONData(from dict: [[String: Any]]) -> Data {
         let json = ["data": dict]
 
         return try! JSONSerialization.data(withJSONObject: json)
