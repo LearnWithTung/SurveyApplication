@@ -29,7 +29,7 @@ class RemoteSurveysMappers {
     }
 
     static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[Survey], RemoteSurveysLoader.Error> {
-        if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+        if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.data.map {$0.model})
         }
         return .failure(.invalidData)
