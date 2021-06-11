@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
+		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
 		DFA8A04326731F38008FF1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A04226731F38008FF1D9 /* Assets.xcassets */; };
 		DFA8A04626731F38008FF1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA8A03926731F37008FF1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFA8A04226731F38008FF1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF9876C3267353A80017577D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DFA8A02D26731F37008FF1D9 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 		DFA8A04F26731F39008FF1D9 /* SurveyiOSApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
+				DF9876C3267353A80017577D /* Helpers */,
 				DFA8A05226731F39008FF1D9 /* Info.plist */,
 				DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */,
 			);
@@ -227,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
+				DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

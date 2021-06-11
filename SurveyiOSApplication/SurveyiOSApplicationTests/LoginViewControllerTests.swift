@@ -78,25 +78,3 @@ class LoginViewControllerTests: XCTestCase {
     }
     
 }
-
-private extension LoginViewController {
-    
-    func setEmailText(_ text: String) {
-        emailTextField.text = text
-    }
-    
-    func setPasswordText(_ text: String) {
-        passwordTextField.text = text
-    }
-    
-    func simulateLoginButtonTap() {
-        loginButton.simulateTap()
-    }
-    
-}
-
-private extension UIButton {
-    func simulateTap() {
-        sendActions(for: .touchUpInside)
-    }
-}
