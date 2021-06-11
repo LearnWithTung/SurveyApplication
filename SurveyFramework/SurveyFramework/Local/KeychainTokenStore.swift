@@ -77,7 +77,7 @@ extension KeychainTokenStore: TokenLoader {
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
             kSecReturnData: kCFBooleanTrue as Any,
-            kSecMatchLimit: kSecMatchLimit
+            kSecMatchLimit: kSecMatchLimitOne
         ] as CFDictionary
         
         var result: AnyObject?
