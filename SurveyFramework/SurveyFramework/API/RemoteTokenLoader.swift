@@ -27,8 +27,8 @@ public class RemoteTokenLoader {
         self.currentDate = currentDate
     }
     
-    public func login(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
-        client.post(with: makeURLRequest(with: info)) {[weak self] result in
+    public func load(withRefreshToken token: String, completion: @escaping (RemoteLoginResult) -> Void) {
+        client.post(with: makeURLRequest(with: token)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:
@@ -39,18 +39,17 @@ public class RemoteTokenLoader {
         }
     }
     
-    private func makeURLRequest(with info: LoginInfo) -> URLRequest {
+    private func makeURLRequest(with token: String) -> URLRequest {
         let body = [
-            "grant_type": "password",
-            "email": info.email,
-            "password": info.password,
+            "grant_type": "refresh_token",
+            "refresh_token": token,
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret
         ]
         let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.httpBody = bodyData
         
         return request
