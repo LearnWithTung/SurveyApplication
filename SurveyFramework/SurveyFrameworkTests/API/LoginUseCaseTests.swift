@@ -17,7 +17,7 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_login_requestsDataFromURL() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
         sut.login(with: anyLoginInfo()) {_ in}
@@ -26,7 +26,7 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_loginTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
         sut.login(with: anyLoginInfo()) {_ in}
@@ -112,10 +112,9 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_login_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()
         let credentials = Credentials(client_id: "any", client_secret: "any")
-        var sut: RemoteLoginService? = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: {Date()})
+        var sut: RemoteLoginService? = RemoteLoginService(url: anyURL(), client: client, credentials: credentials, currentDate: {Date()})
         
         var capturedResult: RemoteLoginService.RemoteLoginResult?
         sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
@@ -156,6 +155,10 @@ class LoginUseCaseTests: XCTestCase {
         let json = ["attributes": dict]
 
         return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "https://any-url.com")!
     }
     
     private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
