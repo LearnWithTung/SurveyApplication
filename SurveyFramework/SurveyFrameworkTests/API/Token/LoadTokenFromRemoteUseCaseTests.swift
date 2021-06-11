@@ -19,7 +19,7 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.load(withRefreshToken: "any refresh token") {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -28,8 +28,8 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.load(withRefreshToken: "any refresh token") {_ in}
-        sut.load(withRefreshToken: "any refresh token") {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
 
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -153,6 +153,10 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         let json = ["attributes": dict]
 
         return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    private func anyToken() -> String {
+        return "any refresh token"
     }
     
     private func expect(_ sut: RemoteTokenLoader, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {

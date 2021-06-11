@@ -145,13 +145,12 @@
 		DFEC164C26725F9E008990FB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				DFEC16772672F90F008990FB /* RemoteToken.swift */,
-				DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */,
-				DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */,
+				DFEC16792672F936008990FB /* Token */,
 				DFEC166E2672F22E008990FB /* Surveys */,
 				DFEC166D2672F225008990FB /* Login */,
 				DFEC16682672EFA8008990FB /* Helpers */,
 				DFEC164526724A03008990FB /* HTTPClient.swift */,
+				DFEC16772672F90F008990FB /* RemoteToken.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -159,10 +158,10 @@
 		DFEC164D26725FA5008990FB /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DFEC167A2672F949008990FB /* Token */,
 				DFEC16702672F240008990FB /* Surveys */,
 				DFEC166F2672F239008990FB /* Login */,
 				DFEC166126726BBD008990FB /* Helpers */,
-				DFEC16712672F443008990FB /* LoadTokenFromRemoteUseCaseTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -243,6 +242,23 @@
 				DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */,
 			);
 			path = Surveys;
+			sourceTree = "<group>";
+		};
+		DFEC16792672F936008990FB /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */,
+				DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		DFEC167A2672F949008990FB /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16712672F443008990FB /* LoadTokenFromRemoteUseCaseTests.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
