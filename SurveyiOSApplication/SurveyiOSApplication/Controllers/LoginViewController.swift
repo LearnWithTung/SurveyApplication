@@ -63,7 +63,7 @@ public class LoginViewController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setTitle("Forgot?", for: .normal)
         btn.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
-        btn.titleLabel?.font = UIFont(name: "NeuzeitSLTStd-Book", size: 15)
+        btn.titleLabel?.font = UIFont.neuzeitSLTStd(heavy: false, ofSize: 15)
         
         passwordTextField.addRightView(btn)
         
