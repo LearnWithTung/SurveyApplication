@@ -25,22 +25,22 @@ class LoginViewControllerTests: XCTestCase {
         sut.emailTextField.text = "not an email"
         sut.passwordTextField.text = ""
         sut.loginButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on invalid email format and empty password")
         
         sut.emailTextField.text = "tungvuduc2805@gmail.com"
         sut.passwordTextField.text = ""
         sut.loginButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on valid email format and empty password")
         
         sut.emailTextField.text = ""
         sut.passwordTextField.text = "123456789"
         sut.loginButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on empty email and non-empty password")
         
         sut.emailTextField.text = ""
         sut.passwordTextField.text = ""
         sut.loginButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(delegate.requestLoginCallCount, 0)
+        XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on both empty email and password")
     }
     
     // MARK: - Helpers
