@@ -17,22 +17,22 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_login_requestsDataFromURL() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
         sut.login(with: anyLoginInfo()) {_ in}
         
-        XCTAssertEqual(client.requestedURLs.map {$0.url}, [url])
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loginTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "https://a-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
         sut.login(with: anyLoginInfo()) {_ in}
         sut.login(with: anyLoginInfo()) {_ in}
 
-        XCTAssertEqual(client.requestedURLs.map{$0.url}, [url, url])
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_login_signsRequestWithBodyParams() {
@@ -49,7 +49,7 @@ class LoginUseCaseTests: XCTestCase {
         
         sut.login(with: info) {_ in}
         
-        let urlRequest = client.requestedURLs[0]
+        let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
         
         XCTAssertEqual(urlRequest.httpMethod, "POST")
@@ -112,10 +112,9 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     func test_login_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()
         let credentials = Credentials(client_id: "any", client_secret: "any")
-        var sut: RemoteLoginService? = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: {Date()})
+        var sut: RemoteLoginService? = RemoteLoginService(url: anyURL(), client: client, credentials: credentials, currentDate: {Date()})
         
         var capturedResult: RemoteLoginService.RemoteLoginResult?
         sut?.login(with: anyLoginInfo()) { capturedResult = $0 }
@@ -200,29 +199,6 @@ class LoginUseCaseTests: XCTestCase {
     
     private func anyLoginInfo() -> LoginInfo {
         .init(email: "any email", password: "any password")
-    }
-    
-    private class HTTPClientSpy: HTTPClient {
-        private var messages = [(urlRequest: URLRequest,
-                                 completion: (HTTPClient.HTTPClientResult) -> Void)]()
-        
-        var requestedURLs: [URLRequest] {
-            return messages.map {$0.urlRequest}
-        }
-        
-        func post(with request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
-            messages.append((request, completion))
-        }
-        
-        func completeWithError(_ error: Error, at index: Int = 0){
-            messages[index].completion(.failure(error))
-        }
-        
-        func completeWithStatusCode(_ code: Int, data: Data = Data(), at index: Int = 0) {
-            let httpResponse = HTTPURLResponse(url: requestedURLs[index].url!, statusCode: code, httpVersion: nil, headerFields: nil)!
-            messages[index].completion(.success((data, httpResponse)))
-        }
-        
     }
 
 }

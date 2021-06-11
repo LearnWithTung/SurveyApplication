@@ -20,6 +20,13 @@
 		DFEC16572672668D008990FB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16562672668D008990FB /* TestHelpers.swift */; };
 		DFEC165926726850008990FB /* TokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165826726850008990FB /* TokenLoader.swift */; };
 		DFEC165B26726883008990FB /* TokenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165A26726883008990FB /* TokenSaver.swift */; };
+		DFEC165E26726AE6008990FB /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165D26726AE6008990FB /* Survey.swift */; };
+		DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */; };
+		DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166226726BC5008990FB /* HTTPClientSpy.swift */; };
+		DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */; };
+		DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */; };
+		DFEC166A2672EFB6008990FB /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16692672EFB6008990FB /* HTTPURLResponse+StatusCode.swift */; };
+		DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		DFEC16562672668D008990FB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		DFEC165826726850008990FB /* TokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoader.swift; sourceTree = "<group>"; };
 		DFEC165A26726883008990FB /* TokenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaver.swift; sourceTree = "<group>"; };
+		DFEC165D26726AE6008990FB /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSurveysFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		DFEC166226726BC5008990FB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
+		DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysLoader.swift; sourceTree = "<group>"; };
+		DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysMappers.swift; sourceTree = "<group>"; };
+		DFEC16692672EFB6008990FB /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
+		DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelperMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +129,7 @@
 			children = (
 				DFEC163F26723FFF008990FB /* Token.swift */,
 				DFEC164726724A1F008990FB /* Credentials.swift */,
+				DFEC165D26726AE6008990FB /* Survey.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -122,9 +137,10 @@
 		DFEC164C26725F9E008990FB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				DFEC164326724958008990FB /* RemoteLoginService.swift */,
+				DFEC166E2672F22E008990FB /* Surveys */,
+				DFEC166D2672F225008990FB /* Login */,
+				DFEC16682672EFA8008990FB /* Helpers */,
 				DFEC164526724A03008990FB /* HTTPClient.swift */,
-				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -132,7 +148,9 @@
 		DFEC164D26725FA5008990FB /* API */ = {
 			isa = PBXGroup;
 			children = (
-				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
+				DFEC16702672F240008990FB /* Surveys */,
+				DFEC166F2672F239008990FB /* Login */,
+				DFEC166126726BBD008990FB /* Helpers */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -162,6 +180,57 @@
 				DFEC164E2672631D008990FB /* KeychainTokenStoreTests.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		DFEC166126726BBD008990FB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC166226726BC5008990FB /* HTTPClientSpy.swift */,
+				DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DFEC16682672EFA8008990FB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16692672EFB6008990FB /* HTTPURLResponse+StatusCode.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DFEC166D2672F225008990FB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
+				DFEC164326724958008990FB /* RemoteLoginService.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DFEC166E2672F22E008990FB /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */,
+				DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
+		DFEC166F2672F239008990FB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC16412672405B008990FB /* LoginUseCaseTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DFEC16702672F240008990FB /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */,
+			);
+			path = Surveys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */,
+				DFEC165E26726AE6008990FB /* Survey.swift in Sources */,
 				DFEC164026723FFF008990FB /* Token.swift in Sources */,
 				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
@@ -280,6 +351,8 @@
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
 				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
+				DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */,
+				DFEC166A2672EFB6008990FB /* HTTPURLResponse+StatusCode.swift in Sources */,
 				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +362,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
+				DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */,
+				DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */,
+				DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */,
 				DFEC1651267263D8008990FB /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DFEC164F2672631D008990FB /* KeychainTokenStoreTests.swift in Sources */,
 				DFEC16572672668D008990FB /* TestHelpers.swift in Sources */,
