@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RemoteSurveysMappers {
+final class RemoteSurveysMappers {
     private struct Root: Decodable {
         let data: [RemoteSurvey]
         
@@ -27,6 +27,8 @@ class RemoteSurveysMappers {
             let cover_image_url: String
         }
     }
+    
+    private init() {}
 
     static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[Survey], RemoteSurveysLoader.Error> {
         if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
