@@ -37,7 +37,9 @@ class RemoteSurveysLoader {
         let enrichURL = urlComponent.url!
         let request = URLRequest(url: enrichURL)
 
-        client.get(from: request) { result in
+        client.get(from: request) {[weak self] result in
+            guard self != nil else {return}
+            
             switch result {
             case .failure:
                 completion(.failure(.connectivity))
@@ -143,6 +145,19 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
             let data = makeSurveyJSONData(from: [item1.json, item2.json])
             client.completeWithStatusCode(200, data: data)
         }
+    }
+    
+    func test_load_doesNotDeliversErrorAfterSUTInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: RemoteSurveysLoader? = RemoteSurveysLoader(url: URL(string: "https://a-url.com")!, client: client)
+        
+        var capturedResult: Result<[Survey], RemoteSurveysLoader.Error>?
+        sut?.load(query: anyQuery()) { capturedResult = $0}
+        
+        sut = nil
+        client.completeWithStatusCode(199)
+        
+        XCTAssertNil(capturedResult)
     }
     
     // MARK: - Helpers
