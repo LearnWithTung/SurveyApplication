@@ -124,7 +124,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_succeedsOn200HTTPResponseEmptyJSONList() {
+    func test_load_succeedsOn200HTTPResponseEmptyJSONList() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithSurveys: []) {
@@ -133,7 +133,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_login_succeedsOn200HTTPResponseListJSON() {
+    func test_load_succeedsOn200HTTPResponseListJSON() {
         let (sut, client) = makeSUT()
         
         let item1 = makeSurveyJSONWith(id: UUID())
