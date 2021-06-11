@@ -1,14 +1,13 @@
 //
-//  LoginUseCaseTests.swift
+//  LoadTokenFromRemoteUseCaseTests.swift
 //  SurveyFrameworkTests
 //
-//  Created by Tung Vu on 10/06/2021.
+//  Created by Tung Vu on 11/06/2021.
 //
-
 import XCTest
 import SurveyFramework
 
-class LoginUseCaseTests: XCTestCase {
+class LoadTokenFromRemoteUseCaseTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
@@ -20,7 +19,7 @@ class LoginUseCaseTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.load(with: anyLoginInfo()) {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -29,30 +28,29 @@ class LoginUseCaseTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
 
-        sut.load(with: anyLoginInfo()) {_ in}
-        sut.load(with: anyLoginInfo()) {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
+        sut.load(withRefreshToken: anyToken()) {_ in}
 
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_load_signsRequestWithBodyParams() {
         let credentials = Credentials(client_id: "a clientId", client_secret: "a secret")
-        let info = LoginInfo(email: "an email", password: "a password")
+        let refreshToken = "refresh token"
         let body = [
-            "grant_type": "password",
-            "email": info.email,
-            "password": info.password,
+            "grant_type": "refresh_token",
+            "refresh_token": refreshToken,
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret
         ]
         let (sut, client) = makeSUT(credentials: credentials)
         
-        sut.load(with: info) {_ in}
+        sut.load(withRefreshToken: refreshToken) {_ in}
         
         let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
         
-        XCTAssertEqual(urlRequest.httpMethod, "POST")
+        XCTAssertEqual(urlRequest.httpMethod, "GET")
         XCTAssertEqual(requestedBody, body)
     }
     
@@ -127,9 +125,9 @@ class LoginUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any"), currentDate: @escaping () -> Date = { Date() }) -> (sut: RemoteLoginService, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!, credentials: Credentials = Credentials(client_id: "any", client_secret: "any"), currentDate: @escaping () -> Date = { Date() }) -> (sut: RemoteTokenLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLoginService(url: url, client: client, credentials: credentials, currentDate: currentDate)
+        let sut = RemoteTokenLoader(url: url, client: client, credentials: credentials, currentDate: currentDate)
         checkForMemoryLeaks(client)
         checkForMemoryLeaks(sut)
         return (sut, client)
@@ -157,11 +155,15 @@ class LoginUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func anyToken() -> String {
+        return "any refresh token"
+    }
+    
+    private func expect(_ sut: RemoteTokenLoader, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
         var capturedToken: Token?
-        sut.load(with: anyLoginInfo()) { result in
+        sut.load(withRefreshToken: "any refresh token") { result in
             switch result {
             case let .success(receivedToken):
                 capturedToken = receivedToken
@@ -177,11 +179,11 @@ class LoginUseCaseTests: XCTestCase {
         XCTAssertEqual(capturedToken, token, file: file, line: line)
     }
     
-    private func expect(_ sut: RemoteLoginService, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: RemoteTokenLoader, toCompleteWithError error: RemoteTokenLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
-        var capturedError: RemoteLoginService.Error?
-        sut.load(with: anyLoginInfo()) { result in
+        var capturedError: RemoteTokenLoader.Error?
+        sut.load(withRefreshToken: "any refresh token") { result in
             switch result {
             case let .failure(error):
                 capturedError = error

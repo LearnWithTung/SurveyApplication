@@ -1,16 +1,17 @@
 //
-//  RemoteLoginMappers.swift
+//  RemoteTokenMappers.swift
 //  SurveyFramework
 //
-//  Created by Tung Vu on 10/06/2021.
+//  Created by Tung Vu on 11/06/2021.
 //
 
 import Foundation
 
-final class RemoteLoginMappers {
+final class RemoteTokenMappers {
+
     private init() {}
     
-    static func map(data: Data, response: HTTPURLResponse, currentDate: Date) -> RemoteLoginService.RemoteLoginResult {
+    static func map(data: Data, response: HTTPURLResponse, currentDate: Date) -> RemoteTokenLoader.RemoteTokenResult {
         if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.attributes.toModel(currentDate: currentDate))
         }

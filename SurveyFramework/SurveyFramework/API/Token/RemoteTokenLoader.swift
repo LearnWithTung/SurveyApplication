@@ -1,23 +1,13 @@
 //
-//  RemoteLoginService.swift
+//  RemoteTokenLoader.swift
 //  SurveyFramework
 //
-//  Created by Tung Vu on 10/06/2021.
+//  Created by Tung Vu on 11/06/2021.
 //
 
 import Foundation
 
-public struct LoginInfo {
-    public let email: String
-    public let password: String
-    
-    public init(email: String, password: String) {
-        self.email = email
-        self.password = password
-    }
-}
-
-public class RemoteLoginService {
+public class RemoteTokenLoader {
     private let url: URL
     private let client: HTTPClient
     private let credentials: Credentials
@@ -28,7 +18,7 @@ public class RemoteLoginService {
         case invalidData
     }
     
-    public typealias RemoteLoginResult = Result<Token, Error>
+    public typealias RemoteTokenResult = Result<Token, Error>
     
     public init(url: URL, client: HTTPClient, credentials: Credentials, currentDate: @escaping () -> Date) {
         self.client = client
@@ -37,30 +27,29 @@ public class RemoteLoginService {
         self.currentDate = currentDate
     }
     
-    public func load(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
-        client.post(with: makeURLRequest(with: info)) {[weak self] result in
+    public func load(withRefreshToken token: String, completion: @escaping (RemoteTokenResult) -> Void) {
+        client.post(with: makeURLRequest(with: token)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:
                 completion(.failure(.connectivity))
             case let .success((data, response)):
-                completion(RemoteLoginMappers.map(data: data, response: response, currentDate: self.currentDate()))
+                completion(RemoteTokenMappers.map(data: data, response: response, currentDate: self.currentDate()))
             }
         }
     }
     
-    private func makeURLRequest(with info: LoginInfo) -> URLRequest {
+    private func makeURLRequest(with token: String) -> URLRequest {
         let body = [
-            "grant_type": "password",
-            "email": info.email,
-            "password": info.password,
+            "grant_type": "refresh_token",
+            "refresh_token": token,
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret
         ]
         let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.httpBody = bodyData
         
         return request
