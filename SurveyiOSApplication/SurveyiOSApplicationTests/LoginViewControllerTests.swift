@@ -22,24 +22,24 @@ class LoginViewControllerTests: XCTestCase {
         let (sut, delegate) = makeSUT()
         sut.loadViewIfNeeded()
         
-        sut.emailTextField.text = "not an email"
-        sut.passwordTextField.text = ""
-        sut.loginButton.sendActions(for: .touchUpInside)
+        sut.setEmailText("not an email")
+        sut.setPasswordText("")
+        sut.simulateLoginButtonTap()
         XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on invalid email format and empty password")
         
-        sut.emailTextField.text = "tungvuduc2805@gmail.com"
-        sut.passwordTextField.text = ""
-        sut.loginButton.sendActions(for: .touchUpInside)
+        sut.setEmailText("tungvuduc2805@gmail.com")
+        sut.setPasswordText("")
+        sut.simulateLoginButtonTap()
         XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on valid email format and empty password")
         
-        sut.emailTextField.text = ""
-        sut.passwordTextField.text = "123456789"
-        sut.loginButton.sendActions(for: .touchUpInside)
+        sut.setEmailText("")
+        sut.setPasswordText("123456789")
+        sut.simulateLoginButtonTap()
         XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on empty email and non-empty password")
         
-        sut.emailTextField.text = ""
-        sut.passwordTextField.text = ""
-        sut.loginButton.sendActions(for: .touchUpInside)
+        sut.setEmailText("")
+        sut.setPasswordText("")
+        sut.simulateLoginButtonTap()
         XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on both empty email and password")
     }
     
@@ -47,10 +47,10 @@ class LoginViewControllerTests: XCTestCase {
         let (sut, delegate) = makeSUT()
         sut.loadViewIfNeeded()
         
-        sut.emailTextField.text = "tungvuduc2805@gmail.com"
-        sut.passwordTextField.text = "123456789"
-        sut.loginButton.sendActions(for: .touchUpInside)
-        
+        sut.setEmailText("tungvuduc2805@gmail.com")
+        sut.setPasswordText("123456789")
+        sut.simulateLoginButtonTap()
+
         XCTAssertEqual(delegate.requestLoginCallCount, 1)
     }
     
@@ -77,4 +77,26 @@ class LoginViewControllerTests: XCTestCase {
         }
     }
     
+}
+
+private extension LoginViewController {
+    
+    func setEmailText(_ text: String) {
+        emailTextField.text = text
+    }
+    
+    func setPasswordText(_ text: String) {
+        passwordTextField.text = text
+    }
+    
+    func simulateLoginButtonTap() {
+        loginButton.simulateTap()
+    }
+    
+}
+
+private extension UIButton {
+    func simulateTap() {
+        sendActions(for: .touchUpInside)
+    }
 }
