@@ -38,8 +38,9 @@ class HTTPClientSpy: HTTPClient {
     // MARK: - Get
     var requestedGETURLRequests = [URLRequest]()
     
-    func get(from request: URLRequest) {
+    func get(from request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
         requestedGETURLRequests.append(request)
+        messages.append((request, completion))
     }
     
 }

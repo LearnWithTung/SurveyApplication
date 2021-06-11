@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Survey {
+public struct Survey {
     let id: String
     let attributes: Attributes
 }
 
-struct Attributes {
+public struct Attributes {
     let title: String
     let description: String
     let imageURL: String
