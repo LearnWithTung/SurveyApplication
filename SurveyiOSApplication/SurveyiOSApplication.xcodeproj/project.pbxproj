@@ -14,6 +14,8 @@
 		DF3E97AA267375A9004FA3AE /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */; };
 		DF3E97B42673B75D004FA3AE /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */; };
 		DF3E97B52673B75D004FA3AE /* SurveyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DF3E97BC2673BC78004FA3AE /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */; };
+		DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -61,6 +63,8 @@
 		DF3E97A0267368AA004FA3AE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
+		DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
+				DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */,
+				DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */,
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */,
+				DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
 				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,
@@ -384,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
+				DF3E97BC2673BC78004FA3AE /* HomeViewControllerTests.swift in Sources */,
 				DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
