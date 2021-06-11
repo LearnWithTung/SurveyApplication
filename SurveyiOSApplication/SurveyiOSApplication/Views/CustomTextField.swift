@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class CustomTextField: UIView {
+public final class CustomTextField: UIView, UITextFieldDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var inputTextField: UITextField!
     
@@ -59,6 +59,8 @@ public final class CustomTextField: UIView {
         super.init(coder: coder)
         
         customInit()
+        
+        inputTextField.delegate = self
     }
     
     private func customInit(){
@@ -70,5 +72,11 @@ public final class CustomTextField: UIView {
     func addRightView(_ view: UIView) {
         inputTextField.rightView = view
         inputTextField.rightViewMode = .always
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return false
     }
 }
