@@ -29,6 +29,7 @@
 		DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */; };
 		DFEC16722672F443008990FB /* LoadTokenFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16712672F443008990FB /* LoadTokenFromRemoteUseCaseTests.swift */; };
 		DFEC16742672F4C9008990FB /* RemoteTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */; };
+		DFEC16762672F7FA008990FB /* RemoteTokenMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelperMethods.swift; sourceTree = "<group>"; };
 		DFEC16712672F443008990FB /* LoadTokenFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTokenFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTokenLoader.swift; sourceTree = "<group>"; };
+		DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTokenMappers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEC16732672F4C9008990FB /* RemoteTokenLoader.swift */,
+				DFEC16752672F7FA008990FB /* RemoteTokenMappers.swift */,
 				DFEC166E2672F22E008990FB /* Surveys */,
 				DFEC166D2672F225008990FB /* Login */,
 				DFEC16682672EFA8008990FB /* Helpers */,
@@ -356,6 +359,7 @@
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
 				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
+				DFEC16762672F7FA008990FB /* RemoteTokenMappers.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
 				DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */,
 				DFEC166A2672EFB6008990FB /* HTTPURLResponse+StatusCode.swift in Sources */,

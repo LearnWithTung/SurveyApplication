@@ -175,10 +175,10 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(capturedToken, token, file: file, line: line)
     }
     
-    private func expect(_ sut: RemoteTokenLoader, toCompleteWithError error: RemoteLoginService.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: RemoteTokenLoader, toCompleteWithError error: RemoteTokenLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
-        var capturedError: RemoteLoginService.Error?
+        var capturedError: RemoteTokenLoader.Error?
         sut.load(withRefreshToken: "any refresh token") { result in
             switch result {
             case let .failure(error):

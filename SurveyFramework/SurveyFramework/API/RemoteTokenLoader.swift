@@ -18,7 +18,7 @@ public class RemoteTokenLoader {
         case invalidData
     }
     
-    public typealias RemoteLoginResult = RemoteLoginService.RemoteLoginResult
+    public typealias RemoteTokenResult = Result<Token, Error>
     
     public init(url: URL, client: HTTPClient, credentials: Credentials, currentDate: @escaping () -> Date) {
         self.client = client
@@ -27,14 +27,14 @@ public class RemoteTokenLoader {
         self.currentDate = currentDate
     }
     
-    public func load(withRefreshToken token: String, completion: @escaping (RemoteLoginResult) -> Void) {
+    public func load(withRefreshToken token: String, completion: @escaping (RemoteTokenResult) -> Void) {
         client.post(with: makeURLRequest(with: token)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:
                 completion(.failure(.connectivity))
             case let .success((data, response)):
-                completion(RemoteLoginMappers.map(data: data, response: response, currentDate: self.currentDate()))
+                completion(RemoteTokenMappers.map(data: data, response: response, currentDate: self.currentDate()))
             }
         }
     }
