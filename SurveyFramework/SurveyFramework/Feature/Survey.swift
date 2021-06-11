@@ -8,12 +8,23 @@
 import Foundation
 
 public struct Survey {
-    let id: String
-    let attributes: Attributes
+    public let id: String
+    public let attributes: Attributes
+    
+    public init(id: String, attributes: Attributes) {
+        self.id = id
+        self.attributes = attributes
+    }
 }
 
 public struct Attributes {
-    let title: String
-    let description: String
-    let imageURL: String
+    public let title: String
+    public let description: String
+    public let imageURL: String
+    
+    public init(title: String, description: String, imageURL: String) {
+        self.title = title
+        self.description = description
+        self.imageURL = imageURL
+    }
 }

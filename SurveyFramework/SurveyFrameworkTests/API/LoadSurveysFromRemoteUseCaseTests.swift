@@ -24,6 +24,7 @@ class RemoteSurveysLoader {
     
     public enum Error: Swift.Error {
         case connectivity
+        case invalidData
     }
     
     func load(query: SurveyQuery, completion: @escaping (Result<[Survey], Error>) -> Void) {
@@ -36,8 +37,13 @@ class RemoteSurveysLoader {
         let enrichURL = urlComponent.url!
         let request = URLRequest(url: enrichURL)
 
-        client.get(from: request) { _ in
-            completion(.failure(.connectivity))
+        client.get(from: request) { result in
+            switch result {
+            case .failure:
+                completion(.failure(.connectivity))
+            case .success:
+                completion(.failure(.invalidData))
+            }
         }
     }
     
@@ -74,12 +80,24 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requestedGETURLRequests.map {$0.url}, [expectedURL, expectedURL])
     }
     
-    func test_login_deliversErrorOnClientError() {
+    func test_load_deliversErrorOnClientError() {
         let clientError = NSError(domain: "test", code: 0, userInfo: nil)
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWithError: .connectivity) {
             client.completeWithError(clientError)
+        }
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+
+        let samples = [199, 201, 300, 400, 500]
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWithError: .invalidData) {
+                let jsonData = makeSurveyJSONData(from: makeSurveyJSONWith().json)
+                client.completeWithStatusCode(code, data: jsonData, at: index)
+            }
         }
     }
     
@@ -90,6 +108,32 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         checkForMemoryLeaks(client, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func makeSurvey(id: UUID, title: String, description: String, url: String) -> Survey {
+        return Survey(id: id.uuidString,
+                            attributes: .init(title: title, description: description, imageURL: url))
+    }
+    
+    private func makeSurveyJSONWith(id: UUID = UUID(), title: String = "any", description: String = "any", url: String = "any") -> (model: Survey, json: [String: Any]) {
+        let survey = makeSurvey(id: id, title: title, description: description, url: url)
+
+        let surveyJSON = [
+            "id": survey.id,
+            "attributes": [
+                "title": survey.attributes.title,
+                "description": survey.attributes.description,
+                "cover_image_url": survey.attributes.imageURL,
+            ]
+        ] as [String : Any]
+
+        return (survey, surveyJSON)
+    }
+    
+    private func makeSurveyJSONData(from dict: [String: Any]) -> Data {
+        let json = ["data": dict]
+
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func expect(_ sut: RemoteSurveysLoader, toCompleteWithError error: RemoteSurveysLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
