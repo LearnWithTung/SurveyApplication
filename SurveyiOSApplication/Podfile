@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+
+workspace 'SurveyiOSApplication'
+
+project 'SurveyiOSApplication.xcodeproj'
+project '../SurveyFramework/SurveyFramework.xcodeproj'
+
+target 'SurveyFramework' do
+  project '../SurveyFramework/SurveyFramework.xcodeproj'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+end
+
+target 'SurveyiOSApplication' do
+  project 'SurveyiOSApplication.xcodeproj'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SurveyiOSApplication
+
+end
