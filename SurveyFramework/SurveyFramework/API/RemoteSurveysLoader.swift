@@ -32,15 +32,7 @@ public final class RemoteSurveysLoader {
     }
     
     public func load(query: SurveyQuery, completion: @escaping (Result<[Survey], Error>) -> Void) {
-        var urlComponent = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        urlComponent.queryItems = [
-            URLQueryItem(name: "page[number]", value: "\(query.pageNumber)"),
-            URLQueryItem(name: "page[size]", value: "\(query.pageSize)")
-        ]
-        
-        let enrichURL = urlComponent.url!
-        let request = URLRequest(url: enrichURL)
-
+        let request = makeRequest(from: query)
         client.get(from: request) {[weak self] result in
             guard self != nil else {return}
             
@@ -54,6 +46,17 @@ public final class RemoteSurveysLoader {
                 completion(.failure(.invalidData))
             }
         }
+    }
+    
+    private func makeRequest(from query: SurveyQuery) -> URLRequest {
+        var urlComponent = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        urlComponent.queryItems = [
+            URLQueryItem(name: "page[number]", value: "\(query.pageNumber)"),
+            URLQueryItem(name: "page[size]", value: "\(query.pageSize)")
+        ]
+        
+        let enrichURL = urlComponent.url!
+        return URLRequest(url: enrichURL)
     }
     
 }
