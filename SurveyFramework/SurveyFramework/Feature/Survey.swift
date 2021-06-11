@@ -20,9 +20,9 @@ public struct Survey: Equatable {
 public struct Attributes: Equatable {
     public let title: String
     public let description: String
-    public let imageURL: String
+    public let imageURL: URL
     
-    public init(title: String, description: String, imageURL: String) {
+    public init(title: String, description: String, imageURL: URL) {
         self.title = title
         self.description = description
         self.imageURL = imageURL

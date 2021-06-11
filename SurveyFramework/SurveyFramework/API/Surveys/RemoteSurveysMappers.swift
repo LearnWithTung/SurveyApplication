@@ -24,7 +24,7 @@ final class RemoteSurveysMappers {
         struct RemoteAttributes: Decodable {
             let title: String
             let description: String
-            let cover_image_url: String
+            let cover_image_url: URL
         }
     }
     
