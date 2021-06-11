@@ -72,8 +72,8 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
     func test_load_succeedsOn200HTTPResponseListJSON() {
         let (sut, client) = makeSUT()
         
-        let item1 = makeSurveyJSONWith(id: UUID())
-        let item2 = makeSurveyJSONWith(id: UUID())
+        let item1 = makeSurveyJSONWith(id: UUID(), title: "title 1", description: "description 1", url: URL(string: "https://url-1.com")!)
+        let item2 = makeSurveyJSONWith(id: UUID(), title: "title 2", description: "description 2", url: URL(string: "https://url-2.com")!)
 
         expect(sut, toCompleteWithSurveys: [item1.model, item2.model]) {
             let data = makeSurveyJSONData(from: [item1.json, item2.json])
@@ -103,12 +103,12 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeSurvey(id: UUID, title: String, description: String, url: String) -> Survey {
+    private func makeSurvey(id: UUID, title: String, description: String, url: URL) -> Survey {
         return Survey(id: id.uuidString,
                             attributes: .init(title: title, description: description, imageURL: url))
     }
     
-    private func makeSurveyJSONWith(id: UUID = UUID(), title: String = "any", description: String = "any", url: String = "any") -> (model: Survey, json: [String: Any]) {
+    private func makeSurveyJSONWith(id: UUID = UUID(), title: String = "any", description: String = "any", url: URL = URL(string: "https://any-url.com")!) -> (model: Survey, json: [String: Any]) {
         let survey = makeSurvey(id: id, title: title, description: description, url: url)
 
         let surveyJSON = [
@@ -116,7 +116,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
             "attributes": [
                 "title": survey.attributes.title,
                 "description": survey.attributes.description,
-                "cover_image_url": survey.attributes.imageURL,
+                "cover_image_url": survey.attributes.imageURL.absoluteString,
             ]
         ] as [String : Any]
 
