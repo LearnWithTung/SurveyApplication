@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NeuzeitSLTStd-BookHeavy.otf">
+            <string>NeuzeitSLTStd-BookHeavy</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -39,27 +44,46 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DDB-FA-k15" userLabel="Fields Container">
                                                 <rect key="frame" x="23" y="0.0" width="368" height="208"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bu-zw-PAL" userLabel="Email">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzw-Fd-de9" customClass="CustomTextField" customModule="SurveyiOSApplication" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="368" height="56"/>
-                                                        <color key="backgroundColor" red="0.9882352941176471" green="1" blue="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="56" id="PD5-KV-dYL"/>
+                                                            <constraint firstAttribute="height" constant="56" id="dy1-eG-C0t"/>
                                                         </constraints>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                                    </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-br-6G2" userLabel="Password">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Email"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="17"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="keyboard">
+                                                                <integer key="value" value="7"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QI1-wd-DSy" customClass="CustomTextField" customModule="SurveyiOSApplication" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="76" width="368" height="56"/>
-                                                        <color key="backgroundColor" red="0.9882352941176471" green="1" blue="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                                    </textField>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="U17-U8-xO4"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Password"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="17"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecurityField" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gD-Vd-IFR">
                                                         <rect key="frame" x="0.0" y="152" width="368" height="56"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="NeuzeitSLTStd-BookHeavy" family="Neuzeit S LT Std" pointSize="17"/>
                                                         <state key="normal" title="Log in">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -104,12 +128,12 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="0ML-cp-oLw" id="2nJ-1H-qri"/>
-                        <outlet property="emailTextField" destination="5bu-zw-PAL" id="QQl-Ph-QsA"/>
+                        <outlet property="emailTextField" destination="nzw-Fd-de9" id="qpS-Nm-iJu"/>
                         <outlet property="fieldsContainer" destination="DDB-FA-k15" id="YO0-h3-vVi"/>
                         <outlet property="loginButton" destination="1gD-Vd-IFR" id="0Nu-JQ-M1L"/>
                         <outlet property="logoImageCenterYConstraint" destination="dfd-Pl-MfY" id="SRI-qA-W98"/>
                         <outlet property="logoImageWidthConstraint" destination="Na9-uY-Ihy" id="okj-va-BNi"/>
-                        <outlet property="passwordTextField" destination="YEW-br-6G2" id="obd-ea-ASb"/>
+                        <outlet property="passwordTextField" destination="QI1-wd-DSy" id="c8B-LA-zrg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

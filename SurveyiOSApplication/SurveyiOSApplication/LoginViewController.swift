@@ -20,8 +20,8 @@ public class LoginViewController: UIViewController {
     
     @IBOutlet weak var fieldsContainer: UIStackView!
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet public private(set) weak var emailTextField: UITextField!
-    @IBOutlet public private(set) weak var passwordTextField: UITextField!
+    @IBOutlet public private(set) weak var emailTextField: CustomTextField!
+    @IBOutlet public private(set) weak var passwordTextField: CustomTextField!
     @IBOutlet public private(set) weak var loginButton: UIButton!
     @IBOutlet weak var logoImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var logoImageWidthConstraint: NSLayoutConstraint!

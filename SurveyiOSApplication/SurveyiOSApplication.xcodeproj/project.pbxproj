@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DF3E979C2673635C004FA3AE /* NeuzeitSLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */; };
 		DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */; };
+		DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979E26736825004FA3AE /* CustomTextField.xib */; };
+		DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97A0267368AA004FA3AE /* CustomTextField.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-Book.otf"; sourceTree = "<group>"; };
 		DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-BookHeavy.otf"; sourceTree = "<group>"; };
+		DF3E979E26736825004FA3AE /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
+		DF3E97A0267368AA004FA3AE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,8 @@
 				DFA8A04726731F38008FF1D9 /* Info.plist */,
 				DFA8A07726734442008FF1D9 /* Helpers */,
 				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
+				DF3E979E26736825004FA3AE /* CustomTextField.xib */,
+				DF3E97A0267368AA004FA3AE /* CustomTextField.swift */,
 				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
 				DFA8A07526734013008FF1D9 /* Main.storyboard */,
 				DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */,
@@ -213,6 +219,7 @@
 			files = (
 				DF3E979C2673635C004FA3AE /* NeuzeitSLTStd-Book.otf in Resources */,
 				DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
+				DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */,
 				DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */,
 				DFA8A04626731F38008FF1D9 /* LaunchScreen.storyboard in Resources */,
 				DFA8A04326731F38008FF1D9 /* Assets.xcassets in Resources */,
@@ -235,6 +242,7 @@
 			files = (
 				DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */,
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
+				DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
 				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,
