@@ -7,7 +7,9 @@
 
 import UIKit
 
-public protocol LoginViewControllerDelegate {}
+public protocol LoginViewControllerDelegate {
+    func login()
+}
 
 public class LoginViewController: UIViewController {
     var delegate: LoginViewControllerDelegate?
@@ -17,5 +19,9 @@ public class LoginViewController: UIViewController {
     @IBOutlet public private(set) weak var loginButton: UIButton!
     
     
-    @IBAction func loginButtonTapped(_ sender: Any) {}
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
+        
+        delegate?.login()
+    }
 }

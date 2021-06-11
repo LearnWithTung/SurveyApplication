@@ -14,6 +14,7 @@
 		DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07126733F75008FF1D9 /* LoginViewController.swift */; };
 		DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */; };
 		DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA8A07526734013008FF1D9 /* Main.storyboard */; };
+		DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A07826734457008FF1D9 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		DFA8A07126733F75008FF1D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComposer.swift; sourceTree = "<group>"; };
 		DFA8A07526734013008FF1D9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DFA8A07826734457008FF1D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				DFA8A04226731F38008FF1D9 /* Assets.xcassets */,
 				DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */,
 				DFA8A04726731F38008FF1D9 /* Info.plist */,
+				DFA8A07726734442008FF1D9 /* Helpers */,
 				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
 				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
 				DFA8A07526734013008FF1D9 /* Main.storyboard */,
@@ -97,6 +100,14 @@
 				DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */,
 			);
 			path = SurveyiOSApplicationTests;
+			sourceTree = "<group>";
+		};
+		DFA8A07726734442008FF1D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFA8A07826734457008FF1D9 /* String+Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */,
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
 				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,

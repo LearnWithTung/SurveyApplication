@@ -14,6 +14,7 @@ public final class LoginUIComposer {
         let bundle = Bundle(for: LoginViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: String(describing: LoginViewController.self)) as! LoginViewController
+        loginViewController.delegate = delegate
         
         return loginViewController
     }

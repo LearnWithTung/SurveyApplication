@@ -43,6 +43,17 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoginCallCount, 0, "does not request login on both empty email and password")
     }
     
+    func test_login_requestsLoginOnValidInputValue() {
+        let (sut, delegate) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.emailTextField.text = "tungvuduc2805@gmail.com"
+        sut.passwordTextField.text = "123456789"
+        sut.loginButton.sendActions(for: .touchUpInside)
+        
+        XCTAssertEqual(delegate.requestLoginCallCount, 1)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LoginViewController, delegate: LoginViewControllerDelegateSpy) {
         let delegate = LoginViewControllerDelegateSpy()
@@ -60,6 +71,10 @@ class LoginViewControllerTests: XCTestCase {
     
     private class LoginViewControllerDelegateSpy: LoginViewControllerDelegate {
         var requestLoginCallCount: Int = 0
+        
+        func login() {
+            requestLoginCallCount += 1
+        }
     }
     
 }
