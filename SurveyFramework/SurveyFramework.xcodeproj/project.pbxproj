@@ -23,6 +23,7 @@
 		DFEC165E26726AE6008990FB /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165D26726AE6008990FB /* Survey.swift */; };
 		DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */; };
 		DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166226726BC5008990FB /* HTTPClientSpy.swift */; };
+		DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		DFEC165D26726AE6008990FB /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSurveysFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		DFEC166226726BC5008990FB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
+		DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				DFEC164326724958008990FB /* RemoteLoginService.swift */,
 				DFEC164526724A03008990FB /* HTTPClient.swift */,
 				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
+				DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */,
 				DFEC165E26726AE6008990FB /* Survey.swift in Sources */,
 				DFEC164026723FFF008990FB /* Token.swift in Sources */,
 				DFEC164426724958008990FB /* RemoteLoginService.swift in Sources */,
