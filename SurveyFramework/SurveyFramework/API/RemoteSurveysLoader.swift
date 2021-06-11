@@ -40,10 +40,7 @@ public final class RemoteSurveysLoader {
             case .failure:
                 completion(.failure(.connectivity))
             case let .success((data, response)):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    return completion(.success(root.data.map {$0.model}))
-                }
-                completion(.failure(.invalidData))
+                completion(RemoteSurveysMappers.map(data, response))
             }
         }
     }
@@ -59,24 +56,4 @@ public final class RemoteSurveysLoader {
         return URLRequest(url: enrichURL)
     }
     
-}
-
-private struct Root: Decodable {
-    let data: [RemoteSurvey]
-    
-    struct RemoteSurvey: Decodable {
-        let id: String
-        let attributes: RemoteAttributes
-        
-        var model: Survey {
-            return Survey(id: id,
-                          attributes: Attributes(title: attributes.title, description: attributes.description, imageURL: attributes.cover_image_url))
-        }
-    }
-    
-    struct RemoteAttributes: Decodable {
-        let title: String
-        let description: String
-        let cover_image_url: String
-    }
 }

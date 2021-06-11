@@ -24,6 +24,7 @@
 		DFEC166026726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */; };
 		DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC166226726BC5008990FB /* HTTPClientSpy.swift */; };
 		DFEC16652672ED84008990FB /* RemoteSurveysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */; };
+		DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		DFEC165F26726B16008990FB /* LoadSurveysFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSurveysFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		DFEC166226726BC5008990FB /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysLoader.swift; sourceTree = "<group>"; };
+		DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSurveysMappers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				DFEC164526724A03008990FB /* HTTPClient.swift */,
 				DFEC164926725E0D008990FB /* RemoteLoginMappers.swift */,
 				DFEC16642672ED84008990FB /* RemoteSurveysLoader.swift */,
+				DFEC16662672EED3008990FB /* RemoteSurveysMappers.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
 				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
+				DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */,
 				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
