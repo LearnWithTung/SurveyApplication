@@ -36,9 +36,18 @@ public class HomeViewController: UIViewController {
         loadingView.isHidden = false
         
         delegate?.loadSurvey {[weak self] result in
-            self?.loadingView.isHidden = true
-            if let surveys = try? result.get() {
-                self?.surveyViewController.surveyModels = surveys
+            if Thread.isMainThread {
+                self?.loadingView.isHidden = true
+                if let surveys = try? result.get() {
+                    self?.surveyViewController.surveyModels = surveys
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.loadingView.isHidden = true
+                    if let surveys = try? result.get() {
+                        self?.surveyViewController.surveyModels = surveys
+                    }
+                }
             }
         }
     }
