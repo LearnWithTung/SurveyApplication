@@ -143,7 +143,7 @@
         <!--Home View Controller-->
         <scene sceneID="ayH-ip-7th">
             <objects>
-                <viewController id="duR-zH-3mo" customClass="HomeViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="duR-zH-3mo" customClass="HomeViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xvT-ER-1gx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,6 +208,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8yj-7t-Bid"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="ciZ-U7-cna" id="rtL-ar-0Cf"/>
+                        <outlet property="loadingView" destination="hzg-NW-LyU" id="g5A-4K-HfQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59V-yj-qiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,12 +285,6 @@
                             <constraint firstItem="eKg-je-wvt" firstAttribute="leading" secondItem="ZZ7-vf-wmT" secondAttribute="leading" id="xje-QT-ylB"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="RIv-tt-gXN" id="ULa-7m-ZXN"/>
-                        <outlet property="descriptionLabel" destination="KGi-Qh-CTA" id="RUp-iM-iFa"/>
-                        <outlet property="pageControl" destination="eKg-je-wvt" id="wQB-kn-MSZ"/>
-                        <outlet property="titleLabel" destination="ZZ7-vf-wmT" id="sxv-Yj-z3K"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Llv-f1-G8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

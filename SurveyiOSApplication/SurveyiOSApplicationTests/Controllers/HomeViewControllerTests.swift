@@ -88,7 +88,7 @@ class HomeViewControllerTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
-        let sut = HomeViewController(delegate: delegate, currentDate: currentDate)
+        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, currentDate: currentDate)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         

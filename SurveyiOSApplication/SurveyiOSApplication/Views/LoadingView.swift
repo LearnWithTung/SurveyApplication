@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoadingView: UIView {
+public class LoadingView: UIView {
     
     @IBOutlet weak var indicatorLoadingView: UIView!
     @IBOutlet weak var skeletonLoadingView: UIView!
@@ -18,7 +18,7 @@ class LoadingView: UIView {
         customInit()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         skeletonLoadingView.subviews.forEach {$0.layer.cornerRadius = $0.frame.height / 2}
