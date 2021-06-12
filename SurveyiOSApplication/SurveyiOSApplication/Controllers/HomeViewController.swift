@@ -7,25 +7,8 @@
 
 import UIKit
 
-public struct RepresentationSurvey {
-    let title: String
-    let description: String
-    let imageURL: URL
-    
-    public init(title: String, description: String, imageURL: URL) {
-        self.title = title
-        self.description = description
-        self.imageURL = imageURL
-    }
-}
-
 public protocol HomeViewControllerDelegate {
     func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
-}
-
-public class SurveyViewController: UIViewController {
-    public var surveyModels = [RepresentationSurvey]()
-
 }
 
 public class HomeViewController: UIViewController {
