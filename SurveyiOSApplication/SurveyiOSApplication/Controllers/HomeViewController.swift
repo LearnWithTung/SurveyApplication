@@ -46,11 +46,7 @@ public class HomeViewController: UIViewController {
         
         load()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMM d"
-        if let currentDate = currentDate?() {
-            dateLabel.text = dateFormatter.string(from: currentDate)
-        }
+        dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d")
     }
     
     public func refresh() {
