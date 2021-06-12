@@ -28,6 +28,8 @@ public class SurveyViewController: UIViewController {
     var imageLoader: SurveyImageDataLoader?
     private var task: ImageDataTask?
     
+    var onRefresh: (() -> Void)?
+    
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
             resetContent()
@@ -45,7 +47,10 @@ public class SurveyViewController: UIViewController {
     }
     
     func previous() {
-        if currentIndex == 0 {return}
+        if currentIndex == 0 {
+            onRefresh?()
+            return
+        }
         currentIndex -= 1
         setupContent(for: surveyModels[currentIndex])
     }
