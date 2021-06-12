@@ -13,11 +13,11 @@ public final class HomeUIComposer {
     public static func homeComposedWith(delegate: HomeViewControllerDelegate, currentDate:  @escaping () -> Date) -> HomeViewController {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: String(describing: HomeViewController.self)) as! HomeViewController
-        loginViewController.delegate = delegate
-        loginViewController.currentDate = currentDate
+        let homeViewController: HomeViewController = storyboard.instantiate()
+        homeViewController.delegate = delegate
+        homeViewController.currentDate = currentDate
         
-        return loginViewController
+        return homeViewController
     }
     
 }
