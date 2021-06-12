@@ -64,17 +64,22 @@ public class SurveyViewController: UIViewController {
         descriptionLabel.text = nil
         titleLabel.text = nil
         pageControl.numberOfPages = 0
-        task?.cancel()
-        task = nil
+        cancelImageLoad()
     }
     
     private func setupContent(for model: RepresentationSurvey) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         pageControl.currentPage = currentIndex
+        cancelImageLoad()
         task = imageLoader?.load(from: model.imageURL) {[weak self] result in
             self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
         }
+    }
+    
+    private func cancelImageLoad() {
+        task?.cancel()
+        task = nil
     }
 
 }

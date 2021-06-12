@@ -174,6 +174,18 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelledURLs, [survey1.imageURL])
     }
     
+    func test_loadImageView_cancelsLoadOnUserInitiatedMove() {
+        let (sut, loader) = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+        
+        sut.surveyModels = [survey1, survey2]
+        XCTAssertEqual(loader.cancelledURLs, [])
+        
+        sut.simulateMoveNext()
+        XCTAssertEqual(loader.cancelledURLs, [survey1.imageURL])
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {
         let bundle = Bundle(for: SurveyViewController.self)
