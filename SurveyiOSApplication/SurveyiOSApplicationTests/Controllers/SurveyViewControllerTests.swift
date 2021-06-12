@@ -150,6 +150,18 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadedURLs, [survey1.imageURL, survey2.imageURL, survey1.imageURL])
     }
     
+    func test_loadImageView_rendersLoadedImage() {
+        let (sut, loader) = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        
+        sut.surveyModels = [survey1]
+        
+        let imageData = UIImage.make(withColor: .red).pngData()!
+        loader.loadImageCompleteSuccessWith(data: imageData)
+        
+        XCTAssertEqual(sut.renderedImageData(), imageData)
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {
         let bundle = Bundle(for: SurveyViewController.self)
@@ -165,9 +177,15 @@ class SurveyViewControllerTests: XCTestCase {
     
     private class SurveyImageDataLoaderSpy: SurveyImageDataLoader {
         var loadedURLs = [URL]()
+        private var completions = [(Result<Data, Error>) -> Void]()
         
-        func load(from url: URL) {
+        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
             loadedURLs.append(url)
+            completions.append(completion)
+        }
+        
+        func loadImageCompleteSuccessWith(data: Data, at index: Int = 0) {
+            completions[index](.success(data))
         }
     }
     
@@ -180,5 +198,22 @@ private extension SurveyViewController {
     
     func simulateMovePrevious() {
         self.previous()
+    }
+    
+    func renderedImageData() -> Data? {
+        backgroundImageView.image?.pngData()
+    }
+}
+
+extension UIImage {
+    static func make(withColor color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
 }

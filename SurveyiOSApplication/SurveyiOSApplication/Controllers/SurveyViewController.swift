@@ -20,7 +20,7 @@ public struct RepresentationSurvey {
 }
 
 public protocol SurveyImageDataLoader {
-    func load(from url: URL)
+    func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 public class SurveyViewController: UIViewController {
@@ -65,7 +65,9 @@ public class SurveyViewController: UIViewController {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         pageControl.currentPage = currentIndex
-        imageLoader?.load(from: model.imageURL)
+        imageLoader?.load(from: model.imageURL) {[weak self] result in
+            self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
+        }
     }
 
 }
