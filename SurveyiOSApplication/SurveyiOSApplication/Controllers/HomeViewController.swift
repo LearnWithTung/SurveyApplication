@@ -29,19 +29,28 @@ public class SurveyViewController {
 }
 
 public class HomeViewController: UIViewController {
+    private var currentDate: (() -> Date)?
     private var delegate: HomeViewControllerDelegate?
     public let loadingView =  UIView()
     public let surveyViewController = SurveyViewController()
+    public let dateLabel = UILabel()
     
-    public convenience init(delegate: HomeViewControllerDelegate) {
+    public convenience init(delegate: HomeViewControllerDelegate, currentDate: @escaping () -> Date) {
         self.init()
         self.delegate = delegate
+        self.currentDate = currentDate
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         load()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        if let currentDate = currentDate?() {
+            dateLabel.text = dateFormatter.string(from: currentDate)
+        }
     }
     
     public func refresh() {

@@ -73,10 +73,22 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfSurveysRendered(), 2, "Expected does not alter current state on loading fails")
     }
     
+    func test_viewDidLoad_rendersCurrentDate() {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        let expectedDate = dateFormatter.string(from: currentDate)
+        
+        let (sut, _) = makeSUT(currentDate: { currentDate })
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.renderedDate(), expectedDate)
+    }
+    
     // MARK: - Helpers
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
-        let sut = HomeViewController(delegate: delegate)
+        let sut = HomeViewController(delegate: delegate, currentDate: currentDate)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         
@@ -114,5 +126,9 @@ private extension HomeViewController {
     
     func numberOfSurveysRendered() -> Int {
         return surveyViewController.surveyModels.count
+    }
+    
+    func renderedDate() -> String? {
+        return dateLabel.text
     }
 }
