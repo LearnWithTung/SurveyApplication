@@ -13,6 +13,7 @@ public protocol HomeViewControllerDelegate {
 
 public class HomeViewController: UIViewController {
     private var delegate: HomeViewControllerDelegate?
+    public let loadingView =  UIView()
     
     public convenience init(delegate: HomeViewControllerDelegate) {
         self.init()

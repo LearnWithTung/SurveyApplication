@@ -33,6 +33,13 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoadSurveysCallCount, 2)
     }
     
+    func test_load_displaysLoadingViewWhileLoading() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(sut.isLoadingViewVisible)
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -53,5 +60,9 @@ class HomeViewControllerTests: XCTestCase {
 private extension HomeViewController {
     func simulatePullToRefresh() {
         refresh()
+    }
+    
+    var isLoadingViewVisible: Bool {
+        return !loadingView.isHidden
     }
 }
