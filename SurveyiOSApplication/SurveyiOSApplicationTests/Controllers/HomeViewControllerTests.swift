@@ -59,12 +59,6 @@ class HomeViewControllerTests: XCTestCase {
         return (sut, delegate)
     }
     
-    private func checkForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
-        }
-    }
-    
     private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
         var requestLoadSurveysCallCount: Int = 0
         private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()

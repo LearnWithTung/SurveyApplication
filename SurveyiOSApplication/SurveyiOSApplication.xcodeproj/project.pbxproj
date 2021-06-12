@@ -16,6 +16,7 @@
 		DF3E97B52673B75D004FA3AE /* SurveyFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF3E97BC2673BC78004FA3AE /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */; };
 		DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */; };
+		DF3E97C126744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		DF3E97B32673B75D004FA3AE /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 		DF3E97A7267371D8004FA3AE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E97BF26744B0F004FA3AE /* Helpers */,
 				DFA8A06F26733E56008FF1D9 /* LoginViewControllerTests.swift */,
 				DF3E97BB2673BC78004FA3AE /* HomeViewControllerTests.swift */,
 			);
@@ -180,6 +183,14 @@
 				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
 			);
 			path = Composers;
+			sourceTree = "<group>";
+		};
+		DF3E97BF26744B0F004FA3AE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		DF9876C3267353A80017577D /* Helpers */ = {
@@ -391,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
+				DF3E97C126744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DF3E97BC2673BC78004FA3AE /* HomeViewControllerTests.swift in Sources */,
 				DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */,
 			);
