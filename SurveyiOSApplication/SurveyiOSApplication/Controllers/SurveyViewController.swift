@@ -28,6 +28,10 @@ public class SurveyViewController: UIViewController {
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
             resetContent()
+            if !surveyModels.isEmpty {
+                pageControl.numberOfPages = surveyModels.count
+                setupContent(for: surveyModels[0])
+            }
         }
     }
     
@@ -36,6 +40,11 @@ public class SurveyViewController: UIViewController {
         descriptionLabel.text = nil
         titleLabel.text = nil
         pageControl.numberOfPages = 0
+    }
+    
+    private func setupContent(for model: RepresentationSurvey) {
+        titleLabel.text = model.title
+        descriptionLabel.text = model.description
     }
 
 }
