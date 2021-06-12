@@ -33,7 +33,7 @@ public final class RemoteSurveysLoader {
     
     public func load(query: SurveyQuery, completion: @escaping (Result<[Survey], Error>) -> Void) {
         let request = makeRequest(from: query)
-        client.get(from: request) {[weak self] result in
+        client.request(from: request) {[weak self] result in
             guard self != nil else {return}
             
             switch result {

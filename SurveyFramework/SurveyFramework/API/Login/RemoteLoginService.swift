@@ -38,7 +38,7 @@ public class RemoteLoginService {
     }
     
     public func load(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
-        client.post(with: makeURLRequest(with: info)) {[weak self] result in
+        client.request(from: makeURLRequest(with: info)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:

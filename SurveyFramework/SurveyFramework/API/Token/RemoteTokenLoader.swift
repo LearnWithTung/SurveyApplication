@@ -28,7 +28,7 @@ public class RemoteTokenLoader {
     }
     
     public func load(withRefreshToken token: String, completion: @escaping (RemoteTokenResult) -> Void) {
-        client.post(with: makeURLRequest(with: token)) {[weak self] result in
+        client.request(from: makeURLRequest(with: token)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:

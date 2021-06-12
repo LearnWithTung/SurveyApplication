@@ -9,8 +9,6 @@ import Foundation
 
 public protocol HTTPClient {
     typealias HTTPClientResult = Result<(data: Data, response: HTTPURLResponse), Error>
-    
-    func post(with request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
-    func get(from request: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
+    func request(from url: URLRequest, completion: @escaping (HTTPClientResult) -> Void)
 }
 
