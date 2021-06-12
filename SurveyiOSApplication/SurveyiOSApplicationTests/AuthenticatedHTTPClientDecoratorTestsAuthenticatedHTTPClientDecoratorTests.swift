@@ -25,8 +25,8 @@ class AuthenticatedHTTPClientDecorator: HTTPClient {
             case let .success(token):
                 signedRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
                 self.decoratee.request(from: signedRequest) {_ in}
-            default:
-                break
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
@@ -48,17 +48,40 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [signedRequest])
     }
     
+    func test_sendRequest_withFailedTokenRequest_fails() {
+        let client = HTTPClientSpy()
+        let service = TokenLoaderStub(stubbedError: NSError(domain: "test", code: 0, userInfo: nil))
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
+        let unsignedRequest = URLRequest(url: URL(string: "https://a-url.com")!)
+        
+        var capturedResult: HTTPClient.HTTPClientResult?
+        sut.request(from: unsignedRequest) {
+            capturedResult = $0
+        }
+        
+        XCTAssertEqual(client.requestedURLs, [])
+        XCTAssertThrowsError(try capturedResult?.get())
+    }
+    
     // MARK: - Helpers
     private class TokenLoaderStub: TokenLoader {
         var stubbedToken: Token?
+        var stubbedError: Error?
         
         init(stubbedToken: Token) {
             self.stubbedToken = stubbedToken
         }
         
+        init(stubbedError: Error) {
+            self.stubbedError = stubbedError
+        }
+        
         func load(completion: @escaping (Result<Token, Error>) -> Void) {
             if let token = stubbedToken {
                 completion(.success(token))
+            }
+            if let error = stubbedError {
+                completion(.failure(error))
             }
         }
         
