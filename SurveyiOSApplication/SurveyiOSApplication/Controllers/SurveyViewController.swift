@@ -19,14 +19,6 @@ public struct RepresentationSurvey {
     }
 }
 
-public protocol ImageDataTask {
-    func cancel()
-}
-
-public protocol SurveyImageDataLoader {
-    func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask
-}
-
 public class SurveyViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
