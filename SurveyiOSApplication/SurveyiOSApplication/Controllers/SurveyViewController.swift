@@ -24,7 +24,7 @@ public class SurveyViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pageControl: CustomPageControl!
-    private var currentIndex: Int = 0
+    private(set) var currentIndex: Int = 0
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
@@ -49,6 +49,7 @@ public class SurveyViewController: UIViewController {
     }
     
     private func resetContent() {
+        currentIndex = 0
         backgroundImageView.image = nil
         descriptionLabel.text = nil
         titleLabel.text = nil

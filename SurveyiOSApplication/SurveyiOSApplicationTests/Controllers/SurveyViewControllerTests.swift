@@ -97,6 +97,21 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.pageControl.numberOfPages, 1)
     }
     
+    func test_updateDataSource_resetCurrentIndex() {
+        let sut = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+                
+        sut.surveyModels = [survey1, survey2]
+        XCTAssertEqual(sut.currentIndex, 0)
+        
+        sut.simulateMoveNext()
+        XCTAssertEqual(sut.currentIndex, 1)
+
+        sut.surveyModels = [survey1]
+        XCTAssertEqual(sut.currentIndex, 0)
+    }
+    
     
     // MARK: - Helpers
     private func makeSUT() -> SurveyViewController {
