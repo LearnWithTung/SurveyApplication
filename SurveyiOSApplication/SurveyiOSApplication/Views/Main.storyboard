@@ -151,7 +151,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxo-lM-PyL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="xli-hl-ebT" kind="embed" id="hr4-uS-vAt"/>
+                                    <segue destination="xli-hl-ebT" kind="embed" identifier="SurveyViewController" id="hr4-uS-vAt"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-6Z-K2Y" userLabel="Profile Image View">
@@ -217,10 +217,10 @@
             </objects>
             <point key="canvasLocation" x="938" y="117"/>
         </scene>
-        <!--View Controller2-->
+        <!--Survey View Controller-->
         <scene sceneID="gVU-Yb-aF8">
             <objects>
-                <viewController id="xli-hl-ebT" customClass="ViewController2" sceneMemberID="viewController">
+                <viewController id="xli-hl-ebT" customClass="SurveyViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GVA-HT-cbo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

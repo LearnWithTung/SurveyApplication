@@ -23,7 +23,7 @@ public protocol HomeViewControllerDelegate {
     func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
 }
 
-public class SurveyViewController {
+public class SurveyViewController: UIViewController {
     public var surveyModels = [RepresentationSurvey]()
 
 }
@@ -31,9 +31,11 @@ public class SurveyViewController {
 public class HomeViewController: UIViewController {
     var currentDate: (() -> Date)?
     var delegate: HomeViewControllerDelegate?
+    
     @IBOutlet public private(set) var loadingView: LoadingView!
-    public let surveyViewController = SurveyViewController()
     @IBOutlet public private(set) var dateLabel: UILabel!
+    
+    public var surveyViewController: SurveyViewController!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,12 @@ public class HomeViewController: UIViewController {
             if let surveys = try? result.get() {
                 self?.surveyViewController.surveyModels = surveys
             }
+        }
+    }
+    
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SurveyViewController", let viewController = segue.destination as? SurveyViewController {
+            self.surveyViewController = viewController
         }
     }
 }
