@@ -50,11 +50,19 @@ class HomeViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT() -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
         let sut = HomeViewController(delegate: delegate)
+        checkForMemoryLeaks(delegate, file: file, line: line)
+        checkForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, delegate)
+    }
+    
+    private func checkForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
