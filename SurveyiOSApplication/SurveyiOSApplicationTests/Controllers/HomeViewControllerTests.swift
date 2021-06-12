@@ -49,6 +49,15 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.isLoadingViewVisible)
     }
     
+    func test_refresh_displaysLoadingViewWhileRefreshing() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulatePullToRefresh()
+        
+        XCTAssertTrue(sut.isLoadingViewVisible)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
