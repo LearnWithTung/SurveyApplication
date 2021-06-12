@@ -14,10 +14,30 @@ public final class HomeUIComposer {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let homeViewController: HomeViewController = storyboard.instantiate()
-        homeViewController.delegate = delegate
+        homeViewController.delegate = MainQueueDispatchDecorator(decoratee: delegate)
         homeViewController.currentDate = currentDate
         
         return homeViewController
     }
     
+}
+
+private final class MainQueueDispatchDecorator: HomeViewControllerDelegate {
+    private let decoratee: HomeViewControllerDelegate
+
+    init(decoratee: HomeViewControllerDelegate) {
+        self.decoratee = decoratee
+    }
+
+    func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        decoratee.loadSurvey { result in
+            if Thread.isMainThread {
+                completion(result)
+            } else {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+    }
 }
