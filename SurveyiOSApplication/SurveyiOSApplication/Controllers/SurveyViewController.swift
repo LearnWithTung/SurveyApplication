@@ -40,6 +40,33 @@ public class SurveyViewController: UIViewController {
         }
     }
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+
+    }
+    
+    @objc func respondToSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .left:
+            next()
+            
+        case .right:
+            previous()
+            
+        default:
+            break
+        }
+    }
+    
     func next() {
         if currentIndex >= surveyModels.count - 1 {return}
         currentIndex += 1
