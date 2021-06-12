@@ -11,6 +11,7 @@ import SurveyFramework
 class AuthenticatedHTTPClientDecorator: HTTPClient {
     private let decoratee: HTTPClient
     private let service: TokenLoader
+    private var pendingTokenRequests = [(Result<Token, Error>) -> Void]()
     
     init(decoratee: HTTPClient, service: TokenLoader) {
         self.decoratee = decoratee
@@ -19,7 +20,7 @@ class AuthenticatedHTTPClientDecorator: HTTPClient {
     
     func request(from url: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
         var signedRequest = url
-        service.load {[weak self] result in
+        pendingTokenRequests.append {[weak self] result in
             guard let self = self else {return}
             switch result {
             case let .success(token):
@@ -28,6 +29,13 @@ class AuthenticatedHTTPClientDecorator: HTTPClient {
             case let .failure(error):
                 completion(.failure(error))
             }
+        }
+        
+        guard pendingTokenRequests.count == 1 else {return}
+        
+        service.load {[weak self] tokenResult in
+            self?.pendingTokenRequests.forEach { $0(tokenResult) }
+            self?.pendingTokenRequests = []
         }
     }
     
@@ -69,17 +77,59 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
     
     func test_sendRequest_withFailedTokenRequest_fails() {
         let client = HTTPClientSpy()
-        let service = TokenLoaderStub(stubbedError: NSError(domain: "test", code: 0, userInfo: nil))
+        let service = TokenLoaderStub(stubbedError: anyNSError())
         let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
-        let unsignedRequest = URLRequest(url: URL(string: "https://a-url.com")!)
         
         var capturedResult: HTTPClient.HTTPClientResult?
-        sut.request(from: unsignedRequest) {
+        sut.request(from: anyRequest()) {
             capturedResult = $0
         }
         
         XCTAssertEqual(client.requestedURLs, [])
         XCTAssertThrowsError(try capturedResult?.get())
+    }
+    
+    func test_sendRequest_multipleTimes_reusesRunningTokenRequest() {
+        let client = HTTPClientSpy()
+        let service = TokenLoaderSpy()
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
+        
+        XCTAssertEqual(service.requestTokenCallCount, 0)
+        
+        sut.request(from: anyRequest()) {_ in}
+        sut.request(from: anyRequest()) {_ in}
+        
+        XCTAssertEqual(service.requestTokenCallCount, 1)
+        
+        service.complete(with: anyNSError())
+        
+        sut.request(from: anyRequest()) {_ in}
+        
+        XCTAssertEqual(service.requestTokenCallCount, 2)
+    }
+    
+    func test_sendRequest_multipleTimes_completesWithRespectiveClientResult() throws {
+        let client = HTTPClientSpy()
+        let service = TokenLoaderSpy()
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
+        
+        var capturedResult1: HTTPClient.HTTPClientResult?
+        sut.request(from: anyRequest()) {capturedResult1 = $0}
+        
+        var capturedResult2: HTTPClient.HTTPClientResult?
+        sut.request(from: anyRequest()) {capturedResult2 = $0}
+                
+        let token = Token(accessToken: "access token", tokenType: "token type", expiredDate: Date(), refreshToken: "refresh token")
+        service.completeSuccessfully(with: token)
+        
+        let values = (Data("any data".utf8), httpURLResponse(200))
+        client.complete(with: values, at: 0)
+        let receivedValues1 = try XCTUnwrap(capturedResult1).get()
+        XCTAssertEqual(receivedValues1.0, values.0)
+        XCTAssertEqual(receivedValues1.1, values.1)
+
+        client.complete(with: anyNSError(), at: 1)
+        XCTAssertThrowsError(try capturedResult2?.get())
     }
     
     // MARK: - Helpers
@@ -103,11 +153,40 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
                 completion(.failure(error))
             }
         }
+    }
+    
+    private class TokenLoaderSpy: TokenLoader {
+        var requestTokenCallCount: Int = 0
+        private var completions = [(Result<Token, Error>) -> Void]()
         
+        func load(completion: @escaping (Result<Token, Error>) -> Void) {
+            requestTokenCallCount += 1
+            self.completions.append(completion)
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            completions[index](.failure(error))
+        }
+        
+        func completeSuccessfully(with token: Token, at index: Int = 0) {
+            completions[index](.success(token))
+        }
+    }
+    
+    private func anyNSError() -> NSError {
+        NSError(domain: "test", code: 0, userInfo: nil)
+    }
+    
+    private func anyRequest() -> URLRequest {
+        return URLRequest(url: anyURL())
     }
     
     private func httpURLResponse(_ statusCode: Int) -> HTTPURLResponse {
-        return HTTPURLResponse(url: URL(string: "https://any-url.com")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        return HTTPURLResponse(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "https://any-url.com")!
     }
     
     private class HTTPClientSpy: HTTPClient {
@@ -121,6 +200,10 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         
         func complete(with values: (data: Data, response: HTTPURLResponse), at index: Int = 0) {
             completions[index](.success(values))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            completions[index](.failure(error))
         }
     }
     
