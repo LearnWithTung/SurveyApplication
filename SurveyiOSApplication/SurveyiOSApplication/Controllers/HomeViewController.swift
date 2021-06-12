@@ -7,15 +7,31 @@
 
 import UIKit
 
-public struct RepresentationSurvey {}
+public struct RepresentationSurvey {
+    let title: String
+    let description: String
+    let imageURL: URL
+    
+    public init(title: String, description: String, imageURL: URL) {
+        self.title = title
+        self.description = description
+        self.imageURL = imageURL
+    }
+}
 
 public protocol HomeViewControllerDelegate {
     func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
 }
 
+public class SurveyViewController {
+    public var surveyModels = [RepresentationSurvey]()
+
+}
+
 public class HomeViewController: UIViewController {
     private var delegate: HomeViewControllerDelegate?
     public let loadingView =  UIView()
+    public let surveyViewController = SurveyViewController()
     
     public convenience init(delegate: HomeViewControllerDelegate) {
         self.init()
@@ -35,8 +51,9 @@ public class HomeViewController: UIViewController {
     private func load() {
         loadingView.isHidden = false
         
-        delegate?.loadSurvey {[weak self] _ in
+        delegate?.loadSurvey {[weak self] result in
             self?.loadingView.isHidden = true
+            self?.surveyViewController.surveyModels = (try? result.get()) ?? []
         }
     }
 }
