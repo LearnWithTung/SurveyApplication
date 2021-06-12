@@ -40,6 +40,15 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.isLoadingViewVisible)
     }
     
+    func test_load_hidesLoadingViewOnComplete() {
+        let (sut, delegate) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        delegate.completeLoadingSurveySuccess(with: [])
+        
+        XCTAssertFalse(sut.isLoadingViewVisible)
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -50,10 +59,17 @@ class HomeViewControllerTests: XCTestCase {
     
     private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
         var requestLoadSurveysCallCount: Int = 0
+        private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()
         
-        func loadSurvey() {
+        func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
             requestLoadSurveysCallCount += 1
+            completions.append(completion)
         }
+        
+        func completeLoadingSurveySuccess(with surveys: [RepresentationSurvey], at index: Int = 0) {
+            completions[index](.success(surveys))
+        }
+        
     }
 }
 

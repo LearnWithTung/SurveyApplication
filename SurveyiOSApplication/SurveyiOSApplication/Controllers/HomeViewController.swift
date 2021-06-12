@@ -7,8 +7,10 @@
 
 import UIKit
 
+public struct RepresentationSurvey {}
+
 public protocol HomeViewControllerDelegate {
-    func loadSurvey()
+    func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
 }
 
 public class HomeViewController: UIViewController {
@@ -31,6 +33,8 @@ public class HomeViewController: UIViewController {
     }
     
     private func load() {
-        delegate?.loadSurvey()
+        delegate?.loadSurvey {[weak self] _ in
+            self?.loadingView.isHidden = true
+        }
     }
 }
