@@ -220,12 +220,12 @@
         <!--Survey View Controller-->
         <scene sceneID="gVU-Yb-aF8">
             <objects>
-                <viewController id="xli-hl-ebT" customClass="SurveyViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SurveyViewController" id="xli-hl-ebT" customClass="SurveyViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GVA-HT-cbo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="RIv-tt-gXN">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RIv-tt-gXN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ff-8O-J4d">
@@ -285,6 +285,12 @@
                             <constraint firstItem="eKg-je-wvt" firstAttribute="leading" secondItem="ZZ7-vf-wmT" secondAttribute="leading" id="xje-QT-ylB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="RIv-tt-gXN" id="0p4-bg-kR7"/>
+                        <outlet property="descriptionLabel" destination="KGi-Qh-CTA" id="bGe-nY-rCT"/>
+                        <outlet property="pageControl" destination="eKg-je-wvt" id="0SO-gb-voK"/>
+                        <outlet property="titleLabel" destination="ZZ7-vf-wmT" id="VzE-VU-2LA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Llv-f1-G8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

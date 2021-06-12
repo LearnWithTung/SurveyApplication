@@ -20,6 +20,22 @@ public struct RepresentationSurvey {
 }
 
 public class SurveyViewController: UIViewController {
-    public var surveyModels = [RepresentationSurvey]()
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var pageControl: CustomPageControl!
+    
+    public var surveyModels = [RepresentationSurvey]() {
+        didSet {
+            resetContent()
+        }
+    }
+    
+    private func resetContent() {
+        backgroundImageView.image = nil
+        descriptionLabel.text = nil
+        titleLabel.text = nil
+        pageControl.numberOfPages = 0
+    }
 
 }
