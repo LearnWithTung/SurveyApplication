@@ -20,6 +20,7 @@ class CustomPageControl: UIView {
     @IBInspectable
     var numberOfPages: Int = 3 {
         didSet {
+            currentIndex = 0
             updateDots()
         }
     }

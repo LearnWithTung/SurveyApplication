@@ -59,6 +59,7 @@ public class SurveyViewController: UIViewController {
     private func setupContent(for model: RepresentationSurvey) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
+        pageControl.currentPage = currentIndex
     }
 
 }

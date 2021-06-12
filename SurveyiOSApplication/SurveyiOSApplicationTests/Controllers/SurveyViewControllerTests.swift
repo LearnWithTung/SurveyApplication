@@ -19,6 +19,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.descriptionLabel.text, nil)
         XCTAssertEqual(sut.titleLabel.text, nil)
         XCTAssertEqual(sut.pageControl.numberOfPages, 0)
+        XCTAssertEqual(sut.pageControl.currentPage, 0)
     }
     
     func test_renders_firstViewOnNonEmptyDataSource() {
@@ -54,6 +55,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.titleLabel.text, survey2.title)
         XCTAssertEqual(sut.descriptionLabel.text, survey2.description)
         XCTAssertEqual(sut.pageControl.numberOfPages, 2)
+        XCTAssertEqual(sut.pageControl.currentPage, 1)
     }
     
     func test_userInitiatedNextView_doesNotRenderNextModelOnAtEdge() {
@@ -67,6 +69,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.titleLabel.text, survey1.title)
         XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
         XCTAssertEqual(sut.pageControl.numberOfPages, 1)
+        XCTAssertEqual(sut.pageControl.currentPage, 0)
     }
     
     func test_userInitiatedPreviousView_rendersPreviousModel() {
@@ -82,6 +85,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.titleLabel.text, survey1.title)
         XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
         XCTAssertEqual(sut.pageControl.numberOfPages, 2)
+        XCTAssertEqual(sut.pageControl.currentPage, 0)
     }
     
     func test_userInitiatedPreviousView_doesNotRenderPreviousModelOnAtEdge() {
@@ -95,6 +99,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.titleLabel.text, survey1.title)
         XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
         XCTAssertEqual(sut.pageControl.numberOfPages, 1)
+        XCTAssertEqual(sut.pageControl.currentPage, 0)
     }
     
     func test_updateDataSource_resetCurrentIndex() {
