@@ -25,4 +25,7 @@ public class HomeViewController: UIViewController {
         delegate?.loadSurvey()
     }
     
+    public func refresh() {
+        delegate?.loadSurvey()
+    }
 }

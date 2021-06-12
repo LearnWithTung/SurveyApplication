@@ -24,6 +24,15 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoadSurveysCallCount, 1)
     }
     
+    func test_refresh_requestsLoadSurveys() {
+        let (sut, delegate) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulatePullToRefresh()
+        
+        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 2)
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -38,5 +47,11 @@ class HomeViewControllerTests: XCTestCase {
         func loadSurvey() {
             requestLoadSurveysCallCount += 1
         }
+    }
+}
+
+private extension HomeViewController {
+    func simulatePullToRefresh() {
+        refresh()
     }
 }
