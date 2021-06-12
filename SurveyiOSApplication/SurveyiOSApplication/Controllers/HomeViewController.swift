@@ -53,7 +53,9 @@ public class HomeViewController: UIViewController {
         
         delegate?.loadSurvey {[weak self] result in
             self?.loadingView.isHidden = true
-            self?.surveyViewController.surveyModels = (try? result.get()) ?? []
+            if let surveys = try? result.get() {
+                self?.surveyViewController.surveyModels = surveys
+            }
         }
     }
 }

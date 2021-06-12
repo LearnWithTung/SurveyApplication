@@ -59,6 +59,20 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfSurveysRendered(), 3, " Expected surveys rendered when first loading is completed with three surveys")
     }
     
+    func test_load_doesNotAlterCurrentStateOnLoadingFails() {
+        let (sut, delegate) = makeSUT()
+        let survey1 = RepresentationSurvey(title: "title 1", description: "description 1", imageURL: URL(string: "https:url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "title 1", description: "description 1", imageURL: URL(string: "https:url-1.com")!)
+
+        sut.loadViewIfNeeded()
+        delegate.completeLoadingSurveySuccess(with: [survey1, survey2], at: 0)
+        XCTAssertEqual(sut.numberOfSurveysRendered(), 2, "Expected survey rendered when first loading is completed successful")
+        
+        sut.simulatePullToRefresh()
+        delegate.completeLoadingSurveyWithError(NSError(domain: "test", code: 0, userInfo: nil), at: 1)
+        XCTAssertEqual(sut.numberOfSurveysRendered(), 2, "Expected does not alter current state on loading fails")
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -80,6 +94,10 @@ class HomeViewControllerTests: XCTestCase {
         
         func completeLoadingSurveySuccess(with surveys: [RepresentationSurvey], at index: Int = 0) {
             completions[index](.success(surveys))
+        }
+        
+        func completeLoadingSurveyWithError(_ error: Error, at index: Int = 0) {
+            completions[index](.failure(error))
         }
         
     }
