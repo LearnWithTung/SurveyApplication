@@ -42,6 +42,21 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.pageControl.numberOfPages, 2)
     }
     
+    func test_userInitiatedNextView_rendersNextModel() {
+        let sut = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+        
+        sut.surveyModels = [survey1, survey2]
+        
+        sut.simulateMoveNext()
+        
+        XCTAssertEqual(sut.titleLabel.text, survey2.title)
+        XCTAssertEqual(sut.descriptionLabel.text, survey2.description)
+        XCTAssertEqual(sut.pageControl.numberOfPages, 2)
+    }
+    
+    
     // MARK: - Helpers
     private func makeSUT() -> SurveyViewController {
         let bundle = Bundle(for: SurveyViewController.self)
@@ -52,4 +67,10 @@ class SurveyViewControllerTests: XCTestCase {
         return sut
     }
     
+}
+
+private extension SurveyViewController {
+    func simulateMoveNext() {
+        self.next()
+    }
 }
