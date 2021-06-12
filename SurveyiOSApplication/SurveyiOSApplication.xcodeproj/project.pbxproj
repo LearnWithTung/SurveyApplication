@@ -28,6 +28,7 @@
 		DF3E97D72674901E004FA3AE /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97D52674901E004FA3AE /* CustomPageControl.swift */; };
 		DF3E97DA2674A172004FA3AE /* SurveyImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97D92674A172004FA3AE /* SurveyImageDataLoader.swift */; };
 		DF3E97DC2674A386004FA3AE /* UIImage+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97DB2674A386004FA3AE /* UIImage+TestHelper.swift */; };
+		DF3E97DE2674B867004FA3AE /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97DD2674B867004FA3AE /* UIStoryboard+Extensions.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		DF3E97D52674901E004FA3AE /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		DF3E97D92674A172004FA3AE /* SurveyImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyImageDataLoader.swift; sourceTree = "<group>"; };
 		DF3E97DB2674A386004FA3AE /* UIImage+TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelper.swift"; sourceTree = "<group>"; };
+		DF3E97DD2674B867004FA3AE /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +294,7 @@
 				DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */,
 				DF3E97C22674593C004FA3AE /* Date+Extensions.swift */,
 				DF3E97CC26746B9E004FA3AE /* UIView+Shimmering.swift */,
+				DF3E97DD2674B867004FA3AE /* UIStoryboard+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				DF3E97CF26746C4F004FA3AE /* HomeUIComposer.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
+				DF3E97DE2674B867004FA3AE /* UIStoryboard+Extensions.swift in Sources */,
 				DF3E97CD26746B9E004FA3AE /* UIView+Shimmering.swift in Sources */,
 				DF3E97D126748934004FA3AE /* SurveyViewController.swift in Sources */,
 				DF3E97D72674901E004FA3AE /* CustomPageControl.swift in Sources */,
