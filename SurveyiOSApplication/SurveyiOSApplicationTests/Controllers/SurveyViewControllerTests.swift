@@ -10,7 +10,7 @@ import XCTest
 
 class SurveyViewControllerTests: XCTestCase {
     
-    func test_emptyData_rendersEmptyViews() {
+    func test_updateDataSource_resetsToEmptyViews() {
         let sut = makeSUT()
         
         sut.surveyModels = []
