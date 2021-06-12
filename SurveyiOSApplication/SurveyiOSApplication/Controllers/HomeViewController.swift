@@ -33,6 +33,8 @@ public class HomeViewController: UIViewController {
     }
     
     private func load() {
+        loadingView.isHidden = false
+        
         delegate?.loadSurvey {[weak self] _ in
             self?.loadingView.isHidden = true
         }

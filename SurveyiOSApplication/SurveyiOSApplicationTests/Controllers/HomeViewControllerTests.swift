@@ -10,63 +10,32 @@ import SurveyiOSApplication
 
 class HomeViewControllerTests: XCTestCase {
     
-    func test_init_doesNotRequestLoadSurveys() {
-        let (_, delegate) = makeSUT()
-        
-        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 0)
-    }
-    
-    func test_viewDidLoad_requestsLoadSurveys() {
+    func test_load_requestsLoadSurveys() {
         let (sut, delegate) = makeSUT()
         
-        sut.loadViewIfNeeded()
+        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 0, "Expected no request upon creation")
         
-        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 1)
-    }
-    
-    func test_refresh_requestsLoadSurveys() {
-        let (sut, delegate) = makeSUT()
         sut.loadViewIfNeeded()
+        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 1, "Expected request load on view did load")
         
         sut.simulatePullToRefresh()
-        
-        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 2)
+        XCTAssertEqual(delegate.requestLoadSurveysCallCount, 2, "Expected another request load on pull to refrseh")
     }
     
-    func test_load_displaysLoadingViewWhileLoading() {
-        let (sut, _) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        XCTAssertTrue(sut.isLoadingViewVisible)
-    }
-    
-    func test_load_hidesLoadingViewOnComplete() {
+    func test_loadingView_visibleWhileLoading() {
         let (sut, delegate) = makeSUT()
+        
         sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isLoadingViewVisible, "Expected loading view visible on view did load")
         
         delegate.completeLoadingSurveySuccess(with: [])
-        
-        XCTAssertFalse(sut.isLoadingViewVisible)
-    }
-    
-    func test_refresh_displaysLoadingViewWhileRefreshing() {
-        let (sut, _) = makeSUT()
-        sut.loadViewIfNeeded()
+        XCTAssertFalse(sut.isLoadingViewVisible, "Expected loading view invisible on loading complete")
         
         sut.simulatePullToRefresh()
-        
-        XCTAssertTrue(sut.isLoadingViewVisible)
-    }
-    
-    func test_refresh_hidesLoadingViewOnComplete() {
-        let (sut, delegate) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        sut.simulatePullToRefresh()
+        XCTAssertTrue(sut.isLoadingViewVisible, "Expected loading view visible on pull to refresh")
         
         delegate.completeLoadingSurveySuccess(with: [])
-        
-        XCTAssertFalse(sut.isLoadingViewVisible)
+        XCTAssertFalse(sut.isLoadingViewVisible, "Expected loading view invisible on refresh complete")
     }
     
     // MARK: - Helpers
