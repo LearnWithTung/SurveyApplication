@@ -19,8 +19,12 @@ public struct RepresentationSurvey {
     }
 }
 
+public protocol ImageDataTask {
+    func cancel()
+}
+
 public protocol SurveyImageDataLoader {
-    func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void)
+    func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask
 }
 
 public class SurveyViewController: UIViewController {
@@ -30,6 +34,7 @@ public class SurveyViewController: UIViewController {
     @IBOutlet weak var pageControl: CustomPageControl!
     private(set) var currentIndex: Int = 0
     var imageLoader: SurveyImageDataLoader?
+    private var task: ImageDataTask?
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
@@ -59,13 +64,15 @@ public class SurveyViewController: UIViewController {
         descriptionLabel.text = nil
         titleLabel.text = nil
         pageControl.numberOfPages = 0
+        task?.cancel()
+        task = nil
     }
     
     private func setupContent(for model: RepresentationSurvey) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         pageControl.currentPage = currentIndex
-        imageLoader?.load(from: model.imageURL) {[weak self] result in
+        task = imageLoader?.load(from: model.imageURL) {[weak self] result in
             self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
         }
     }

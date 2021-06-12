@@ -162,6 +162,18 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.renderedImageData(), imageData)
     }
     
+    func test_loadImageView_cancelsLoadOnUpdateDataSource() {
+        let (sut, loader) = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+        
+        sut.surveyModels = [survey1]
+        XCTAssertEqual(loader.cancelledURLs, [])
+        
+        sut.surveyModels = [survey2]
+        XCTAssertEqual(loader.cancelledURLs, [survey1.imageURL])
+    }
+    
     // MARK: - Helpers
     private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {
         let bundle = Bundle(for: SurveyViewController.self)
@@ -177,11 +189,32 @@ class SurveyViewControllerTests: XCTestCase {
     
     private class SurveyImageDataLoaderSpy: SurveyImageDataLoader {
         var loadedURLs = [URL]()
+        var cancelledURLs = [URL]()
+        
         private var completions = [(Result<Data, Error>) -> Void]()
         
-        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
+        private struct Task: ImageDataTask {
+            private let action: () -> Void
+            
+            init(action: @escaping () -> Void) {
+                self.action = action
+            }
+            
+            func cancel() {
+                action()
+            }
+            
+        }
+        
+        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask {
             loadedURLs.append(url)
             completions.append(completion)
+            
+            return Task {[weak self] in self?.cancelImageLoad(from: url) }
+        }
+        
+        func cancelImageLoad(from url: URL) {
+            cancelledURLs.append(url)
         }
         
         func loadImageCompleteSuccessWith(data: Data, at index: Int = 0) {
