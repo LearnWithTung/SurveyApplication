@@ -28,7 +28,7 @@ public class SurveyViewController: UIViewController {
     var imageLoader: SurveyImageDataLoader?
     private var task: ImageDataTask?
     
-    var onRefresh: (() -> Void)?
+    public var onRefresh: (() -> Void)?
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {

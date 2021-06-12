@@ -18,7 +18,7 @@ public class HomeViewController: UIViewController {
     @IBOutlet public private(set) var loadingView: LoadingView!
     @IBOutlet public private(set) var dateLabel: UILabel!
     
-    public var surveyViewController: SurveyViewController!
+    public private(set) var surveyViewController: SurveyViewController!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ public class HomeViewController: UIViewController {
         dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d")
     }
     
-    public func refresh() {
+    private func refresh() {
         load()
     }
     
@@ -55,6 +55,9 @@ public class HomeViewController: UIViewController {
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SurveyViewController", let viewController = segue.destination as? SurveyViewController {
             self.surveyViewController = viewController
+            self.surveyViewController.onRefresh = {[weak self] in
+                self?.refresh()
+            }
         }
     }
 }

@@ -97,6 +97,15 @@ class HomeViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_refresh_receivesRefreshMessage() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulatePullToRefresh()
+
+        XCTAssertEqual(loader.requestLoadSurveysCallCount, 2)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -129,7 +138,7 @@ class HomeViewControllerTests: XCTestCase {
 
 private extension HomeViewController {
     func simulatePullToRefresh() {
-        refresh()
+        surveyViewController.onRefresh?()
     }
     
     var isLoadingViewVisible: Bool {
