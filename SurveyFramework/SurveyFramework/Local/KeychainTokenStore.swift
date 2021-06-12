@@ -72,7 +72,7 @@ extension KeychainTokenStore: TokenSaver {
 }
     
 extension KeychainTokenStore: TokenLoader {
-    public func load(completion: @escaping (Result<Token, Swift.Error>) -> Void) {
+    public func load(completion: @escaping (TokenLoader.TokenSaverResult) -> Void) {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
