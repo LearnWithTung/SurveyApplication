@@ -56,6 +56,19 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.pageControl.numberOfPages, 2)
     }
     
+    func test_userInitiatedNextView_doesNotRenderNextModelOnAtEdge() {
+        let sut = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        
+        sut.surveyModels = [survey1]
+        
+        sut.simulateMoveNext()
+        
+        XCTAssertEqual(sut.titleLabel.text, survey1.title)
+        XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
+        XCTAssertEqual(sut.pageControl.numberOfPages, 1)
+    }
+    
     
     // MARK: - Helpers
     private func makeSUT() -> SurveyViewController {

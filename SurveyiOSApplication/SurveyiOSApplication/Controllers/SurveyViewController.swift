@@ -37,6 +37,7 @@ public class SurveyViewController: UIViewController {
     }
     
     func next() {
+        if currentIndex >= surveyModels.count - 1 {return}
         currentIndex += 1
         setupContent(for: surveyModels[currentIndex])
     }
