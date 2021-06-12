@@ -11,8 +11,8 @@ import XCTest
 class SurveyViewControllerTests: XCTestCase {
     
     func test_updateDataSource_resetsToEmptyViews() {
-        let sut = makeSUT()
-        
+        let (sut, _) = makeSUT()
+
         sut.surveyModels = []
         
         XCTAssertEqual(sut.backgroundImageView.image, nil)
@@ -23,7 +23,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_renders_firstViewOnNonEmptyDataSource() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
         
@@ -44,7 +44,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_userInitiatedNextView_rendersNextModel() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
         
@@ -59,7 +59,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_userInitiatedNextView_doesNotRenderNextModelOnAtEdge() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         
         sut.surveyModels = [survey1]
@@ -73,7 +73,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_userInitiatedPreviousView_rendersPreviousModel() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
         
@@ -89,7 +89,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_userInitiatedPreviousView_doesNotRenderPreviousModelOnAtEdge() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         
         sut.surveyModels = [survey1]
@@ -103,7 +103,7 @@ class SurveyViewControllerTests: XCTestCase {
     }
     
     func test_updateDataSource_resetCurrentIndex() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
         let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
                 
@@ -117,15 +117,43 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.currentIndex, 0)
     }
     
+    func test_loadImageData_requestsLoadFirstImageOnNonEmptyDataSource() {
+        let (sut, loader) = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+        
+        sut.surveyModels = [survey1]
+        XCTAssertEqual(loader.loadedURLs, [survey1.imageURL])
+        
+        sut.surveyModels = [survey1]
+        XCTAssertEqual(loader.loadedURLs, [survey1.imageURL, survey1.imageURL])
+        
+        sut.surveyModels = [survey2]
+        XCTAssertEqual(loader.loadedURLs, [survey1.imageURL, survey1.imageURL, survey2.imageURL])
+        
+        sut.surveyModels = []
+        XCTAssertEqual(loader.loadedURLs, [survey1.imageURL, survey1.imageURL, survey2.imageURL])
+    }
     
     // MARK: - Helpers
-    private func makeSUT() -> SurveyViewController {
+    private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {
         let bundle = Bundle(for: SurveyViewController.self)
         let sb = UIStoryboard(name: "Main", bundle: bundle)
         let sut = sb.instantiateViewController(withIdentifier: "SurveyViewController") as! SurveyViewController
+        let loader = SurveyImageDataLoaderSpy()
+        sut.imageLoader = loader
         sut.loadViewIfNeeded()
         checkForMemoryLeaks(sut)
-        return sut
+        checkForMemoryLeaks(loader)
+        return (sut, loader)
+    }
+    
+    private class SurveyImageDataLoaderSpy: SurveyImageDataLoader {
+        var loadedURLs = [URL]()
+        
+        func load(from url: URL) {
+            loadedURLs.append(url)
+        }
     }
     
 }

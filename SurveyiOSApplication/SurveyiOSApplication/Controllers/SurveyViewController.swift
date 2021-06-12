@@ -19,12 +19,17 @@ public struct RepresentationSurvey {
     }
 }
 
+public protocol SurveyImageDataLoader {
+    func load(from url: URL)
+}
+
 public class SurveyViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pageControl: CustomPageControl!
     private(set) var currentIndex: Int = 0
+    var imageLoader: SurveyImageDataLoader?
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
@@ -60,6 +65,7 @@ public class SurveyViewController: UIViewController {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         pageControl.currentPage = currentIndex
+        imageLoader?.load(from: model.imageURL)
     }
 
 }
