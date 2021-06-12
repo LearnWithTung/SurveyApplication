@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPageControl" customModule="Prototype" customModuleProvider="target">
+            <connections>
+                <outlet property="stackViewContainer" destination="6GC-q6-17I" id="gLX-kM-u4f"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LjG-eT-UBO">
+                    <rect key="frame" x="0.0" y="0.0" width="377" height="62"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YwA-Wy-6xw">
+                            <rect key="frame" x="0.0" y="0.0" width="377" height="54"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6GC-q6-17I">
+                            <rect key="frame" x="0.0" y="54" width="377" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="39q-ZY-gbt"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LjG-eT-UBO" secondAttribute="trailing" id="Tdu-D9-kHk"/>
+                <constraint firstItem="LjG-eT-UBO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lOa-gn-cLt"/>
+                <constraint firstItem="LjG-eT-UBO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pbN-TA-BGo"/>
+                <constraint firstAttribute="bottom" secondItem="LjG-eT-UBO" secondAttribute="bottom" id="wKk-Qd-aUr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-13.768115942028986" y="142.66304347826087"/>
+        </view>
+    </objects>
+</document>
