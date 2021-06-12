@@ -23,10 +23,14 @@ public class HomeViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate?.loadSurvey()
+        load()
     }
     
     public func refresh() {
+        load()
+    }
+    
+    private func load() {
         delegate?.loadSurvey()
     }
 }
