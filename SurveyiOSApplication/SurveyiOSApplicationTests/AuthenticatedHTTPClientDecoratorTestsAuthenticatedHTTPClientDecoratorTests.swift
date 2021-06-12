@@ -11,7 +11,7 @@ import SurveyFramework
 class AuthenticatedHTTPClientDecorator: HTTPClient {
     private let decoratee: HTTPClient
     private let service: TokenLoader
-    private var pendingTokenRequests = [(Result<Token, Error>) -> Void]()
+    private var pendingTokenRequests = [TokenLoadCompletion]()
     
     init(decoratee: HTTPClient, service: TokenLoader) {
         self.decoratee = decoratee
