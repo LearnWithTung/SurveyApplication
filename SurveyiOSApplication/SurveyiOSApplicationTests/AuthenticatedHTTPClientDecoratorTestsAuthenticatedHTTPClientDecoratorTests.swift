@@ -24,7 +24,7 @@ class AuthenticatedHTTPClientDecorator: HTTPClient {
             switch result {
             case let .success(token):
                 signedRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
-                self.decoratee.request(from: signedRequest) {_ in}
+                self.decoratee.request(from: signedRequest, completion: completion)
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -46,6 +46,25 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         sut.request(from: unsignedRequest) {_ in}
         
         XCTAssertEqual(client.requestedURLs, [signedRequest])
+    }
+    
+    func test_sendRequest_withSuccessfulTokenRequest_completesWithDecorateeResult() throws {
+        let values = (Data("any data".utf8), httpURLResponse(200))
+        let client = HTTPClientSpy()
+        let token = Token(accessToken: "access token", tokenType: "token type", expiredDate: Date(), refreshToken: "refresh token")
+        let service = TokenLoaderStub(stubbedToken: token)
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
+        let unsignedRequest = URLRequest(url: URL(string: "https://a-url.com")!)
+        
+        var capturedResult: HTTPClient.HTTPClientResult?
+        sut.request(from: unsignedRequest) {
+            capturedResult = $0
+        }
+        client.complete(with: values)
+        
+        let receivedValues = try XCTUnwrap(capturedResult).get()
+        XCTAssertEqual(receivedValues.0, values.0)
+        XCTAssertEqual(receivedValues.1, values.1)
     }
     
     func test_sendRequest_withFailedTokenRequest_fails() {
@@ -87,11 +106,21 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         
     }
     
+    private func httpURLResponse(_ statusCode: Int) -> HTTPURLResponse {
+        return HTTPURLResponse(url: URL(string: "https://any-url.com")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+    }
+    
     private class HTTPClientSpy: HTTPClient {
         var requestedURLs = [URLRequest]()
+        private var completions = [(HTTPClientResult) -> Void]()
         
         func request(from url: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
             requestedURLs.append(url)
+            completions.append(completion)
+        }
+        
+        func complete(with values: (data: Data, response: HTTPURLResponse), at index: Int = 0) {
+            completions[index](.success(values))
         }
     }
     
