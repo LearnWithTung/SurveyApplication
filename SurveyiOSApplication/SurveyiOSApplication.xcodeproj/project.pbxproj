@@ -18,6 +18,9 @@
 		DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */; };
 		DF3E97C126744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */; };
 		DF3E97C32674593C004FA3AE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97C22674593C004FA3AE /* Date+Extensions.swift */; };
+		DF3E97CA26746B26004FA3AE /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3E97C826746B26004FA3AE /* LoadingView.xib */; };
+		DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97C926746B26004FA3AE /* LoadingView.swift */; };
+		DF3E97CD26746B9E004FA3AE /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97CC26746B9E004FA3AE /* UIView+Shimmering.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -69,6 +72,9 @@
 		DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TrackingMemoryLeaks.swift"; sourceTree = "<group>"; };
 		DF3E97C22674593C004FA3AE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		DF3E97C826746B26004FA3AE /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		DF3E97C926746B26004FA3AE /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DF3E97CC26746B9E004FA3AE /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +159,8 @@
 		DF3E97A5267371B2004FA3AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E97C926746B26004FA3AE /* LoadingView.swift */,
+				DF3E97C826746B26004FA3AE /* LoadingView.xib */,
 				DF3E97A0267368AA004FA3AE /* CustomTextField.swift */,
 				DF3E979E26736825004FA3AE /* CustomTextField.xib */,
 				DFA8A07526734013008FF1D9 /* Main.storyboard */,
@@ -254,6 +262,7 @@
 				DF9876C126734A770017577D /* UIImage+Extensions.swift */,
 				DF3E97A9267375A9004FA3AE /* UIFont+Extensions.swift */,
 				DF3E97C22674593C004FA3AE /* Date+Extensions.swift */,
+				DF3E97CC26746B9E004FA3AE /* UIView+Shimmering.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -345,6 +354,7 @@
 				DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
 				DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */,
 				DFA8A07626734013008FF1D9 /* Main.storyboard in Resources */,
+				DF3E97CA26746B26004FA3AE /* LoadingView.xib in Resources */,
 				DFA8A04626731F38008FF1D9 /* LaunchScreen.storyboard in Resources */,
 				DFA8A04326731F38008FF1D9 /* Assets.xcassets in Resources */,
 			);
@@ -392,10 +402,12 @@
 				DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */,
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DF3E97C32674593C004FA3AE /* Date+Extensions.swift in Sources */,
+				DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */,
 				DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */,
 				DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
+				DF3E97CD26746B9E004FA3AE /* UIView+Shimmering.swift in Sources */,
 				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,
 				DF3E97AA267375A9004FA3AE /* UIFont+Extensions.swift in Sources */,
 			);
