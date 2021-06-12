@@ -69,6 +69,34 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.pageControl.numberOfPages, 1)
     }
     
+    func test_userInitiatedPreviousView_rendersPreviousModel() {
+        let sut = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        let survey2 = RepresentationSurvey(title: "survey2", description: "description2", imageURL: URL(string: "https://a-url-2.com")!)
+        
+        sut.surveyModels = [survey1, survey2]
+        
+        sut.simulateMoveNext()
+        sut.simulateMovePrevious()
+
+        XCTAssertEqual(sut.titleLabel.text, survey1.title)
+        XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
+        XCTAssertEqual(sut.pageControl.numberOfPages, 2)
+    }
+    
+    func test_userInitiatedPreviousView_doesNotRenderPreviousModelOnAtEdge() {
+        let sut = makeSUT()
+        let survey1 = RepresentationSurvey(title: "survey1", description: "description1", imageURL: URL(string: "https://a-url-1.com")!)
+        
+        sut.surveyModels = [survey1]
+        
+        sut.simulateMovePrevious()
+
+        XCTAssertEqual(sut.titleLabel.text, survey1.title)
+        XCTAssertEqual(sut.descriptionLabel.text, survey1.description)
+        XCTAssertEqual(sut.pageControl.numberOfPages, 1)
+    }
+    
     
     // MARK: - Helpers
     private func makeSUT() -> SurveyViewController {
@@ -85,5 +113,9 @@ class SurveyViewControllerTests: XCTestCase {
 private extension SurveyViewController {
     func simulateMoveNext() {
         self.next()
+    }
+    
+    func simulateMovePrevious() {
+        self.previous()
     }
 }

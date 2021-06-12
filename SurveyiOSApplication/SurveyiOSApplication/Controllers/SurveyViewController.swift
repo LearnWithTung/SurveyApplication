@@ -42,6 +42,12 @@ public class SurveyViewController: UIViewController {
         setupContent(for: surveyModels[currentIndex])
     }
     
+    func previous() {
+        if currentIndex == 0 {return}
+        currentIndex -= 1
+        setupContent(for: surveyModels[currentIndex])
+    }
+    
     private func resetContent() {
         backgroundImageView.image = nil
         descriptionLabel.text = nil
