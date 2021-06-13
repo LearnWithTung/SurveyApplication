@@ -25,6 +25,7 @@ public class LoginViewController: UIViewController {
     @IBOutlet public private(set) weak var loginButton: UIButton!
     @IBOutlet weak var logoImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var logoImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var loadingView: LoadingView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ public class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
         
+        loadingView.showIndicator()
         delegate?.login(email: email, password: password)
     }
     

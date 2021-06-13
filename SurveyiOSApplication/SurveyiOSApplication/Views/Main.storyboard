@@ -107,20 +107,28 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05a-CU-t7u" customClass="LoadingView" customModule="SurveyiOSApplication" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="1y5-gI-f7V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0ML-cp-oLw" secondAttribute="trailing" id="2JX-XC-vZQ"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="4E0-Gx-QHk"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="168:375" priority="999" id="4tw-uW-lvv"/>
                             <constraint firstItem="0ML-cp-oLw" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="9L9-ri-mm8"/>
+                            <constraint firstAttribute="bottom" secondItem="05a-CU-t7u" secondAttribute="bottom" id="C9Q-0d-onS"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="DCi-Se-Abb"/>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="FVd-cO-0da"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="201:375" id="Na9-uY-Ihy"/>
                             <constraint firstItem="0ML-cp-oLw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Neo-0Q-v8Q"/>
                             <constraint firstAttribute="bottom" secondItem="0ML-cp-oLw" secondAttribute="bottom" id="Qo5-Dq-Q6t"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerY" secondItem="PhC-bK-5Kh" secondAttribute="centerY" priority="999" id="TYA-na-eq8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="deO-B3-Ly6" secondAttribute="bottom" id="Ttr-ID-mAI"/>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cig-Rh-1UC"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="dfd-Pl-MfY"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="tmL-Ad-7VG"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xXn-Ya-xnH"/>
@@ -130,6 +138,7 @@
                         <outlet property="backgroundImageView" destination="0ML-cp-oLw" id="2nJ-1H-qri"/>
                         <outlet property="emailTextField" destination="nzw-Fd-de9" id="qpS-Nm-iJu"/>
                         <outlet property="fieldsContainer" destination="DDB-FA-k15" id="YO0-h3-vVi"/>
+                        <outlet property="loadingView" destination="05a-CU-t7u" id="aoF-3J-G9S"/>
                         <outlet property="loginButton" destination="1gD-Vd-IFR" id="0Nu-JQ-M1L"/>
                         <outlet property="logoImageCenterYConstraint" destination="dfd-Pl-MfY" id="SRI-qA-W98"/>
                         <outlet property="logoImageWidthConstraint" destination="Na9-uY-Ihy" id="okj-va-BNi"/>
