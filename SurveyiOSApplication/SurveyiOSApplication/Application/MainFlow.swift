@@ -24,18 +24,9 @@ public final class MainFlow: Flow {
     }
     
     public func start(){
-        if Thread.isMainThread {
-            let vc = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate)
-            
-            navController.setViewControllers([vc], animated: true)
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else {return}
-                let vc = HomeUIComposer.homeComposedWith(delegate: self.delegate, imageLoader: self.imageLoader, currentDate: self.currentDate)
-                
-                self.navController.setViewControllers([vc], animated: true)
-            }
-        }
+        let vc = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate)
+        
+        navController.setViewControllers([vc], animated: true)
     }
     
 }

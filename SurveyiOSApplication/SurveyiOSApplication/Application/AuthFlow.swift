@@ -18,18 +18,9 @@ public final class AuthFlow: Flow {
     }
     
     public func start() {
-        if Thread.isMainThread {
-            let vc = LoginUIComposer.loginComposedWith(delegate: delegate)
-            
-            navController.setViewControllers([vc], animated: true)
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else {return}
-                let vc = LoginUIComposer.loginComposedWith(delegate: self.delegate)
-                
-                self.navController.setViewControllers([vc], animated: true)
-            }
-        }
+        let vc = LoginUIComposer.loginComposedWith(delegate: delegate)
+        
+        navController.setViewControllers([vc], animated: true)
     }
     
 }

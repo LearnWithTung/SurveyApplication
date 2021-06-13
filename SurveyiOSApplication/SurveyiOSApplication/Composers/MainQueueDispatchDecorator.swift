@@ -7,14 +7,25 @@
 
 import Foundation
 
-final class MainQueueDispatchDecorator: HomeViewControllerDelegate {
-    private let decoratee: HomeViewControllerDelegate
-
-    init(decoratee: HomeViewControllerDelegate) {
+public final class MainQueueDispatchDecorator<T> {
+    
+    private let decoratee: T
+    
+    public init(decoratee: T) {
         self.decoratee = decoratee
     }
+    
+    func dispatch(completion: @escaping () -> Void) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async(execute: completion)
+        }
+        completion()
+    }
+    
+}
 
-    func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+extension MainQueueDispatchDecorator: HomeViewControllerDelegate where T == HomeViewControllerDelegate {
+    public func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
         decoratee.loadSurvey(pageNumber: pageNumber, pageSize: pageSize) { result in
             if Thread.isMainThread {
                 completion(result)
@@ -22,6 +33,18 @@ final class MainQueueDispatchDecorator: HomeViewControllerDelegate {
                 DispatchQueue.main.async {
                     completion(result)
                 }
+            }
+        }
+    }
+}
+
+extension MainQueueDispatchDecorator: Flow where T == Flow {
+    public func start() {
+        if Thread.isMainThread {
+            decoratee.start()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.decoratee.start()
             }
         }
     }

@@ -44,16 +44,17 @@ class AuthFlowTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: AuthFlow, navigationController: NavigationControllerSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Flow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
         let delegate = DelegateSpy()
-        let sut = AuthFlow(navController: navigationControllerSpy, delegate: delegate)
+        let sut: Flow = AuthFlow(navController: navigationControllerSpy, delegate: delegate)
+        let decorator = MainQueueDispatchDecorator(decoratee: sut)
         
         checkForMemoryLeaks(navigationControllerSpy, file: file, line: line)
-        checkForMemoryLeaks(sut, file: file, line: line)
+        checkForMemoryLeaks(decorator, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)
 
-        return (sut, navigationControllerSpy)
+        return (decorator, navigationControllerSpy)
     }
     
     private class DelegateSpy: LoginViewControllerDelegate {

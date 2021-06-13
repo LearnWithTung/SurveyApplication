@@ -30,13 +30,14 @@ class CompositionRoot {
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
         let downloader = ImageDownloader(name: "SurveyImageDownloader")
         let imageLoader = KingfisherImageDataLoader(downloader: downloader)
-        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init)
+        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init)
+        let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
-            store?.save(token: token) {[weak self, weak mainFlow, weak rootNc] result in
+            store?.save(token: token) {[weak self, weak mainFlowDecorator, weak rootNc] result in
                 switch result {
                 case .success:
-                    mainFlow?.start()
+                    mainFlowDecorator?.start()
                 case .failure:
                     guard let navController = rootNc else {return}
                     self?.displayError(message: "Unexpected error. Please try later.", showIn: navController)
@@ -48,9 +49,10 @@ class CompositionRoot {
             self?.displayError(message: "Invalid username or password", showIn: navController)
         }
 
-        let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate)
+        let authFlow: Flow = AuthFlow(navController: rootNc, delegate: loginDelegate)
+        let authFlowDecorator = MainQueueDispatchDecorator(decoratee: authFlow)
         
-        let flow = AppStartFlow(loader: store, authFlow: authFlow, mainFlow: mainFlow)
+        let flow = AppStartFlow(loader: store, authFlow: authFlowDecorator, mainFlow: mainFlowDecorator)
 
         return (rootNc, flow)
     }
@@ -71,9 +73,11 @@ class CompositionRoot {
     }
 
     private func displayError(message: String, showIn navController: UINavigationController) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(action)
-        navController.present(alertController, animated: true)
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            navController.present(alertController, animated: true)
+        }
     }
 }

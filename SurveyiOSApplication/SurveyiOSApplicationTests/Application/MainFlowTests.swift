@@ -44,18 +44,19 @@ class MainFlowTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: MainFlow, navigationController: NavigationControllerSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Flow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
         let delegateSpy = DelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
-        let sut = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, imageLoader: fakeImageLoader, currentDate: Date.init)
-        
+        let sut: Flow = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, imageLoader: fakeImageLoader, currentDate: Date.init)
+        let decorator = MainQueueDispatchDecorator(decoratee: sut)
+
         checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegateSpy, file: file, line: line)
         checkForMemoryLeaks(navigationControllerSpy, file: file, line: line)
-        checkForMemoryLeaks(sut, file: file, line: line)
+        checkForMemoryLeaks(decorator, file: file, line: line)
 
-        return (sut, navigationControllerSpy)
+        return (decorator, navigationControllerSpy)
     }
     
     private class DelegateSpy: HomeViewControllerDelegate {
