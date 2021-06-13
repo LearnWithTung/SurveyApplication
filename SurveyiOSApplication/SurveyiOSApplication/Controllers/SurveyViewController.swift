@@ -45,6 +45,18 @@ public class SurveyViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        adddSwipeGesture()
+
+        backgroundImageView.addGradientOverlay()
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        takeSurveyButton.layer.cornerRadius = takeSurveyButton.bounds.width / 2
+    }
+    
+    private func adddSwipeGesture() {
         // Do any additional setup after loading the view.
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
@@ -54,7 +66,6 @@ public class SurveyViewController: UIViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
-
     }
     
     @objc func respondToSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
@@ -114,4 +125,20 @@ public class SurveyViewController: UIViewController {
         task = nil
     }
 
+}
+
+
+extension UIImageView {
+    func addGradientOverlay() {
+        let view = UIView(frame: self.bounds)
+
+        let gradient = CAGradientLayer()
+        gradient.frame = view.frame
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradient.locations = [0.0, 1.0]
+        view.layer.insertSublayer(gradient, at: 0)
+        
+        self.addSubview(view)
+        self.bringSubviewToFront(view)
+    }
 }

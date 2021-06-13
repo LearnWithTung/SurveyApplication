@@ -12,6 +12,10 @@ public protocol HomeViewControllerDelegate {
 }
 
 public class HomeViewController: UIViewController {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     var currentDate: (() -> Date)?
     var delegate: HomeViewControllerDelegate?
     var onViewDidLoad: (() -> Void)?
@@ -24,11 +28,11 @@ public class HomeViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        load()
         onViewDidLoad?()
+
+        load()
         
-        dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d")
+        dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
     }
     
     private func refresh() {
