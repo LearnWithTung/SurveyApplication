@@ -14,4 +14,17 @@ extension UIImageView{
             self.image = image
         }, completion: nil)
     }
+    
+    func addGradientOverlay() {
+        let view = UIView(frame: self.bounds)
+
+        let gradient = CAGradientLayer()
+        gradient.frame = view.frame
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradient.locations = [0.0, 1.0]
+        view.layer.insertSublayer(gradient, at: 0)
+        
+        self.addSubview(view)
+        self.bringSubviewToFront(view)
+    }
 }

@@ -110,13 +110,13 @@ public class SurveyViewController: UIViewController {
     }
     
     private func setupContent(for model: RepresentationSurvey) {
-        titleLabel.text = model.title
-        descriptionLabel.text = model.description
+        titleLabel.setText(model.title)
+        descriptionLabel.setText(model.description)
         pageControl.currentPage = currentIndex
         backgroundImageView.image = nil
         cancelImageLoad()
         task = imageLoader?.load(from: model.imageURL) {[weak self] result in
-            self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
+            self?.backgroundImageView.setImage((try? result.get()).flatMap(UIImage.init))
         }
     }
     
@@ -125,20 +125,4 @@ public class SurveyViewController: UIViewController {
         task = nil
     }
 
-}
-
-
-extension UIImageView {
-    func addGradientOverlay() {
-        let view = UIView(frame: self.bounds)
-
-        let gradient = CAGradientLayer()
-        gradient.frame = view.frame
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradient.locations = [0.0, 1.0]
-        view.layer.insertSublayer(gradient, at: 0)
-        
-        self.addSubview(view)
-        self.bringSubviewToFront(view)
-    }
 }
