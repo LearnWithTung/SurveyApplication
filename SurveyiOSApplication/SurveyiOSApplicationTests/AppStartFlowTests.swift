@@ -12,15 +12,22 @@ import SurveyFramework
 class AppStartFlow {
     private let loader: TokenLoader
     private let authFlow: Flow
+    private let mainFlow: Flow
     
-    init(loader: TokenLoader, authFlow: Flow) {
+    init(loader: TokenLoader, authFlow: Flow, mainFlow: Flow) {
         self.loader = loader
         self.authFlow = authFlow
+        self.mainFlow = mainFlow
     }
     
     func start() {
         loader.load {[weak self] result in
-            self?.authFlow.start()
+            switch result {
+            case .success:
+                self?.mainFlow.start()
+            case .failure:
+                self?.authFlow.start()
+            }
         }
     }
     
@@ -30,24 +37,41 @@ class AppStartFlowTests: XCTestCase {
     
     func test_start_startAuthFlowOnLoadTokenFromStoreFailed() {
         let stub = TokenLoaderStub(stubbedError: anyNSError())
-        let (sut, authFlow) = makeSUT(loader: stub)
+        let (sut, authFlow, mainFlow) = makeSUT(loader: stub)
         
         XCTAssertEqual(authFlow.startCount, 0)
-        
+        XCTAssertEqual(mainFlow.startCount, 0)
+
         sut.start()
         
         XCTAssertEqual(authFlow.startCount, 1)
+        XCTAssertEqual(mainFlow.startCount, 0)
+    }
+    
+    func test_start_startMainFlowOnLoadTokenFromStoreSuccess() {
+        let stub = TokenLoaderStub(stubbedToken: makeTokenWith(expiredDate: Date()))
+        let (sut, authFlow, mainFlow) = makeSUT(loader: stub)
+        
+        XCTAssertEqual(authFlow.startCount, 0)
+        XCTAssertEqual(mainFlow.startCount, 0)
+
+        sut.start()
+        
+        XCTAssertEqual(authFlow.startCount, 0)
+        XCTAssertEqual(mainFlow.startCount, 1)
     }
     
     // MARK: - Helpers
-    private func makeSUT(loader: TokenLoaderStub, file: StaticString = #file, line: UInt = #line) -> (sut: AppStartFlow, authFlow: AuthFlowSpy) {
+    private func makeSUT(loader: TokenLoaderStub, file: StaticString = #file, line: UInt = #line) -> (sut: AppStartFlow, authFlow: AuthFlowSpy, mainFlow: MainFlowSpy) {
         let authFlow = AuthFlowSpy()
-        let sut = AppStartFlow(loader: loader, authFlow: authFlow)
+        let mainFlow = MainFlowSpy()
+        let sut = AppStartFlow(loader: loader, authFlow: authFlow, mainFlow: mainFlow)
         checkForMemoryLeaks(loader, file: file, line: line)
         checkForMemoryLeaks(authFlow, file: file, line: line)
+        checkForMemoryLeaks(mainFlow, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, authFlow)
+        return (sut, authFlow, mainFlow)
     }
     
     private class TokenLoaderStub: TokenLoader {
@@ -73,6 +97,14 @@ class AppStartFlowTests: XCTestCase {
     }
     
     private class AuthFlowSpy: Flow {
+        var startCount = 0
+        
+        func start() {
+            startCount += 1
+        }
+    }
+    
+    private class MainFlowSpy: Flow {
         var startCount = 0
         
         func start() {
