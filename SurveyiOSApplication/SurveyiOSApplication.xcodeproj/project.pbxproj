@@ -287,6 +287,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		DF3E980B2675EB8D004FA3AE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E98052675E63A004FA3AE /* AppStartFlowTests.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		DF9876C3267353A80017577D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,11 +343,11 @@
 		DFA8A04F26731F39008FF1D9 /* SurveyiOSApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E980B2675EB8D004FA3AE /* Application */,
 				DF3E97A7267371D8004FA3AE /* Controllers */,
 				DF9876C3267353A80017577D /* Helpers */,
 				DF3E97F12675D133004FA3AE /* Composer */,
 				DFA8A05226731F39008FF1D9 /* Info.plist */,
-				DF3E98052675E63A004FA3AE /* AppStartFlowTests.swift */,
 			);
 			path = SurveyiOSApplicationTests;
 			sourceTree = "<group>";
