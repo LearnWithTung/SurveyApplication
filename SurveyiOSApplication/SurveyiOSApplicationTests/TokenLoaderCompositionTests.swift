@@ -118,6 +118,25 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         XCTAssertEqual(loader.refreshToken(), token.refreshToken)
     }
+    
+    func test_sendRequest_multipleTimes_reusesRunningTokenRequest() {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+
+        XCTAssertEqual(loader.requestCallCount, 0)
+        
+        sut.load { _ in }
+        sut.load { _ in }
+        XCTAssertEqual(loader.requestCallCount, 1)
+        
+        loader.completeSuccessful(with: anyNonExpirationToken(currentDate: currentDate))
+        
+        sut.load { _ in }
+        XCTAssertEqual(loader.requestCallCount, 2)
+    }
 
     // MARK: - Helpers
     private func makeSUT(currentDate: () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (loader: RemoteTokenLoaderSpy, store: KeychainTokenStore, sut: TokenLoaderComposition) {
