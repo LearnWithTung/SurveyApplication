@@ -179,30 +179,6 @@ class TokenLoaderCompositionTests: XCTestCase {
         return (stub, store, sut)
     }
     
-    private class TokenLoaderStub: TokenLoader {
-        var stubbedToken: Token?
-        var stubbedError: Error?
-        
-        init() {}
-        
-        init(stubbedToken: Token) {
-            self.stubbedToken = stubbedToken
-        }
-        
-        init(stubbedError: Error) {
-            self.stubbedError = stubbedError
-        }
-        
-        func load(completion: @escaping (Result<Token, Error>) -> Void) {
-            if let token = stubbedToken {
-                completion(.success(token))
-            }
-            if let error = stubbedError {
-                completion(.failure(error))
-            }
-        }
-    }
-    
     private class RemoteTokenLoaderSpy: RemoteTokenLoader {
         var requestCallCount: Int = 0
         private var messages = [(refreshToken: String, completion: (RemoteTokenLoader.RemoteTokenResult) -> Void)]()
@@ -232,25 +208,6 @@ class TokenLoaderCompositionTests: XCTestCase {
         }
     }
     
-    
-    
-    private class HTTPClientSpy: HTTPClient {
-        var requestedURLs = [URLRequest]()
-        private var completions = [(HTTPClientResult) -> Void]()
-        
-        func request(from url: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requestedURLs.append(url)
-            completions.append(completion)
-        }
-        
-        func complete(with values: (data: Data, response: HTTPURLResponse), at index: Int = 0) {
-            completions[index](.success(values))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            completions[index](.failure(error))
-        }
-    }
     
     private func makeTokenWith(expiredDate: Date, refreshToken: String = "any") -> Token {
         Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: refreshToken)
