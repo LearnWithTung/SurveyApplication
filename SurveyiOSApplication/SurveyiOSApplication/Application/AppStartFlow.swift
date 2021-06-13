@@ -7,7 +7,7 @@
 
 import SurveyFramework
 
-public class AppStartFlow {
+public class AppStartFlow: Flow {
     private let loader: TokenLoader
     private let authFlow: Flow
     private let mainFlow: Flow
