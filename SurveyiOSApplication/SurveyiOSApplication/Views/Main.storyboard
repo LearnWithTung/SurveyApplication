@@ -239,6 +239,9 @@
                                 <state key="normal" image="Arrow">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="takeSurveyButtonTapped:" destination="xli-hl-ebT" eventType="touchUpInside" id="dA9-T9-Iwv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Description Description Description Description Description Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-Qh-CTA">
                                 <rect key="frame" x="30" y="791" width="269" height="41"/>
@@ -252,7 +255,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="Prototype" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="SurveyiOSApplication" customModuleProvider="target">
                                 <rect key="frame" x="30" y="686" width="42" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -289,12 +292,13 @@
                         <outlet property="backgroundImageView" destination="RIv-tt-gXN" id="0p4-bg-kR7"/>
                         <outlet property="descriptionLabel" destination="KGi-Qh-CTA" id="bGe-nY-rCT"/>
                         <outlet property="pageControl" destination="eKg-je-wvt" id="0SO-gb-voK"/>
+                        <outlet property="takeSurveyButton" destination="7ff-8O-J4d" id="bKL-M6-RZP"/>
                         <outlet property="titleLabel" destination="ZZ7-vf-wmT" id="VzE-VU-2LA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Llv-f1-G8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="117"/>
+            <point key="canvasLocation" x="1856.521739130435" y="116.51785714285714"/>
         </scene>
     </scenes>
     <resources>

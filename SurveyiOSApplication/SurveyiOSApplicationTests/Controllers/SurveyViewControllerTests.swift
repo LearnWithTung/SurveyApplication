@@ -213,6 +213,18 @@ class SurveyViewControllerTests: XCTestCase {
 
     }
     
+    func test_userInitiatedTakeSurvey_messagesOnSurveyDetails() {
+        let (sut, _) = makeSUT()
+        
+        var callCount = 0
+        sut.onSurveyDetails = {
+            callCount += 1
+        }
+
+        sut.simulateTakeSurveyButtonTap()
+        
+        XCTAssertEqual(callCount, 1)
+    }
     
     // MARK: - Helpers
     private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {
@@ -275,6 +287,10 @@ private extension SurveyViewController {
     
     func renderedImageData() -> Data? {
         backgroundImageView.image?.pngData()
+    }
+    
+    func simulateTakeSurveyButtonTap() {
+        takeSurveyButton.sendActions(for: .touchUpInside)
     }
 }
 
