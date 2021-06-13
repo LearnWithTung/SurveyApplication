@@ -47,11 +47,10 @@ class SurveyRequestsDelegateTests: XCTestCase {
         sut.loadSurvey { capturedResult = $0}
         
         let survey1 = makeSurvey(id: UUID(), title: "title1", description: "desc1")
-        let representationSurvey1 = RepresentationSurvey(title: survey1.attributes.title, description: survey1.attributes.description, imageURL: survey1.attributes.imageURL.appendingPathComponent("l"))
+        let representationSurvey1 = RepresentationSurvey(title: survey1.attributes.title, description: survey1.attributes.description, imageURL: makeImageURL(from: survey1.attributes.imageURL))
 
         let survey2 = makeSurvey(id: UUID(), title: "title1", description: "desc1")
-        let representationSurvey2 = RepresentationSurvey(title: survey2.attributes.title, description: survey2.attributes.description, imageURL: survey2.attributes.imageURL.appendingPathComponent("l"))
-
+        let representationSurvey2 = RepresentationSurvey(title: survey2.attributes.title, description: survey2.attributes.description, imageURL: makeImageURL(from: survey2.attributes.imageURL))
         
         loader.completeSucessfully(with: [survey1, survey2])
         
@@ -100,6 +99,11 @@ class SurveyRequestsDelegateTests: XCTestCase {
         func requestedQuery(at index: Int = 0) -> SurveyQuery {
             return messages[index].query
         }
+    }
+    
+    private func makeImageURL(from original: URL) -> URL {
+        let originalURLString = original.absoluteString
+        return URL(string: originalURLString + "l")!
     }
     
     private func makeSurvey(id: UUID, title: String, description: String, url: URL = anyURL()) -> Survey {

@@ -5,6 +5,7 @@
 //  Created by Tung Vu on 13/06/2021.
 //
 
+import Foundation
 import SurveyFramework
 
 public class SurveyRequestDelegate: HomeViewControllerDelegate {
@@ -33,7 +34,9 @@ private extension Array where Element == Survey {
     
     func toRepresentation() -> [RepresentationSurvey] {
         self.map {
-            RepresentationSurvey(title: $0.attributes.title, description: $0.attributes.description, imageURL: $0.attributes.imageURL.appendingPathComponent("l"))
+            let originalURLString = $0.attributes.imageURL.absoluteString
+            let newURL = URL(string: originalURLString + "l")!
+            return RepresentationSurvey(title: $0.attributes.title, description: $0.attributes.description, imageURL: newURL)
         }
     }
     
