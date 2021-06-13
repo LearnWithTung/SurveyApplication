@@ -18,5 +18,5 @@ target 'SurveyiOSApplication' do
   use_frameworks!
 
   # Pods for SurveyiOSApplication
-
+  pod 'Alamofire'
 end
