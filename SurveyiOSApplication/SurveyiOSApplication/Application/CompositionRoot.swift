@@ -7,6 +7,7 @@
 
 import UIKit
 import SurveyFramework
+import Kingfisher
 
 class CompositionRoot {
     private let credentials: Credentials
@@ -27,7 +28,9 @@ class CompositionRoot {
         let surveyURL = makeLoadSurveysURL(from: baseURL)
         
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
-        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, currentDate: Date.init)
+        let downloader = ImageDownloader(name: "SurveyImageDownloader")
+        let imageLoader = KingfisherImageDataLoader(downloader: downloader)
+        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
             store?.save(token: token) {[weak self, weak mainFlow, weak rootNc] result in

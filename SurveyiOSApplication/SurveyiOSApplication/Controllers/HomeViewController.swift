@@ -14,6 +14,7 @@ public protocol HomeViewControllerDelegate {
 public class HomeViewController: UIViewController {
     var currentDate: (() -> Date)?
     var delegate: HomeViewControllerDelegate?
+    var onViewDidLoad: (() -> Void)?
     
     @IBOutlet public private(set) var loadingView: LoadingView!
     @IBOutlet public private(set) var dateLabel: UILabel!
@@ -24,6 +25,7 @@ public class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         load()
+        onViewDidLoad?()
         
         dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d")
     }

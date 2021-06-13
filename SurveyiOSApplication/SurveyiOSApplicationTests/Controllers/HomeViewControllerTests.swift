@@ -10,6 +10,14 @@ import SurveyiOSApplication
 
 class HomeViewControllerTests: XCTestCase {
     
+    func test_viewDidLoad_imageLoaderIsNotNil() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(sut.surveyViewController.imageLoader)
+    }
+    
     func test_load_requestsLoadSurveys() {
         let (sut, delegate) = makeSUT()
         
@@ -109,11 +117,24 @@ class HomeViewControllerTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
-        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, currentDate: currentDate)
+        let fakeImageLoader = FakeImageDataLoader()
+        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate)
+        
+        checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, delegate)
+    }
+    
+    private struct Task: ImageDataTask {
+        func cancel() {}
+    }
+    
+    private class FakeImageDataLoader: SurveyImageDataLoader {
+        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask {
+            Task()
+        }
     }
     
     private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {

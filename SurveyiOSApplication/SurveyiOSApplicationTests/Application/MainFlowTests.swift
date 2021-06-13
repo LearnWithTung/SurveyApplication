@@ -35,13 +35,25 @@ class MainFlowTests: XCTestCase {
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: MainFlow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
         let delegateSpy = DelegateSpy()
-        let sut = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, currentDate: Date.init)
+        let fakeImageLoader = FakeImageDataLoader()
+        let sut = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, imageLoader: fakeImageLoader, currentDate: Date.init)
         
+        checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegateSpy, file: file, line: line)
         checkForMemoryLeaks(navigationControllerSpy, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
 
         return (sut, navigationControllerSpy)
+    }
+    
+    private struct Task: ImageDataTask {
+        func cancel() {}
+    }
+    
+    private class FakeImageDataLoader: SurveyImageDataLoader {
+        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask {
+            Task()
+        }
     }
     
     private class DelegateSpy: HomeViewControllerDelegate {
