@@ -9,24 +9,6 @@ import XCTest
 import UIKit
 import SurveyiOSApplication
 
-class AuthFlow {
-    private let navController: UINavigationController
-    private let delegate: LoginViewControllerDelegate
-    
-    init(navController: UINavigationController,
-         delegate: LoginViewControllerDelegate) {
-        self.navController = navController
-        self.delegate = delegate
-    }
-    
-    func start() {
-        let vc = LoginUIComposer.loginComposedWith(delegate: delegate)
-        
-        navController.setViewControllers([vc], animated: true)
-    }
-    
-}
-
 class AuthFlowTests: XCTestCase {
     
     func test_init_doesNotStart() {
