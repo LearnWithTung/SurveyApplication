@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class MainFlow {
+public final class MainFlow: Flow {
     private let navController: UINavigationController
     private let delegate: HomeViewControllerDelegate
     private let currentDate: () -> Date
