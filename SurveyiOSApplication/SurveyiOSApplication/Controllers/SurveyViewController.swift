@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct RepresentationSurvey {
+public struct RepresentationSurvey: Equatable {
     let title: String
     let description: String
     let imageURL: URL
