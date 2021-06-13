@@ -17,7 +17,7 @@ public struct LoginInfo {
     }
 }
 
-public class RemoteLoginService {
+public class RemoteLoginService: LoginService {
     private let url: URL
     private let client: HTTPClient
     private let credentials: Credentials
@@ -28,7 +28,7 @@ public class RemoteLoginService {
         case invalidData
     }
     
-    public typealias RemoteLoginResult = Result<Token, Error>
+    public typealias RemoteLoginResult = LoginResult
     
     public init(url: URL, client: HTTPClient, credentials: Credentials, currentDate: @escaping () -> Date) {
         self.client = client
@@ -42,7 +42,7 @@ public class RemoteLoginService {
             guard let self = self else {return}
             switch result {
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             case let .success((data, response)):
                 completion(RemoteLoginMappers.map(data: data, response: response, currentDate: self.currentDate()))
             }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		90A0B6624D6CF988258EF6E4 /* Pods_SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FD7C411DCF465115A66891 /* Pods_SurveyFramework.framework */; };
+		DF3E97F82675D401004FA3AE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F72675D401004FA3AE /* LoginService.swift */; };
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
 		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
 		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		5B1457FBF92197305C333795 /* Pods-SurveyFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.debug.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		C45FC90E3D339BD850D5D3A0 /* Pods-SurveyFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.release.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.release.xcconfig"; sourceTree = "<group>"; };
+		DF3E97F72675D401004FA3AE /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		DFEC162526723F33008990FB /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEC162926723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC162E26723F33008990FB /* SurveyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 				DFEC163F26723FFF008990FB /* Token.swift */,
 				DFEC164726724A1F008990FB /* Credentials.swift */,
 				DFEC165D26726AE6008990FB /* Survey.swift */,
+				DF3E97F72675D401004FA3AE /* LoginService.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
+				DF3E97F82675D401004FA3AE /* LoginService.swift in Sources */,
 				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
 				DFEC16762672F7FA008990FB /* RemoteTokenMappers.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,

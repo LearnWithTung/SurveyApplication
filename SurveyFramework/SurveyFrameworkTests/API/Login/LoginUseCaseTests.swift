@@ -183,7 +183,7 @@ class LoginUseCaseTests: XCTestCase {
         var capturedError: RemoteLoginService.Error?
         sut.load(with: anyLoginInfo()) { result in
             switch result {
-            case let .failure(error):
+            case let .failure(error as RemoteLoginService.Error):
                 capturedError = error
             default:
                 break

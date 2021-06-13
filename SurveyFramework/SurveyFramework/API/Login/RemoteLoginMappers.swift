@@ -14,6 +14,6 @@ final class RemoteLoginMappers {
         if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.attributes.toModel(currentDate: currentDate))
         }
-        return .failure(.invalidData)
+        return .failure(RemoteLoginService.Error.invalidData)
     }
 }
