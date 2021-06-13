@@ -300,9 +300,46 @@
             </objects>
             <point key="canvasLocation" x="1856.521739130435" y="116.51785714285714"/>
         </scene>
+        <!--Survey Detail View Controller-->
+        <scene sceneID="Qxn-28-4OS">
+            <objects>
+                <viewController storyboardIdentifier="SurveyDetailViewController" id="5R5-sN-Mgz" customClass="SurveyDetailViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fie-zV-hwO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJo-So-VDq">
+                                <rect key="frame" x="20" y="44" width="55" height="55"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="4L4-Ro-6Ne"/>
+                                    <constraint firstAttribute="height" constant="55" id="8Ly-1x-4kZ"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="Arrow_Left">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="5R5-sN-Mgz" eventType="touchUpInside" id="qbQ-9J-tcn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yE9-1T-s4Q"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EJo-So-VDq" firstAttribute="top" secondItem="yE9-1T-s4Q" secondAttribute="top" id="HMz-Jh-Ad2"/>
+                            <constraint firstItem="EJo-So-VDq" firstAttribute="leading" secondItem="yE9-1T-s4Q" secondAttribute="leading" constant="20" id="PTE-9Y-zTg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nob-6f-in3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2662" y="117"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Arrow" width="12" height="20.5"/>
+        <image name="Arrow_Left" width="12" height="20.5"/>
         <image name="Logo White" width="201.5" height="48"/>
         <image name="Userpic" width="36" height="36"/>
         <image name="launchScreen" width="375" height="812"/>

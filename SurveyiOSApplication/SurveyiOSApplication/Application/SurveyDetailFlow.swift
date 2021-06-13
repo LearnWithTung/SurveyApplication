@@ -15,10 +15,11 @@ public final class SurveyDetailFlow: Flow {
     }
     
     public func start() {
-        let blankViewController = UIViewController()
-        blankViewController.view.backgroundColor = .black
-        
-        navController.pushViewController(blankViewController, animated: true)
+        let bundle = Bundle(for: SurveyDetailViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        let surveyDetailVC: SurveyDetailViewController = storyboard.instantiate()
+
+        navController.pushViewController(surveyDetailVC, animated: true)
     }
     
 }
