@@ -131,6 +131,7 @@
 		DF3E98182675F721004FA3AE /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
 		DF3E981A2675F7C5004FA3AE /* MainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowTests.swift; sourceTree = "<group>"; };
 		DF3E981C2675FA0D004FA3AE /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		DF3E98212675FCED004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +189,7 @@
 		DF3E97A226737195004FA3AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E98212675FCED004FA3AE /* AuthConfig.plist */,
 				DF3E97A3267371A3004FA3AE /* Fonts */,
 				DFA8A04226731F38008FF1D9 /* Assets.xcassets */,
 				DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */,
