@@ -14,8 +14,8 @@ public class SurveyRequestDelegate: HomeViewControllerDelegate {
         self.loader = loader
     }
     
-    public func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
-        loader.load(query: .init(pageNumber: 1, pageSize: 3)) {[weak self] result in
+    public func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        loader.load(query: .init(pageNumber: pageNumber, pageSize: pageSize)) {[weak self] result in
             guard self != nil else {return}
             
             switch result {

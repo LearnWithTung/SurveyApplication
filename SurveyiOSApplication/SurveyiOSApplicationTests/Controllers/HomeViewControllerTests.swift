@@ -120,7 +120,7 @@ class HomeViewControllerTests: XCTestCase {
         var requestLoadSurveysCallCount: Int = 0
         private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()
         
-        func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
             requestLoadSurveysCallCount += 1
             completions.append(completion)
         }

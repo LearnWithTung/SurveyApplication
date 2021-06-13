@@ -11,6 +11,15 @@ import SurveyFramework
 
 class SurveyRequestsDelegateTests: XCTestCase {
     
+    func test_load_requestsLoadSurveysWithQueryValues() {
+        let (sut, loader) = makeSUT()
+
+        sut.loadSurvey(pageNumber: 1, pageSize: 3) { _ in}
+        
+        XCTAssertEqual(loader.requestedQuery().pageNumber, 1)
+        XCTAssertEqual(loader.requestedQuery().pageSize, 3)
+    }
+    
     func test_load_deliversEmptyOnSuccessWithEmptyList() {
         let (sut, loader) = makeSUT()
         
@@ -74,18 +83,22 @@ class SurveyRequestsDelegateTests: XCTestCase {
     }
     
     private class SurveyLoaderSpy: SurveyLoader {
-        private var completions = [(LoadSurveyResult) -> Void]()
+        private var messages = [(query: SurveyQuery, completion: (LoadSurveyResult) -> Void)]()
         
         func load(query: SurveyQuery, completion: @escaping (LoadSurveyResult) -> Void) {
-            completions.append(completion)
+            messages.append((query, completion))
         }
         
         func completeSucessfully(with surveys: [Survey], at index: Int = 0) {
-            completions[index](.success(surveys))
+            messages[index].completion(.success(surveys))
         }
         
         func completeWithError(_ error: Error, at index: Int = 0) {
-            completions[index](.failure(error))
+            messages[index].completion(.failure(error))
+        }
+        
+        func requestedQuery(at index: Int = 0) -> SurveyQuery {
+            return messages[index].query
         }
     }
     
@@ -94,4 +107,10 @@ class SurveyRequestsDelegateTests: XCTestCase {
                       attributes: .init(title: title, description: description, imageURL: url))
     }
     
+}
+
+private extension SurveyRequestDelegate {
+    func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        self.loadSurvey(pageNumber: 1, pageSize: 3, completion: completion)
+    }
 }

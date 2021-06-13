@@ -14,8 +14,8 @@ final class MainQueueDispatchDecorator: HomeViewControllerDelegate {
         self.decoratee = decoratee
     }
 
-    func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
-        decoratee.loadSurvey { result in
+    func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        decoratee.loadSurvey(pageNumber: pageNumber, pageSize: pageSize) { result in
             if Thread.isMainThread {
                 completion(result)
             } else {

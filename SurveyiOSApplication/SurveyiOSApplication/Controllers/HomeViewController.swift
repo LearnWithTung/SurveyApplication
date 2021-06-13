@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol HomeViewControllerDelegate {
-    func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
+    func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
 }
 
 public class HomeViewController: UIViewController {
@@ -35,7 +35,7 @@ public class HomeViewController: UIViewController {
     private func load() {
         loadingView.isHidden = false
         
-        delegate?.loadSurvey {[weak self] result in
+        delegate?.loadSurvey(pageNumber: 1, pageSize: 3) {[weak self] result in
             self?.loadingView.isHidden = true
             if let surveys = try? result.get() {
                 self?.surveyViewController.surveyModels = surveys
