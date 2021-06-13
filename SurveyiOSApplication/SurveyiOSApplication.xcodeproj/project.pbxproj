@@ -45,6 +45,7 @@
 		DF3E980A2675EB55004FA3AE /* TokenLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98092675EB55004FA3AE /* TokenLoaderStub.swift */; };
 		DF3E98112675EF1B004FA3AE /* AlamofireHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98102675EF1B004FA3AE /* AlamofireHTTPClient.swift */; };
 		DF3E98132675EFEB004FA3AE /* KingfisherImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98122675EFEB004FA3AE /* KingfisherImageDataLoader.swift */; };
+		DF3E98172675F28C004FA3AE /* AuthFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98162675F28C004FA3AE /* AuthFlowTests.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -123,6 +124,7 @@
 		DF3E98092675EB55004FA3AE /* TokenLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoaderStub.swift; sourceTree = "<group>"; };
 		DF3E98102675EF1B004FA3AE /* AlamofireHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHTTPClient.swift; sourceTree = "<group>"; };
 		DF3E98122675EFEB004FA3AE /* KingfisherImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImageDataLoader.swift; sourceTree = "<group>"; };
+		DF3E98162675F28C004FA3AE /* AuthFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowTests.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				DF3E98052675E63A004FA3AE /* AppStartFlowTests.swift */,
+				DF3E98162675F28C004FA3AE /* AuthFlowTests.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				DF3E97EE2675A99A004FA3AE /* TokenLoaderCompositionTests.swift in Sources */,
 				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
 				DF3E97C126744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
+				DF3E98172675F28C004FA3AE /* AuthFlowTests.swift in Sources */,
 				DF3E97BC2673BC78004FA3AE /* HomeViewControllerTests.swift in Sources */,
 				DF3E98062675E63A004FA3AE /* AppStartFlowTests.swift in Sources */,
 				DF3E97F62675D229004FA3AE /* LoginRequestDelegateTests.swift in Sources */,
