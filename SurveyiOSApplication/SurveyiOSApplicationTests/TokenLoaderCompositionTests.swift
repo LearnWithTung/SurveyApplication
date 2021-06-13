@@ -22,8 +22,8 @@ class TokenLoaderComposition: TokenLoader {
             switch tokenResult {
             case let .success(token):
                 completion(.success(token))
-            default:
-                break
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
@@ -61,6 +61,23 @@ class TokenLoaderCompositionTests: XCTestCase {
         let receivedToken = try XCTUnwrap(capturedResult).get()
         
         XCTAssertEqual(receivedToken, token)
+    }
+    
+    func test_getToken_withEmptyStore_fails() throws {
+        let stub = RemoteTokenLoaderStub()
+        let store = KeychainTokenStore()
+        let sut = TokenLoaderComposition(store: store, remoteTokenLoader: stub)
+        let exp = expectation(description: "wait for completion")
+        
+        var capturedResult: TokenLoader.TokenSaverResult?
+        sut.load {
+            capturedResult = $0
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 0.1)
+        
+        XCTAssertThrowsError(try XCTUnwrap(capturedResult).get())
     }
     
     // MARK: - Helpers
