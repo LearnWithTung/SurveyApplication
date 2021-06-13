@@ -52,6 +52,7 @@
 		DF3E98232675FD98004FA3AE /* AuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98222675FD98004FA3AE /* AuthConfig.swift */; };
 		DF3E9827267602D7004FA3AE /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9826267602D7004FA3AE /* CompositionRoot.swift */; };
 		DF3E9829267605C7004FA3AE /* AuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF3E9828267605C7004FA3AE /* AuthConfig.plist */; };
+		DF3E982F267638BE004FA3AE /* FakeImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -139,6 +140,7 @@
 		DF3E98252675FF1E004FA3AE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		DF3E9826267602D7004FA3AE /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		DF3E9828267605C7004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
+		DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageDataLoader.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +333,7 @@
 				DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */,
 				DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */,
 				DF3E98092675EB55004FA3AE /* TokenLoaderStub.swift */,
+				DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				DF3E97E826750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift in Sources */,
 				DF3E97DC2674A386004FA3AE /* UIImage+TestHelper.swift in Sources */,
 				DF3E97F42675D160004FA3AE /* TestHelpers.swift in Sources */,
+				DF3E982F267638BE004FA3AE /* FakeImageDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

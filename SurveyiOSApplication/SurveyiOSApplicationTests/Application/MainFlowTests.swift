@@ -46,16 +46,6 @@ class MainFlowTests: XCTestCase {
         return (sut, navigationControllerSpy)
     }
     
-    private struct Task: ImageDataTask {
-        func cancel() {}
-    }
-    
-    private class FakeImageDataLoader: SurveyImageDataLoader {
-        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask {
-            Task()
-        }
-    }
-    
     private class DelegateSpy: HomeViewControllerDelegate {
         func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {}
     }

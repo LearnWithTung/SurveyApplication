@@ -127,16 +127,6 @@ class HomeViewControllerTests: XCTestCase {
         return (sut, delegate)
     }
     
-    private struct Task: ImageDataTask {
-        func cancel() {}
-    }
-    
-    private class FakeImageDataLoader: SurveyImageDataLoader {
-        func load(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataTask {
-            Task()
-        }
-    }
-    
     private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
         var requestLoadSurveysCallCount: Int = 0
         private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()
