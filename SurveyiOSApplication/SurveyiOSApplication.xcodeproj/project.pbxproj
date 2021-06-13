@@ -39,6 +39,7 @@
 		DF3E97FA2675DA96004FA3AE /* LoginRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */; };
 		DF3E97FE2675DCA2004FA3AE /* SurveyRequestDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97FD2675DCA2004FA3AE /* SurveyRequestDelegateTests.swift */; };
 		DF3E98022675E329004FA3AE /* SurveyRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98012675E329004FA3AE /* SurveyRequestDelegate.swift */; };
+		DF3E98042675E5F6004FA3AE /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98032675E5F6004FA3AE /* Flow.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -111,6 +112,7 @@
 		DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestDelegate.swift; sourceTree = "<group>"; };
 		DF3E97FD2675DCA2004FA3AE /* SurveyRequestDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRequestDelegateTests.swift; sourceTree = "<group>"; };
 		DF3E98012675E329004FA3AE /* SurveyRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRequestDelegate.swift; sourceTree = "<group>"; };
+		DF3E98032675E5F6004FA3AE /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				DFA8A03926731F37008FF1D9 /* AppDelegate.swift */,
+				DF3E98032675E5F6004FA3AE /* Flow.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */,
 				DF3E97DA2674A172004FA3AE /* SurveyImageDataLoader.swift in Sources */,
 				DF3E97FA2675DA96004FA3AE /* LoginRequestDelegate.swift in Sources */,
+				DF3E98042675E5F6004FA3AE /* Flow.swift in Sources */,
 				DF3E97E22674C907004FA3AE /* MainQueueDispatchDecorator.swift in Sources */,
 				DF3E97A1267368AA004FA3AE /* CustomTextField.swift in Sources */,
 				DF3E97BE2673BCA6004FA3AE /* HomeViewController.swift in Sources */,
