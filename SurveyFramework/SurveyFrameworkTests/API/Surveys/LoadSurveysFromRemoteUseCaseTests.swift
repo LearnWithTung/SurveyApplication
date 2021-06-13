@@ -85,7 +85,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: RemoteSurveysLoader? = RemoteSurveysLoader(url: anyURL(), client: client)
         
-        var capturedResult: Result<[Survey], RemoteSurveysLoader.Error>?
+        var capturedResult: RemoteSurveysLoader.RemoteLoadSurveyResult?
         sut?.load(query: anyQuery()) { capturedResult = $0}
         
         sut = nil
@@ -135,7 +135,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         var capturedError: RemoteSurveysLoader.Error?
         sut.load(query: anyQuery()) { result in
             switch result {
-            case let .failure(error):
+            case let .failure(error as RemoteSurveysLoader.Error):
                 capturedError = error
             default:
                 break

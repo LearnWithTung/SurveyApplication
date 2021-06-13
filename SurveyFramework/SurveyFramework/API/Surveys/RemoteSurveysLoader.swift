@@ -17,7 +17,7 @@ public struct SurveyQuery {
     }
 }
 
-public final class RemoteSurveysLoader {
+public final class RemoteSurveysLoader: SurveyLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -31,14 +31,16 @@ public final class RemoteSurveysLoader {
         case invalidData
     }
     
-    public func load(query: SurveyQuery, completion: @escaping (Result<[Survey], Error>) -> Void) {
+    public typealias RemoteLoadSurveyResult = SurveyLoader.LoadSurveyResult
+    
+    public func load(query: SurveyQuery, completion: @escaping (RemoteLoadSurveyResult) -> Void) {
         let request = makeRequest(from: query)
         client.request(from: request) {[weak self] result in
             guard self != nil else {return}
             
             switch result {
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             case let .success((data, response)):
                 completion(RemoteSurveysMappers.map(data, response))
             }

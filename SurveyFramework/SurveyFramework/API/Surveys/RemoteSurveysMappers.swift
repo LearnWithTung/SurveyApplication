@@ -30,10 +30,10 @@ final class RemoteSurveysMappers {
     
     private init() {}
 
-    static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[Survey], RemoteSurveysLoader.Error> {
+    static func map(_ data: Data, _ response: HTTPURLResponse) -> RemoteSurveysLoader.RemoteLoadSurveyResult {
         if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.data.map {$0.model})
         }
-        return .failure(.invalidData)
+        return .failure(RemoteSurveysLoader.Error.invalidData)
     }
 }
