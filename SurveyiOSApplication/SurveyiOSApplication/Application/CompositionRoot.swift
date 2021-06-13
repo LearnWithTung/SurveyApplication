@@ -24,13 +24,18 @@ class CompositionRoot {
         let client = AlamofireHTTPClient()
         let loginURL = makeLoginURL(from: baseURL)
         let service = RemoteLoginService(url: loginURL, client: client, credentials: credentials, currentDate: Date.init)
-        let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: store)
+        let tokenLoaderURL = makeTokenLoaderURL(from: baseURL)
+        let remoteTokenLoader = RemoteTokenLoader(url: tokenLoaderURL, client: client, credentials: credentials, currentDate: Date.init)
+        let tokenLoaderComposite = TokenLoaderComposition(store: store, remoteTokenLoader: remoteTokenLoader, currentDate: Date.init)
+        let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: tokenLoaderComposite)
         let surveyURL = makeLoadSurveysURL(from: baseURL)
+        
+        let surveyDetailFlow = SurveyDetailFlow(navController: rootNc)
         
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
         let downloader = ImageDownloader(name: "SurveyImageDownloader")
         let imageLoader = KingfisherImageDataLoader(downloader: downloader)
-        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init)
+        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
@@ -70,6 +75,10 @@ class CompositionRoot {
     
     private func makeLoadSurveysURL(from baseURL: URL) -> URL {
         return baseURL.appendingPathComponent("api/v1/surveys")
+    }
+    
+    private func makeTokenLoaderURL(from baseURL: URL) -> URL {
+        return baseURL.appendingPathComponent("api/v1/oauth/token")
     }
 
     private func displayError(message: String, showIn navController: UINavigationController) {

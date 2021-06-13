@@ -18,6 +18,35 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoginCallCount, 0)
     }
     
+    func test_viewDidLoad_hidesLoadingView() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.isLoadingViewVisible, false)
+    }
+    
+    func test_login_doesNotDisplayLoadingViewOnInvalidInputValues() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.setEmailText("")
+        sut.setPasswordText("")
+        sut.simulateLoginButtonTap()
+        
+        XCTAssertEqual(sut.isLoadingViewVisible, false)
+    }
+    
+    func test_login_displaysLoadingView() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.setEmailText("tungvuduc2805@gmail.com")
+        sut.setPasswordText("123456789")
+        sut.simulateLoginButtonTap()
+        
+        XCTAssertEqual(sut.isLoadingViewVisible, true)
+    }
+    
     func test_login_doesNotRequestLoginOnInvalidInputValues() {
         let (sut, delegate) = makeSUT()
         sut.loadViewIfNeeded()
@@ -92,3 +121,5 @@ class LoginViewControllerTests: XCTestCase {
     }
     
 }
+
+

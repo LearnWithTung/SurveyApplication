@@ -50,6 +50,7 @@ class CustomPageControl: UIView {
         for i in 0..<numberOfPages {
             let containerView = UIView()
             containerView.backgroundColor = i == currentIndex ? .white : .lightGray
+            containerView.alpha = i == currentPage ? 1 : 0.5
             containerView.layer.cornerRadius = 4
             containerView.translatesAutoresizingMaskIntoConstraints = false
             containerView.widthAnchor.constraint(equalToConstant: 8).isActive = true
@@ -64,6 +65,7 @@ class CustomPageControl: UIView {
     private func updateCurrentPage() {
         for i in 0..<stackViewContainer.arrangedSubviews.count {
             stackViewContainer.arrangedSubviews[i].backgroundColor = .lightGray
+            stackViewContainer.arrangedSubviews[i].alpha = i == currentIndex ? 1 : 0.5
             if i == currentIndex {
                 stackViewContainer.arrangedSubviews[i].backgroundColor = .white
             }

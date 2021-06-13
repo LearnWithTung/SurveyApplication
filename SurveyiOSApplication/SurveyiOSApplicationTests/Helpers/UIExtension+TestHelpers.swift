@@ -22,6 +22,10 @@ extension LoginViewController {
         loginButton.simulateTap()
     }
     
+    var isLoadingViewVisible: Bool {
+        !loadingView.isHidden
+    }
+    
 }
 
 extension UIButton {

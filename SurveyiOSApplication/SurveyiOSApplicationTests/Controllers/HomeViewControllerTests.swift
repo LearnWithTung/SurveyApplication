@@ -85,7 +85,7 @@ class HomeViewControllerTests: XCTestCase {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d"
-        let expectedDate = dateFormatter.string(from: currentDate)
+        let expectedDate = dateFormatter.string(from: currentDate).uppercased()
         
         let (sut, _) = makeSUT(currentDate: { currentDate })
         sut.loadViewIfNeeded()

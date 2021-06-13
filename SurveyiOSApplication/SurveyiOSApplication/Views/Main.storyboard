@@ -107,20 +107,28 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05a-CU-t7u" customClass="LoadingView" customModule="SurveyiOSApplication" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="1y5-gI-f7V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0ML-cp-oLw" secondAttribute="trailing" id="2JX-XC-vZQ"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="4E0-Gx-QHk"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="168:375" priority="999" id="4tw-uW-lvv"/>
                             <constraint firstItem="0ML-cp-oLw" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="9L9-ri-mm8"/>
+                            <constraint firstAttribute="bottom" secondItem="05a-CU-t7u" secondAttribute="bottom" id="C9Q-0d-onS"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="DCi-Se-Abb"/>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="FVd-cO-0da"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="201:375" id="Na9-uY-Ihy"/>
                             <constraint firstItem="0ML-cp-oLw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Neo-0Q-v8Q"/>
                             <constraint firstAttribute="bottom" secondItem="0ML-cp-oLw" secondAttribute="bottom" id="Qo5-Dq-Q6t"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerY" secondItem="PhC-bK-5Kh" secondAttribute="centerY" priority="999" id="TYA-na-eq8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="deO-B3-Ly6" secondAttribute="bottom" id="Ttr-ID-mAI"/>
+                            <constraint firstItem="05a-CU-t7u" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cig-Rh-1UC"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="dfd-Pl-MfY"/>
                             <constraint firstItem="vTw-Kd-xma" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="tmL-Ad-7VG"/>
                             <constraint firstItem="deO-B3-Ly6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xXn-Ya-xnH"/>
@@ -130,6 +138,7 @@
                         <outlet property="backgroundImageView" destination="0ML-cp-oLw" id="2nJ-1H-qri"/>
                         <outlet property="emailTextField" destination="nzw-Fd-de9" id="qpS-Nm-iJu"/>
                         <outlet property="fieldsContainer" destination="DDB-FA-k15" id="YO0-h3-vVi"/>
+                        <outlet property="loadingView" destination="05a-CU-t7u" id="aoF-3J-G9S"/>
                         <outlet property="loginButton" destination="1gD-Vd-IFR" id="0Nu-JQ-M1L"/>
                         <outlet property="logoImageCenterYConstraint" destination="dfd-Pl-MfY" id="SRI-qA-W98"/>
                         <outlet property="logoImageWidthConstraint" destination="Na9-uY-Ihy" id="okj-va-BNi"/>
@@ -155,13 +164,13 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-6Z-K2Y" userLabel="Profile Image View">
-                                <rect key="frame" x="354.5" y="76.5" width="39.5" height="40"/>
+                                <rect key="frame" x="354.5" y="81.5" width="39.5" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic" translatesAutoresizingMaskIntoConstraints="NO" id="zGk-49-JBk">
                                         <rect key="frame" x="0.0" y="0.0" width="39.5" height="40"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="zGk-49-JBk" firstAttribute="top" secondItem="Ezl-6Z-K2Y" secondAttribute="top" id="1Jo-LQ-sIr"/>
                                     <constraint firstAttribute="height" constant="39.670000000000002" id="N1H-uP-ggn"/>
@@ -177,7 +186,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er2-MS-5Tf">
-                                <rect key="frame" x="20" y="79" width="96" height="41"/>
+                                <rect key="frame" x="20" y="84" width="96" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -194,7 +203,7 @@
                             <constraint firstItem="hzg-NW-LyU" firstAttribute="trailing" secondItem="piw-Ec-KCB" secondAttribute="trailing" id="9Gk-y4-TiS"/>
                             <constraint firstItem="ciZ-U7-cna" firstAttribute="top" secondItem="piw-Ec-KCB" secondAttribute="top" constant="19" id="Dfi-Lo-PyL"/>
                             <constraint firstItem="piw-Ec-KCB" firstAttribute="trailing" secondItem="Ezl-6Z-K2Y" secondAttribute="trailing" constant="20" id="JVT-0N-5RZ"/>
-                            <constraint firstItem="Er2-MS-5Tf" firstAttribute="top" secondItem="ciZ-U7-cna" secondAttribute="bottom" id="O2b-8b-F6b"/>
+                            <constraint firstItem="Er2-MS-5Tf" firstAttribute="top" secondItem="ciZ-U7-cna" secondAttribute="bottom" constant="5" id="O2b-8b-F6b"/>
                             <constraint firstItem="Er2-MS-5Tf" firstAttribute="leading" secondItem="ciZ-U7-cna" secondAttribute="leading" id="ONw-tY-8c0"/>
                             <constraint firstItem="Ezl-6Z-K2Y" firstAttribute="width" secondItem="Ezl-6Z-K2Y" secondAttribute="height" multiplier="1:1" id="OW1-Ao-1ZI"/>
                             <constraint firstItem="hzg-NW-LyU" firstAttribute="top" secondItem="xvT-ER-1gx" secondAttribute="top" id="SGb-Dj-CWh"/>
@@ -239,6 +248,9 @@
                                 <state key="normal" image="Arrow">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="takeSurveyButtonTapped:" destination="xli-hl-ebT" eventType="touchUpInside" id="dA9-T9-Iwv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Description Description Description Description Description Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-Qh-CTA">
                                 <rect key="frame" x="30" y="791" width="269" height="41"/>
@@ -252,12 +264,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="Prototype" customModuleProvider="target">
-                                <rect key="frame" x="30" y="686" width="42" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="SurveyiOSApplication" customModuleProvider="target">
+                                <rect key="frame" x="30" y="686" width="354" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2ct-wa-ifg"/>
-                                    <constraint firstAttribute="width" constant="42" id="ehv-Uh-4Wp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
@@ -274,6 +285,7 @@
                             <constraint firstItem="ZZ7-vf-wmT" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="SxF-6e-h71"/>
                             <constraint firstItem="KGi-Qh-CTA" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" id="c5J-t5-n0v"/>
                             <constraint firstItem="KGi-Qh-CTA" firstAttribute="leading" secondItem="t8g-2j-HE7" secondAttribute="leading" constant="30" id="c8A-rL-rQw"/>
+                            <constraint firstItem="eKg-je-wvt" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="cJk-Ha-Wup"/>
                             <constraint firstItem="t8g-2j-HE7" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" constant="30" id="cP8-KK-CKu"/>
                             <constraint firstItem="7ff-8O-J4d" firstAttribute="leading" secondItem="KGi-Qh-CTA" secondAttribute="trailing" constant="30" id="dKI-gl-xNK"/>
                             <constraint firstAttribute="bottom" secondItem="RIv-tt-gXN" secondAttribute="bottom" id="dU9-HP-5i9"/>
@@ -289,16 +301,54 @@
                         <outlet property="backgroundImageView" destination="RIv-tt-gXN" id="0p4-bg-kR7"/>
                         <outlet property="descriptionLabel" destination="KGi-Qh-CTA" id="bGe-nY-rCT"/>
                         <outlet property="pageControl" destination="eKg-je-wvt" id="0SO-gb-voK"/>
+                        <outlet property="takeSurveyButton" destination="7ff-8O-J4d" id="bKL-M6-RZP"/>
                         <outlet property="titleLabel" destination="ZZ7-vf-wmT" id="VzE-VU-2LA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Llv-f1-G8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="117"/>
+            <point key="canvasLocation" x="1856.521739130435" y="116.51785714285714"/>
+        </scene>
+        <!--Survey Detail View Controller-->
+        <scene sceneID="Qxn-28-4OS">
+            <objects>
+                <viewController storyboardIdentifier="SurveyDetailViewController" id="5R5-sN-Mgz" customClass="SurveyDetailViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fie-zV-hwO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJo-So-VDq">
+                                <rect key="frame" x="20" y="44" width="55" height="55"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="4L4-Ro-6Ne"/>
+                                    <constraint firstAttribute="height" constant="55" id="8Ly-1x-4kZ"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="Arrow_Left">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="5R5-sN-Mgz" eventType="touchUpInside" id="qbQ-9J-tcn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yE9-1T-s4Q"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EJo-So-VDq" firstAttribute="top" secondItem="yE9-1T-s4Q" secondAttribute="top" id="HMz-Jh-Ad2"/>
+                            <constraint firstItem="EJo-So-VDq" firstAttribute="leading" secondItem="yE9-1T-s4Q" secondAttribute="leading" constant="20" id="PTE-9Y-zTg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nob-6f-in3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2662" y="117"/>
         </scene>
     </scenes>
     <resources>
         <image name="Arrow" width="12" height="20.5"/>
+        <image name="Arrow_Left" width="12" height="20.5"/>
         <image name="Logo White" width="201.5" height="48"/>
         <image name="Userpic" width="36" height="36"/>
         <image name="launchScreen" width="375" height="812"/>

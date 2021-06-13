@@ -24,11 +24,14 @@ public class SurveyViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pageControl: CustomPageControl!
+    @IBOutlet weak var takeSurveyButton: UIButton!
+    
     private(set) var currentIndex: Int = 0
     public var imageLoader: SurveyImageDataLoader?
     private var task: ImageDataTask?
     
     public var onRefresh: (() -> Void)?
+    public var onSurveyDetails: (() -> Void)?
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {
@@ -42,6 +45,18 @@ public class SurveyViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        adddSwipeGesture()
+
+        backgroundImageView.addGradientOverlay()
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        takeSurveyButton.layer.cornerRadius = takeSurveyButton.bounds.width / 2
+    }
+    
+    private func adddSwipeGesture() {
         // Do any additional setup after loading the view.
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
@@ -51,7 +66,6 @@ public class SurveyViewController: UIViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
-
     }
     
     @objc func respondToSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
@@ -65,6 +79,10 @@ public class SurveyViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func takeSurveyButtonTapped(_ sender: Any) {
+        onSurveyDetails?()
     }
     
     func next() {
@@ -92,12 +110,13 @@ public class SurveyViewController: UIViewController {
     }
     
     private func setupContent(for model: RepresentationSurvey) {
-        titleLabel.text = model.title
-        descriptionLabel.text = model.description
+        titleLabel.setText(model.title)
+        descriptionLabel.setText(model.description)
         pageControl.currentPage = currentIndex
+        backgroundImageView.image = nil
         cancelImageLoad()
         task = imageLoader?.load(from: model.imageURL) {[weak self] result in
-            self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
+            self?.backgroundImageView.setImage((try? result.get()).flatMap(UIImage.init))
         }
     }
     

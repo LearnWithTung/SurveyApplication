@@ -49,9 +49,10 @@ open class RemoteTokenLoader {
         let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.httpBody = bodyData
-        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         return request
     }
 }
