@@ -11,17 +11,23 @@ import SurveyFramework
 class TokenLoaderComposition: TokenLoader {
     private let store: KeychainTokenStore
     private let remoteTokenLoader: RemoteTokenLoader
-    
-    init(store: KeychainTokenStore, remoteTokenLoader: RemoteTokenLoader) {
+    private let currentDate: () -> Date
+    init(store: KeychainTokenStore, remoteTokenLoader: RemoteTokenLoader, currentDate: @escaping () -> Date) {
         self.store = store
         self.remoteTokenLoader = remoteTokenLoader
+        self.currentDate = currentDate
     }
     
     func load(completion: @escaping (TokenSaverResult) -> Void) {
-        store.load { tokenResult in
+        store.load {[weak self] tokenResult in
+            guard let self = self else {return}
             switch tokenResult {
             case let .success(token):
-                completion(.success(token))
+                if token.expiredDate > self.currentDate() {
+                    completion(.success(token))
+                } else {
+                    self.remoteTokenLoader.load(withRefreshToken: "") {_ in}
+                }
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -44,11 +50,12 @@ class TokenLoaderCompositionTests: XCTestCase {
     }
     
     func test_getToken_withValidTokenFromStore_deliversToken() throws {
-        let stub = RemoteTokenLoaderStub()
-        let store = KeychainTokenStore()
-        let token = anyToken()
+        let currentDate = Date()
+        let nonExpiredDate = currentDate.adding(seconds: 1)
+        let (_, store, sut) = makeSUT(currentDate: { currentDate })
+        let token = makeTokenWith(expiredDate: nonExpiredDate)
         store.save(token: token) {_ in}
-        let sut = TokenLoaderComposition(store: store, remoteTokenLoader: stub)
+        
         let exp = expectation(description: "wait for completion")
         
         var capturedResult: TokenLoader.TokenSaverResult?
@@ -63,10 +70,9 @@ class TokenLoaderCompositionTests: XCTestCase {
         XCTAssertEqual(receivedToken, token)
     }
     
-    func test_getToken_withEmptyStore_fails() throws {
-        let stub = RemoteTokenLoaderStub()
-        let store = KeychainTokenStore()
-        let sut = TokenLoaderComposition(store: store, remoteTokenLoader: stub)
+    func test_getToken_withEmptyStore_fails() {
+        let (_, _, sut) = makeSUT()
+
         let exp = expectation(description: "wait for completion")
         
         var capturedResult: TokenLoader.TokenSaverResult?
@@ -79,8 +85,16 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         XCTAssertThrowsError(try XCTUnwrap(capturedResult).get())
     }
-    
+
     // MARK: - Helpers
+    private func makeSUT(currentDate: () -> Date = Date.init) -> (loader: RemoteTokenLoaderStub, store: KeychainTokenStore, sut: TokenLoaderComposition) {
+        let stub = RemoteTokenLoaderStub()
+        let store = KeychainTokenStore()
+        let sut = TokenLoaderComposition(store: store, remoteTokenLoader: stub, currentDate: Date.init)
+        
+        return (stub, store, sut)
+    }
+    
     private class TokenLoaderStub: TokenLoader {
         var stubbedToken: Token?
         var stubbedError: Error?
@@ -106,6 +120,8 @@ class TokenLoaderCompositionTests: XCTestCase {
     }
     
     private class RemoteTokenLoaderStub: RemoteTokenLoader {
+        var requestCallCount: Int = 0
+        
         init() {
             super.init(url: URL(string: "https://any-url.com")!,
                        client: HTTPClientSpy(),
@@ -114,7 +130,7 @@ class TokenLoaderCompositionTests: XCTestCase {
         }
         
         override func load(withRefreshToken token: String, completion: @escaping (RemoteTokenLoader.RemoteTokenResult) -> Void) {
-            
+            requestCallCount += 1
         }
     }
     
@@ -138,11 +154,15 @@ class TokenLoaderCompositionTests: XCTestCase {
         }
     }
     
-    private func anyToken() -> Token {
-        Token(accessToken: "any", tokenType: "any", expiredDate: Date(), refreshToken: "any")
+    private func makeTokenWith(expiredDate: Date) -> Token {
+        Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: "any")
     }
 
 
 }
 
-
+extension Date {
+    func adding(seconds: TimeInterval) -> Date {
+        return self + seconds
+    }
+}
