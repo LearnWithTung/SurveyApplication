@@ -21,7 +21,8 @@ class LoginRequestDelegate: LoginViewControllerDelegate {
     }
     
     func login(email: String, password: String) {
-        service.load(with: .init(email: email, password: password)) {[unowned self] result in
+        service.load(with: .init(email: email, password: password)) {[weak self] result in
+            guard let self = self else {return}
             switch result {
             case let .success(token):
                 self.onSuccess(token)
@@ -47,16 +48,13 @@ class LoginRequestDelegateTests: XCTestCase {
     }
     
     func test_login_delegateMessageWithTokenOnLoginSuccess() {
-        let email = "an email"
-        let password = "a password"
-        
         var capturedTokens = [Token]()
         let (sut, service) = makeSUT { token in
             capturedTokens.append(token)
         }
         
-        sut.login(email: email, password: password)
-        
+        sut.login(email: "an email", password: "a password")
+
         let token = makeTokenWith(expiredDate: Date())
         service.completeSucessful(with: token)
         
@@ -65,21 +63,39 @@ class LoginRequestDelegateTests: XCTestCase {
     }
     
     func test_login_delegateMessageWithErrornOnLoginFailed() {
-        let email = "an email"
-        let password = "a password"
-        
         var capturedErrors = [Error]()
         let (sut, service) = makeSUT(onError: { error in
             capturedErrors.append(error)
         })
         
-        sut.login(email: email, password: password)
+        sut.login(email: "an email", password: "a password")
         
-        let error = NSError(domain: "test", code: 0, userInfo: nil)
+        let error = anyNSError()
         service.completeWithError(error)
         
         XCTAssertEqual(capturedErrors.count, 1)
         XCTAssertEqual(capturedErrors.first as NSError?, error)
+    }
+    
+    func test_login_doesNotResultAfterSUTInstanceHasBeenDeallocated() {
+        let service = LoginServiceSpy()
+        var capturedToken: Token?
+        var capturedError: Error?
+        var sut: LoginRequestDelegate? = LoginRequestDelegate(service: service) {
+            capturedToken = $0
+        } onError: {
+            capturedError = $0
+        }
+
+        sut?.login(email: "an email", password: "a password")
+        
+        sut = nil
+        
+        service.completeSucessful(with: makeTokenWith(expiredDate: Date()))
+        service.completeWithError(anyNSError())
+        
+        XCTAssertNil(capturedToken)
+        XCTAssertNil(capturedError)
     }
     
     // MARK: - Helpers

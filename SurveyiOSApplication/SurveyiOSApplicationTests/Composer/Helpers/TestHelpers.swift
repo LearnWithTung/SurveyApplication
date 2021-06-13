@@ -16,6 +16,10 @@ func makeTokenWith(expiredDate: Date, refreshToken: String = "any") -> Token {
     Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: refreshToken)
 }
 
+func anyNSError() -> NSError {
+    NSError(domain: "test", code: 0, userInfo: nil)
+}
+
 class HTTPClientSpy: HTTPClient {
     var requestedURLs = [URLRequest]()
     private var completions = [(HTTPClientResult) -> Void]()

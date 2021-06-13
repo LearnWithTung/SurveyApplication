@@ -170,10 +170,6 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         Token(accessToken: "any", tokenType: "any", expiredDate: Date(), refreshToken: "any")
     }
     
-    private func anyNSError() -> NSError {
-        NSError(domain: "test", code: 0, userInfo: nil)
-    }
-    
     private func anyRequest() -> URLRequest {
         return URLRequest(url: anyURL())
     }
