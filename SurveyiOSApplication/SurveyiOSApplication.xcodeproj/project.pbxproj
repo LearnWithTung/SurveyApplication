@@ -50,6 +50,8 @@
 		DF3E981B2675F7C5004FA3AE /* MainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E981A2675F7C5004FA3AE /* MainFlowTests.swift */; };
 		DF3E981D2675FA0D004FA3AE /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E981C2675FA0D004FA3AE /* MainFlow.swift */; };
 		DF3E98232675FD98004FA3AE /* AuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98222675FD98004FA3AE /* AuthConfig.swift */; };
+		DF3E9827267602D7004FA3AE /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9826267602D7004FA3AE /* CompositionRoot.swift */; };
+		DF3E9829267605C7004FA3AE /* AuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF3E9828267605C7004FA3AE /* AuthConfig.plist */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -132,10 +134,11 @@
 		DF3E98182675F721004FA3AE /* AuthFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlow.swift; sourceTree = "<group>"; };
 		DF3E981A2675F7C5004FA3AE /* MainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowTests.swift; sourceTree = "<group>"; };
 		DF3E981C2675FA0D004FA3AE /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
-		DF3E98212675FCED004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
 		DF3E98222675FD98004FA3AE /* AuthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConfig.swift; sourceTree = "<group>"; };
 		DF3E98242675FED2004FA3AE /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		DF3E98252675FF1E004FA3AE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		DF3E9826267602D7004FA3AE /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
+		DF3E9828267605C7004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,12 +196,12 @@
 		DF3E97A226737195004FA3AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E98212675FCED004FA3AE /* AuthConfig.plist */,
 				DF3E97A3267371A3004FA3AE /* Fonts */,
 				DFA8A04226731F38008FF1D9 /* Assets.xcassets */,
 				DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */,
 				DF3E98242675FED2004FA3AE /* Staging.xcconfig */,
 				DF3E98252675FF1E004FA3AE /* Production.xcconfig */,
+				DF3E9828267605C7004FA3AE /* AuthConfig.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				DF3E98072675EB24004FA3AE /* AppStartFlow.swift */,
 				DF3E98182675F721004FA3AE /* AuthFlow.swift */,
 				DF3E981C2675FA0D004FA3AE /* MainFlow.swift */,
+				DF3E9826267602D7004FA3AE /* CompositionRoot.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF3E9829267605C7004FA3AE /* AuthConfig.plist in Resources */,
 				DF3E979C2673635C004FA3AE /* NeuzeitSLTStd-Book.otf in Resources */,
 				DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */,
 				DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */,
@@ -569,6 +574,7 @@
 				DF3E98232675FD98004FA3AE /* AuthConfig.swift in Sources */,
 				DF3E97D72674901E004FA3AE /* CustomPageControl.swift in Sources */,
 				DFA8A07426733FA0008FF1D9 /* LoginUIComposer.swift in Sources */,
+				DF3E9827267602D7004FA3AE /* CompositionRoot.swift in Sources */,
 				DF3E97EA26751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift in Sources */,
 				DF3E97AA267375A9004FA3AE /* UIFont+Extensions.swift in Sources */,
 			);
