@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteTokenLoader {
+open class RemoteTokenLoader {
     private let url: URL
     private let client: HTTPClient
     private let credentials: Credentials
@@ -27,7 +27,7 @@ public class RemoteTokenLoader {
         self.currentDate = currentDate
     }
     
-    public func load(withRefreshToken token: String, completion: @escaping (RemoteTokenResult) -> Void) {
+    open func load(withRefreshToken token: String, completion: @escaping (RemoteTokenResult) -> Void) {
         client.request(from: makeURLRequest(with: token)) {[weak self] result in
             guard let self = self else {return}
             switch result {
