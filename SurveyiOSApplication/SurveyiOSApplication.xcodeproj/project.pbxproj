@@ -245,6 +245,15 @@
 			path = "Image Data Loader";
 			sourceTree = "<group>";
 		};
+		DF3E97F12675D133004FA3AE /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97ED2675A99A004FA3AE /* TokenLoaderCompositionTests.swift */,
+				DF3E97E726750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
 		DF9876C3267353A80017577D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,9 +303,8 @@
 			children = (
 				DF3E97A7267371D8004FA3AE /* Controllers */,
 				DF9876C3267353A80017577D /* Helpers */,
+				DF3E97F12675D133004FA3AE /* Composer */,
 				DFA8A05226731F39008FF1D9 /* Info.plist */,
-				DF3E97E726750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift */,
-				DF3E97ED2675A99A004FA3AE /* TokenLoaderCompositionTests.swift */,
 			);
 			path = SurveyiOSApplicationTests;
 			sourceTree = "<group>";
