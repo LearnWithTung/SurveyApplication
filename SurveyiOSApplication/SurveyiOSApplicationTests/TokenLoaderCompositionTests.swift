@@ -22,12 +22,10 @@ class TokenLoaderComposition: TokenLoader {
         store.load {[weak self] tokenResult in
             guard let self = self else {return}
             switch tokenResult {
-            case let .success(token):
-                if token.expiredDate > self.currentDate() {
-                    completion(.success(token))
-                } else {
-                    self.remoteTokenLoader.load(withRefreshToken: "") {_ in}
-                }
+            case let .success(token) where token.expiredDate > self.currentDate():
+                completion(.success(token))
+            case .success:
+                self.remoteTokenLoader.load(withRefreshToken: "") {_ in}
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -84,6 +82,20 @@ class TokenLoaderCompositionTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
         
         XCTAssertThrowsError(try XCTUnwrap(capturedResult).get())
+    }
+    
+    func test_getToken_requestsTokenFromRemoteOnExpiredTokenFromStore() {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+                
+        XCTAssertEqual(loader.requestCallCount, 0)
+        
+        sut.load { _ in }
+                    
+        XCTAssertEqual(loader.requestCallCount, 1)
     }
 
     // MARK: - Helpers
