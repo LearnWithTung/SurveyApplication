@@ -21,8 +21,8 @@ class SurveyRequestDelegate: HomeViewControllerDelegate {
             switch result {
             case .success:
                 completion(.success([]))
-            default:
-                break
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
@@ -40,6 +40,16 @@ class SurveyRequestsDelegateTests: XCTestCase {
         loader.completeSucessfully(with: [])
         
         XCTAssertEqual(try XCTUnwrap(capturedResult).get(), [])
+    }
+    
+    func test_load_deliversErrorOnLoadSurveysFailed() {
+        let (sut, loader) = makeSUT()
+        var capturedResult: Result<[RepresentationSurvey], Error>?
+        sut.loadSurvey { capturedResult = $0}
+        
+        loader.completeWithError(anyNSError())
+        
+        XCTAssertThrowsError(try XCTUnwrap(capturedResult).get())
     }
     
     // MARK: - Helpers
@@ -61,6 +71,10 @@ class SurveyRequestsDelegateTests: XCTestCase {
         
         func completeSucessfully(with surveys: [Survey], at index: Int = 0) {
             completions[index](.success(surveys))
+        }
+        
+        func completeWithError(_ error: Error, at index: Int = 0) {
+            completions[index](.failure(error))
         }
     }
     
