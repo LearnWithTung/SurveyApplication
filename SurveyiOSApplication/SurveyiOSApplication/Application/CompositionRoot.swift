@@ -39,9 +39,7 @@ class CompositionRoot {
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
-            let date = Calendar(identifier: .gregorian).date(byAdding: .second, value: 10, to: Date())!
-            let fakeToken = Token(accessToken: token.accessToken, tokenType: token.tokenType, expiredDate: date, refreshToken: token.refreshToken)
-            store?.save(token: fakeToken) {[weak self, weak mainFlowDecorator, weak rootNc] result in
+            store?.save(token: token) {[weak self, weak mainFlowDecorator, weak rootNc] result in
                 switch result {
                 case .success:
                     mainFlowDecorator?.start()
