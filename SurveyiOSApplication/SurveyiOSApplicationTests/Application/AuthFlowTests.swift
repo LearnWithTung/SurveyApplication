@@ -7,12 +7,22 @@
 
 import XCTest
 import UIKit
+import SurveyiOSApplication
 
 class AuthFlow {
     private let navController: UINavigationController
+    private let delegate: LoginViewControllerDelegate
     
-    init(navController: UINavigationController) {
+    init(navController: UINavigationController,
+         delegate: LoginViewControllerDelegate) {
         self.navController = navController
+        self.delegate = delegate
+    }
+    
+    func start() {
+        let vc = LoginUIComposer.loginComposedWith(delegate: delegate)
+        
+        navController.setViewControllers([vc], animated: true)
     }
     
 }
@@ -25,15 +35,44 @@ class AuthFlowTests: XCTestCase {
         XCTAssertEqual(nc.messages, [])
     }
     
+    func test_start_setsViewController() {
+        let (sut, nc) = makeSUT()
+
+        sut.start()
+        
+        XCTAssertEqual(nc.messages.count, 1)
+        XCTAssertEqual(nc.messages[0].viewControllers?.count, 1)
+        XCTAssertEqual(nc.messages[0].animated, true)
+
+        let loginViewController = getLoginViewController(from: nc)
+
+        XCTAssertNotNil(loginViewController)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: AuthFlow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
-        let sut = AuthFlow(navController: navigationControllerSpy)
+        let delegate = DelegateSpy()
+        let sut = AuthFlow(navController: navigationControllerSpy, delegate: delegate)
         
         checkForMemoryLeaks(navigationControllerSpy, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
+        checkForMemoryLeaks(delegate, file: file, line: line)
 
         return (sut, navigationControllerSpy)
+    }
+    
+    private class DelegateSpy: LoginViewControllerDelegate {
+        func login(email: String, password: String) {
+            
+        }
+    }
+    
+    private func getLoginViewController(from navigationController: NavigationControllerSpy) -> LoginViewController? {
+        let rootVc = navigationController.messages[0].viewControllers?.first
+        rootVc?.loadViewIfNeeded()
+        
+        return rootVc as? LoginViewController
     }
 }
 
