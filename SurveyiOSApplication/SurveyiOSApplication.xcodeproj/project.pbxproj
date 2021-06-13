@@ -134,6 +134,8 @@
 		DF3E981C2675FA0D004FA3AE /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		DF3E98212675FCED004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
 		DF3E98222675FD98004FA3AE /* AuthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConfig.swift; sourceTree = "<group>"; };
+		DF3E98242675FED2004FA3AE /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		DF3E98252675FF1E004FA3AE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,8 @@
 				DF3E97A3267371A3004FA3AE /* Fonts */,
 				DFA8A04226731F38008FF1D9 /* Assets.xcassets */,
 				DFA8A04426731F38008FF1D9 /* LaunchScreen.storyboard */,
+				DF3E98242675FED2004FA3AE /* Staging.xcconfig */,
+				DF3E98252675FF1E004FA3AE /* Production.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -616,6 +620,7 @@
 /* Begin XCBuildConfiguration section */
 		DFA8A05E26731F39008FF1D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF3E98242675FED2004FA3AE /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -677,6 +682,7 @@
 		};
 		DFA8A05F26731F39008FF1D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF3E98252675FF1E004FA3AE /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

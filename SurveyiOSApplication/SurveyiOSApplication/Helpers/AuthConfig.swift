@@ -22,3 +22,10 @@ struct AuthConfig: Decodable {
 
 }
 
+struct Configurations {
+    private static let baseURLString: String? = Bundle.main.infoDictionary?["baseURL"] as? String
+    
+    static var baseURL: URL? {
+        return URL(string: baseURLString ?? "")
+    }
+}
