@@ -7,39 +7,7 @@
 
 import XCTest
 import SurveyFramework
-
-class TokenLoaderComposition: TokenLoader {
-    private let store: KeychainTokenStore
-    private let remoteTokenLoader: RemoteTokenLoader
-    private let currentDate: () -> Date
-    init(store: KeychainTokenStore, remoteTokenLoader: RemoteTokenLoader, currentDate: @escaping () -> Date) {
-        self.store = store
-        self.remoteTokenLoader = remoteTokenLoader
-        self.currentDate = currentDate
-    }
-    
-    func load(completion: @escaping (TokenSaverResult) -> Void) {
-        store.load {[weak self] tokenResult in
-            guard let self = self else {return}
-            switch tokenResult {
-            case let .success(token) where token.expiredDate > self.currentDate():
-                completion(.success(token))
-            case let .success(expiredToken):
-                self.remoteTokenLoader.load(withRefreshToken: expiredToken.refreshToken) {[weak self] newTokenResult in
-                    guard self != nil else {return}
-                    switch newTokenResult {
-                    case let .success(newToken):
-                        completion(.success(newToken))
-                    case let .failure(error):
-                        completion(.failure(error))
-                    }
-                }
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-}
+import SurveyiOSApplication
 
 class TokenLoaderCompositionTests: XCTestCase {
     
