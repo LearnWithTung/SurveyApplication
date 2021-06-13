@@ -25,7 +25,15 @@ class TokenLoaderComposition: TokenLoader {
             case let .success(token) where token.expiredDate > self.currentDate():
                 completion(.success(token))
             case .success:
-                self.remoteTokenLoader.load(withRefreshToken: "") {_ in}
+                self.remoteTokenLoader.load(withRefreshToken: "") {[weak self] newTokenResult in
+                    guard self != nil else {return}
+                    switch newTokenResult {
+                    case let .success(newToken):
+                        completion(.success(newToken))
+                    default:
+                        break
+                    }
+                }
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -97,6 +105,22 @@ class TokenLoaderCompositionTests: XCTestCase {
                     
         XCTAssertEqual(loader.requestCallCount, 1)
     }
+    
+    func test_getToken_deliversTokenFromRemote() {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+        
+        var capturedResult: TokenLoader.TokenSaverResult?
+        sut.load { capturedResult = $0 }
+        
+        let newToken = anyNonExpirationToken(currentDate: currentDate)
+        loader.completeSuccessful(with: newToken)
+        
+        XCTAssertEqual(try? XCTUnwrap(capturedResult).get(), newToken)
+    }
 
     // MARK: - Helpers
     private func makeSUT(currentDate: () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (loader: RemoteTokenLoaderSpy, store: KeychainTokenStore, sut: TokenLoaderComposition) {
@@ -137,6 +161,7 @@ class TokenLoaderCompositionTests: XCTestCase {
     
     private class RemoteTokenLoaderSpy: RemoteTokenLoader {
         var requestCallCount: Int = 0
+        private var completions = [(RemoteTokenLoader.RemoteTokenResult) -> Void]()
         
         init() {
             super.init(url: URL(string: "https://any-url.com")!,
@@ -147,6 +172,11 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         override func load(withRefreshToken token: String, completion: @escaping (RemoteTokenLoader.RemoteTokenResult) -> Void) {
             requestCallCount += 1
+            completions.append(completion)
+        }
+        
+        func completeSuccessful(with token: Token, at index: Int = 0) {
+            completions[index](.success(token))
         }
     }
     
@@ -172,6 +202,11 @@ class TokenLoaderCompositionTests: XCTestCase {
     
     private func makeTokenWith(expiredDate: Date) -> Token {
         Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: "any")
+    }
+    
+    private func anyNonExpirationToken(currentDate: Date) -> Token {
+        let validDate = currentDate.adding(seconds: 1)
+        return makeTokenWith(expiredDate: validDate)
     }
 
 
