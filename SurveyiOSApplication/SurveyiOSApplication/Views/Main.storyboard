@@ -256,11 +256,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="SurveyiOSApplication" customModuleProvider="target">
-                                <rect key="frame" x="30" y="686" width="42" height="30"/>
+                                <rect key="frame" x="30" y="686" width="354" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2ct-wa-ifg"/>
-                                    <constraint firstAttribute="width" constant="42" id="ehv-Uh-4Wp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
@@ -277,6 +276,7 @@
                             <constraint firstItem="ZZ7-vf-wmT" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="SxF-6e-h71"/>
                             <constraint firstItem="KGi-Qh-CTA" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" id="c5J-t5-n0v"/>
                             <constraint firstItem="KGi-Qh-CTA" firstAttribute="leading" secondItem="t8g-2j-HE7" secondAttribute="leading" constant="30" id="c8A-rL-rQw"/>
+                            <constraint firstItem="eKg-je-wvt" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="cJk-Ha-Wup"/>
                             <constraint firstItem="t8g-2j-HE7" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" constant="30" id="cP8-KK-CKu"/>
                             <constraint firstItem="7ff-8O-J4d" firstAttribute="leading" secondItem="KGi-Qh-CTA" secondAttribute="trailing" constant="30" id="dKI-gl-xNK"/>
                             <constraint firstAttribute="bottom" secondItem="RIv-tt-gXN" secondAttribute="bottom" id="dU9-HP-5i9"/>

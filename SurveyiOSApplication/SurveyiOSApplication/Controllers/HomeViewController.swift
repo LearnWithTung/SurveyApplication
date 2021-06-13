@@ -36,13 +36,14 @@ public class HomeViewController: UIViewController {
     }
     
     private func refresh() {
+        loadingView.showIndicator()
         load()
     }
     
     private func load() {
         loadingView.isHidden = false
         
-        delegate?.loadSurvey(pageNumber: 1, pageSize: 3) {[weak self] result in
+        delegate?.loadSurvey(pageNumber: 1, pageSize: 5) {[weak self] result in
             self?.loadingView.isHidden = true
             if let surveys = try? result.get() {
                 self?.surveyViewController.surveyModels = surveys
