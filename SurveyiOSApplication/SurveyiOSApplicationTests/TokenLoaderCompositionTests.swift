@@ -99,10 +99,14 @@ class TokenLoaderCompositionTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    private func makeSUT(currentDate: () -> Date = Date.init) -> (loader: RemoteTokenLoaderStub, store: KeychainTokenStore, sut: TokenLoaderComposition) {
-        let stub = RemoteTokenLoaderStub()
+    private func makeSUT(currentDate: () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (loader: RemoteTokenLoaderSpy, store: KeychainTokenStore, sut: TokenLoaderComposition) {
+        let stub = RemoteTokenLoaderSpy()
         let store = KeychainTokenStore()
         let sut = TokenLoaderComposition(store: store, remoteTokenLoader: stub, currentDate: Date.init)
+        
+        checkForMemoryLeaks(stub, file: file, line: line)
+        checkForMemoryLeaks(store, file: file, line: line)
+        checkForMemoryLeaks(sut, file: file, line: line)
         
         return (stub, store, sut)
     }
@@ -131,7 +135,7 @@ class TokenLoaderCompositionTests: XCTestCase {
         }
     }
     
-    private class RemoteTokenLoaderStub: RemoteTokenLoader {
+    private class RemoteTokenLoaderSpy: RemoteTokenLoader {
         var requestCallCount: Int = 0
         
         init() {
