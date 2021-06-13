@@ -12,6 +12,10 @@ func anyURL() -> URL {
     URL(string: "https://any-url.com")!
 }
 
+func makeTokenWith(expiredDate: Date, refreshToken: String = "any") -> Token {
+    Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: refreshToken)
+}
+
 class HTTPClientSpy: HTTPClient {
     var requestedURLs = [URLRequest]()
     private var completions = [(HTTPClientResult) -> Void]()

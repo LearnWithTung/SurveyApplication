@@ -208,11 +208,6 @@ class TokenLoaderCompositionTests: XCTestCase {
         }
     }
     
-    
-    private func makeTokenWith(expiredDate: Date, refreshToken: String = "any") -> Token {
-        Token(accessToken: "any", tokenType: "any", expiredDate: expiredDate, refreshToken: refreshToken)
-    }
-    
     private func anyNonExpirationToken(currentDate: Date) -> Token {
         let validDate = currentDate.adding(seconds: 1)
         return makeTokenWith(expiredDate: validDate)
