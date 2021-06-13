@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class AuthFlow {
+public final class AuthFlow: Flow {
     private let navController: UINavigationController
     private let delegate: LoginViewControllerDelegate
     
