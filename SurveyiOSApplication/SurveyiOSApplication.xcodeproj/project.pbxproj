@@ -53,6 +53,8 @@
 		DF3E9827267602D7004FA3AE /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9826267602D7004FA3AE /* CompositionRoot.swift */; };
 		DF3E9829267605C7004FA3AE /* AuthConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF3E9828267605C7004FA3AE /* AuthConfig.plist */; };
 		DF3E982F267638BE004FA3AE /* FakeImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */; };
+		DF3E983126764E49004FA3AE /* SurveyDetailFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983026764E49004FA3AE /* SurveyDetailFlow.swift */; };
+		DF3E983326764EE2004FA3AE /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983226764EE2004FA3AE /* FlowTests.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -141,6 +143,8 @@
 		DF3E9826267602D7004FA3AE /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		DF3E9828267605C7004FA3AE /* AuthConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AuthConfig.plist; sourceTree = "<group>"; };
 		DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeImageDataLoader.swift; sourceTree = "<group>"; };
+		DF3E983026764E49004FA3AE /* SurveyDetailFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyDetailFlow.swift; sourceTree = "<group>"; };
+		DF3E983226764EE2004FA3AE /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +229,7 @@
 				DF3E98072675EB24004FA3AE /* AppStartFlow.swift */,
 				DF3E98182675F721004FA3AE /* AuthFlow.swift */,
 				DF3E981C2675FA0D004FA3AE /* MainFlow.swift */,
+				DF3E983026764E49004FA3AE /* SurveyDetailFlow.swift */,
 				DF3E9826267602D7004FA3AE /* CompositionRoot.swift */,
 			);
 			path = Application;
@@ -323,6 +328,7 @@
 				DF3E98052675E63A004FA3AE /* AppStartFlowTests.swift */,
 				DF3E98162675F28C004FA3AE /* AuthFlowTests.swift */,
 				DF3E981A2675F7C5004FA3AE /* MainFlowTests.swift */,
+				DF3E983226764EE2004FA3AE /* FlowTests.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 			files = (
 				DFA8A07926734457008FF1D9 /* String+Extensions.swift in Sources */,
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
+				DF3E983126764E49004FA3AE /* SurveyDetailFlow.swift in Sources */,
 				DF3E97C32674593C004FA3AE /* Date+Extensions.swift in Sources */,
 				DF3E97F02675CA52004FA3AE /* TokenLoaderComposition.swift in Sources */,
 				DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */,
@@ -602,6 +609,7 @@
 				DF3E97E826750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift in Sources */,
 				DF3E97DC2674A386004FA3AE /* UIImage+TestHelper.swift in Sources */,
 				DF3E97F42675D160004FA3AE /* TestHelpers.swift in Sources */,
+				DF3E983326764EE2004FA3AE /* FlowTests.swift in Sources */,
 				DF3E982F267638BE004FA3AE /* FakeImageDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

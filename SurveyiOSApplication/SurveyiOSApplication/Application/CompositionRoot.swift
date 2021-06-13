@@ -27,10 +27,12 @@ class CompositionRoot {
         let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: store)
         let surveyURL = makeLoadSurveysURL(from: baseURL)
         
+        let surveyDetailFlow = SurveyDetailFlow(navController: rootNc)
+        
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
         let downloader = ImageDownloader(name: "SurveyImageDownloader")
         let imageLoader = KingfisherImageDataLoader(downloader: downloader)
-        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init)
+        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in

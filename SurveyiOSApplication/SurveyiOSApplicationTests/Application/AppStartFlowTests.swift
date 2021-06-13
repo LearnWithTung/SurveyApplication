@@ -38,9 +38,9 @@ class AppStartFlowTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(loader: TokenLoaderStub, file: StaticString = #file, line: UInt = #line) -> (sut: AppStartFlow, authFlow: AuthFlowSpy, mainFlow: MainFlowSpy) {
-        let authFlow = AuthFlowSpy()
-        let mainFlow = MainFlowSpy()
+    private func makeSUT(loader: TokenLoaderStub, file: StaticString = #file, line: UInt = #line) -> (sut: AppStartFlow, authFlow: FlowTests, mainFlow: FlowTests) {
+        let authFlow = FlowTests()
+        let mainFlow = FlowTests()
         let sut = AppStartFlow(loader: loader, authFlow: authFlow, mainFlow: mainFlow)
         checkForMemoryLeaks(loader, file: file, line: line)
         checkForMemoryLeaks(authFlow, file: file, line: line)
@@ -50,19 +50,4 @@ class AppStartFlowTests: XCTestCase {
         return (sut, authFlow, mainFlow)
     }
     
-    private class AuthFlowSpy: Flow {
-        var startCount = 0
-        
-        func start() {
-            startCount += 1
-        }
-    }
-    
-    private class MainFlowSpy: Flow {
-        var startCount = 0
-        
-        func start() {
-            startCount += 1
-        }
-    }
 }

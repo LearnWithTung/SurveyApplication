@@ -15,6 +15,7 @@ public class HomeViewController: UIViewController {
     var currentDate: (() -> Date)?
     var delegate: HomeViewControllerDelegate?
     var onViewDidLoad: (() -> Void)?
+    var toSurveyDetails: (() -> Void)?
     
     @IBOutlet public private(set) var loadingView: LoadingView!
     @IBOutlet public private(set) var dateLabel: UILabel!
@@ -50,6 +51,9 @@ public class HomeViewController: UIViewController {
             self.surveyViewController = viewController
             self.surveyViewController.onRefresh = {[weak self] in
                 self?.refresh()
+            }
+            self.surveyViewController.onSurveyDetails = {[weak self] in
+                self?.toSurveyDetails?()
             }
         }
     }
