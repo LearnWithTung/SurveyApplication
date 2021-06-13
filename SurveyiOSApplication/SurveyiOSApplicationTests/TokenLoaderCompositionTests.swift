@@ -137,6 +137,34 @@ class TokenLoaderCompositionTests: XCTestCase {
         sut.load { _ in }
         XCTAssertEqual(loader.requestCallCount, 2)
     }
+    
+    func test_sendRequest_multipleTimesInDifferentThreads_appendingRequestSerially() throws {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+
+        let exp = expectation(description: "Wait for completion")
+        exp.expectedFulfillmentCount = 2
+        
+        DispatchQueue.global().async {
+            sut.load { _ in }
+            exp.fulfill()
+        }
+        
+        DispatchQueue.global().async {
+            sut.load { _ in }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(loader.requestCallCount, 1)
+        loader.completeSuccessful(with: anyNonExpirationToken(currentDate: currentDate))
+
+        sut.load { _ in }
+        XCTAssertEqual(loader.requestCallCount, 2)
+    }
 
     // MARK: - Helpers
     private func makeSUT(currentDate: () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (loader: RemoteTokenLoaderSpy, store: KeychainTokenStore, sut: TokenLoaderComposition) {

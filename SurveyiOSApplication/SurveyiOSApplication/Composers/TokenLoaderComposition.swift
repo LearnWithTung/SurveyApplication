@@ -13,6 +13,7 @@ public final class TokenLoaderComposition: TokenLoader {
     private let remoteTokenLoader: RemoteTokenLoader
     private let currentDate: () -> Date
     private var pendingRequests = [(TokenSaverResult) -> Void]()
+    private let queue = DispatchQueue(label: "TokenLoaderComposition.serialQueue")
     
     public init(store: KeychainTokenStore, remoteTokenLoader: RemoteTokenLoader, currentDate: @escaping () -> Date) {
         self.store = store
@@ -27,7 +28,9 @@ public final class TokenLoaderComposition: TokenLoader {
             case let .success(token) where self.isValidToken(token):
                 completion(.success(token))
             case let .success(expiredToken):
-                self.pendingRequests.append(completion)
+                self.queue.sync {
+                    self.pendingRequests.append(completion)
+                }
                 
                 guard self.pendingRequests.count == 1 else {return}
 
