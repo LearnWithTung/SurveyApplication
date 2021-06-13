@@ -50,28 +50,6 @@ class AppStartFlowTests: XCTestCase {
         return (sut, authFlow, mainFlow)
     }
     
-    private class TokenLoaderStub: TokenLoader {
-        var stubbedToken: Token?
-        var stubbedError: Error?
-        
-        init(stubbedToken: Token) {
-            self.stubbedToken = stubbedToken
-        }
-        
-        init(stubbedError: Error) {
-            self.stubbedError = stubbedError
-        }
-        
-        func load(completion: @escaping (Result<Token, Error>) -> Void) {
-            if let token = stubbedToken {
-                completion(.success(token))
-            }
-            if let error = stubbedError {
-                completion(.failure(error))
-            }
-        }
-    }
-    
     private class AuthFlowSpy: Flow {
         var startCount = 0
         
