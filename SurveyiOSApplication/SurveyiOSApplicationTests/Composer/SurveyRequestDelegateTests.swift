@@ -17,7 +17,9 @@ class SurveyRequestDelegate: HomeViewControllerDelegate {
     }
     
     func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
-        loader.load(query: .init(pageNumber: 1, pageSize: 3)) { result in
+        loader.load(query: .init(pageNumber: 1, pageSize: 3)) {[weak self] result in
+            guard self != nil else {return}
+            
             switch result {
             case let .success(surveys):
                 completion(.success(surveys.toRepresentation()))
@@ -77,6 +79,20 @@ class SurveyRequestsDelegateTests: XCTestCase {
         loader.completeSucessfully(with: [survey1, survey2])
         
         XCTAssertEqual(try XCTUnwrap(capturedResult).get(), [representationSurvey1, representationSurvey2])
+    }
+    
+    func test_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let loader = SurveyLoaderSpy()
+        var sut: SurveyRequestDelegate? = SurveyRequestDelegate(loader: loader)
+        
+        var capturedResult: Result<[RepresentationSurvey], Error>?
+        sut?.loadSurvey { capturedResult = $0}
+        
+        sut = nil
+        
+        loader.completeSucessfully(with: [])
+        
+        XCTAssertNil(capturedResult)
     }
     
     // MARK: - Helpers
