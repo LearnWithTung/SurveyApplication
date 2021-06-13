@@ -24,7 +24,10 @@ class CompositionRoot {
         let client = AlamofireHTTPClient()
         let loginURL = makeLoginURL(from: baseURL)
         let service = RemoteLoginService(url: loginURL, client: client, credentials: credentials, currentDate: Date.init)
-        let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: store)
+        let tokenLoaderURL = makeTokenLoaderURL(from: baseURL)
+        let remoteTokenLoader = RemoteTokenLoader(url: tokenLoaderURL, client: client, credentials: credentials, currentDate: Date.init)
+        let tokenLoaderComposite = TokenLoaderComposition(store: store, remoteTokenLoader: remoteTokenLoader, currentDate: Date.init)
+        let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: tokenLoaderComposite)
         let surveyURL = makeLoadSurveysURL(from: baseURL)
         
         let surveyDetailFlow = SurveyDetailFlow(navController: rootNc)
@@ -36,7 +39,9 @@ class CompositionRoot {
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
         let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
-            store?.save(token: token) {[weak self, weak mainFlowDecorator, weak rootNc] result in
+            let date = Calendar(identifier: .gregorian).date(byAdding: .second, value: 10, to: Date())!
+            let fakeToken = Token(accessToken: token.accessToken, tokenType: token.tokenType, expiredDate: date, refreshToken: token.refreshToken)
+            store?.save(token: fakeToken) {[weak self, weak mainFlowDecorator, weak rootNc] result in
                 switch result {
                 case .success:
                     mainFlowDecorator?.start()
@@ -72,6 +77,10 @@ class CompositionRoot {
     
     private func makeLoadSurveysURL(from baseURL: URL) -> URL {
         return baseURL.appendingPathComponent("api/v1/surveys")
+    }
+    
+    private func makeTokenLoaderURL(from baseURL: URL) -> URL {
+        return baseURL.appendingPathComponent("api/v1/oauth/token")
     }
 
     private func displayError(message: String, showIn navController: UINavigationController) {

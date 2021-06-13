@@ -30,11 +30,17 @@ public final class TokenLoaderComposition: TokenLoader {
             case let .success(expiredToken):
                 self.queue.sync {
                     self.pendingRequests.append(completion)
-                }
-                
-                guard self.pendingRequests.count == 1 else {return}
+                    
+                    guard self.pendingRequests.count == 1 else {return}
 
-                self.requestNewToken(with: expiredToken, completion: completion)
+                    self.requestNewToken(with: expiredToken) {[weak self] result in
+                        if let newToken = try? result.get() {
+                            self?.store.save(token: newToken) {_ in}
+                        }
+                        self?.pendingRequests.forEach { $0(result) }
+                        self?.pendingRequests = []
+                    }
+                }
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -43,15 +49,13 @@ public final class TokenLoaderComposition: TokenLoader {
         
     private func requestNewToken(with expiredToken: Token, completion: @escaping (TokenSaverResult) -> Void) {
         remoteTokenLoader.load(withRefreshToken: expiredToken.refreshToken) {[weak self] newTokenResult in
-            guard let self = self else {return}
+            guard self != nil else {return}
             switch newTokenResult {
             case let .success(newToken):
-                self.pendingRequests.forEach { $0(.success(newToken)) }
+                completion(.success(newToken))
             case let .failure(error):
-                self.pendingRequests.forEach { $0(.failure(error)) }
+                completion(.failure(error))
             }
-            
-            self.pendingRequests = []
         }
         
     }

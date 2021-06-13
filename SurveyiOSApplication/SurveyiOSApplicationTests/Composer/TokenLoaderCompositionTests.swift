@@ -135,7 +135,7 @@ class TokenLoaderCompositionTests: XCTestCase {
         loader.completeSuccessful(with: anyNonExpirationToken(currentDate: currentDate))
         
         sut.load { _ in }
-        XCTAssertEqual(loader.requestCallCount, 2)
+        XCTAssertEqual(loader.requestCallCount, 1)
     }
     
     func test_sendRequest_multipleTimesInDifferentThreads_appendingRequestSerially() throws {
@@ -160,10 +160,34 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         XCTAssertEqual(loader.requestCallCount, 1)
-        loader.completeSuccessful(with: anyNonExpirationToken(currentDate: currentDate))
+        loader.completeWithError()
 
         sut.load { _ in }
         XCTAssertEqual(loader.requestCallCount, 2)
+    }
+    
+    func test_sendRequest_saveTheNewToken() {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+        
+        sut.load { _ in }
+        
+        let newToken = Token(accessToken: "new token", tokenType: "type", expiredDate: Date(), refreshToken: "a new refresh token")
+        loader.completeSuccessful(with: newToken)
+        
+        let exp = expectation(description: "Wait for completion")
+        var capturedTokenResult: Result<Token, Error>?
+        store.load {
+            capturedTokenResult = $0
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(try XCTUnwrap(capturedTokenResult).get(), newToken)
     }
 
     // MARK: - Helpers
