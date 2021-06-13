@@ -10,6 +10,14 @@ import SurveyiOSApplication
 
 class HomeViewControllerTests: XCTestCase {
     
+    func test_viewDidLoad_imageLoaderIsNotNil() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertNotNil(sut.surveyViewController.imageLoader)
+    }
+    
     func test_load_requestsLoadSurveys() {
         let (sut, delegate) = makeSUT()
         
@@ -97,10 +105,22 @@ class HomeViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_refresh_receivesRefreshMessage() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulatePullToRefresh()
+
+        XCTAssertEqual(loader.requestLoadSurveysCallCount, 2)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
-        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, currentDate: currentDate)
+        let fakeImageLoader = FakeImageDataLoader()
+        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate)
+        
+        checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         
@@ -111,7 +131,7 @@ class HomeViewControllerTests: XCTestCase {
         var requestLoadSurveysCallCount: Int = 0
         private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()
         
-        func loadSurvey(completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
+        func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
             requestLoadSurveysCallCount += 1
             completions.append(completion)
         }
@@ -129,7 +149,7 @@ class HomeViewControllerTests: XCTestCase {
 
 private extension HomeViewController {
     func simulatePullToRefresh() {
-        refresh()
+        surveyViewController.onRefresh?()
     }
     
     var isLoadingViewVisible: Bool {

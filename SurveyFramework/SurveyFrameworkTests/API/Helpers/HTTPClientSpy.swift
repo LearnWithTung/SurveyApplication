@@ -8,9 +8,7 @@
 import Foundation
 import SurveyFramework
 
-class HTTPClientSpy: HTTPClient {
-    // MARK: - Load
-    
+class HTTPClientSpy: HTTPClient {    
     private var messages = [(urlRequest: URLRequest,
                              completion: (HTTPClient.HTTPClientResult) -> Void)]()
     
@@ -22,8 +20,8 @@ class HTTPClientSpy: HTTPClient {
         return requestedURLRequests.map{$0.url!}
     }
     
-    func post(with request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
-        messages.append((request, completion))
+    func request(from url: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
+        messages.append((url, completion))
     }
     
     func completeWithError(_ error: Error, at index: Int = 0){
@@ -33,14 +31,6 @@ class HTTPClientSpy: HTTPClient {
     func completeWithStatusCode(_ code: Int, data: Data = Data(), at index: Int = 0) {
         let httpResponse = HTTPURLResponse(url: requestedURLs[index], statusCode: code, httpVersion: nil, headerFields: nil)!
         messages[index].completion(.success((data, httpResponse)))
-    }
-    
-    // MARK: - Get
-    var requestedGETURLRequests = [URLRequest]()
-    
-    func get(from request: URLRequest, completion: @escaping (HTTPClient.HTTPClientResult) -> Void) {
-        requestedGETURLRequests.append(request)
-        messages.append((request, completion))
     }
     
 }

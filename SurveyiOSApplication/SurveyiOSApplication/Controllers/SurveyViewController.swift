@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct RepresentationSurvey {
+public struct RepresentationSurvey: Equatable {
     let title: String
     let description: String
     let imageURL: URL
@@ -25,10 +25,10 @@ public class SurveyViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pageControl: CustomPageControl!
     private(set) var currentIndex: Int = 0
-    var imageLoader: SurveyImageDataLoader?
+    public var imageLoader: SurveyImageDataLoader?
     private var task: ImageDataTask?
     
-    var onRefresh: (() -> Void)?
+    public var onRefresh: (() -> Void)?
     
     public var surveyModels = [RepresentationSurvey]() {
         didSet {

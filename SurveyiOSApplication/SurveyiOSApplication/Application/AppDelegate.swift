@@ -6,26 +6,39 @@
 //
 
 import UIKit
+import SurveyFramework
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
+    var flow: Flow!
+    var navigationController: UINavigationController!
+    var compositionRoot: CompositionRoot!
+    
+    override init() {
+        guard let baseURL = Configurations.baseURL else {return}
+        let authConfig: AuthConfig = getConfig(fromPlist: "AuthConfig")
+
+        compositionRoot = CompositionRoot(baseURL: baseURL, credentials: authConfig.toCredentials)
+        (navigationController, flow) = compositionRoot.compose()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        let delegate = Delegate()
-        window?.rootViewController = LoginUIComposer.loginComposedWith(delegate: delegate)
+
+        flow.start()
         
         return true
     }
 }
 
-private class Delegate: LoginViewControllerDelegate {
-    func login() {
-        
+extension AuthConfig {
+    var toCredentials: Credentials {
+        return Credentials(client_id: client_id, client_secret: client_secret)
     }
 }
-

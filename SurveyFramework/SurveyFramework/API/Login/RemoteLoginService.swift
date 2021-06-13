@@ -17,7 +17,7 @@ public struct LoginInfo {
     }
 }
 
-public class RemoteLoginService {
+public class RemoteLoginService: LoginService {
     private let url: URL
     private let client: HTTPClient
     private let credentials: Credentials
@@ -28,7 +28,7 @@ public class RemoteLoginService {
         case invalidData
     }
     
-    public typealias RemoteLoginResult = Result<Token, Error>
+    public typealias RemoteLoginResult = LoginResult
     
     public init(url: URL, client: HTTPClient, credentials: Credentials, currentDate: @escaping () -> Date) {
         self.client = client
@@ -38,11 +38,11 @@ public class RemoteLoginService {
     }
     
     public func load(with info: LoginInfo, completion: @escaping (RemoteLoginResult) -> Void) {
-        client.post(with: makeURLRequest(with: info)) {[weak self] result in
+        client.request(from: makeURLRequest(with: info)) {[weak self] result in
             guard let self = self else {return}
             switch result {
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             case let .success((data, response)):
                 completion(RemoteLoginMappers.map(data: data, response: response, currentDate: self.currentDate()))
             }
@@ -60,6 +60,8 @@ public class RemoteLoginService {
         let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         request.httpMethod = "POST"
         request.httpBody = bodyData
         

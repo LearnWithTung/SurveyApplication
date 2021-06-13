@@ -54,6 +54,20 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertEqual(delegate.requestLoginCallCount, 1)
     }
     
+    func test_login_requestsLoginWithInput() {
+        let (sut, delegate) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let email = "tungvuduc2805@gmail.com"
+        let password = "123456789"
+        
+        sut.setEmailText(email)
+        sut.setPasswordText(password)
+        sut.simulateLoginButtonTap()
+
+        XCTAssertEqual(delegate.input, .init(email: email, password: password))
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LoginViewController, delegate: LoginViewControllerDelegateSpy) {
         let delegate = LoginViewControllerDelegateSpy()
@@ -65,9 +79,15 @@ class LoginViewControllerTests: XCTestCase {
     
     private class LoginViewControllerDelegateSpy: LoginViewControllerDelegate {
         var requestLoginCallCount: Int = 0
+        struct Input: Equatable {
+            let email: String
+            let password: String
+        }
+        var input: Input?
         
-        func login() {
+        func login(email: String, password: String) {
             requestLoginCallCount += 1
+            input = .init(email: email, password: password)
         }
     }
     

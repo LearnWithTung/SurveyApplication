@@ -10,14 +10,18 @@ import UIKit
 public final class HomeUIComposer {
     private init() {}
     
-    public static func homeComposedWith(delegate: HomeViewControllerDelegate, currentDate:  @escaping () -> Date) -> HomeViewController {
+    public static func homeComposedWith(delegate: HomeViewControllerDelegate, imageLoader: SurveyImageDataLoader, currentDate:  @escaping () -> Date) -> HomeViewController {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: String(describing: HomeViewController.self)) as! HomeViewController
-        loginViewController.delegate = delegate
-        loginViewController.currentDate = currentDate
+        let homeViewController: HomeViewController = storyboard.instantiate()
+        homeViewController.delegate = MainQueueDispatchDecorator(decoratee: delegate)
+        homeViewController.currentDate = currentDate
         
-        return loginViewController
+        homeViewController.onViewDidLoad = { [weak homeViewController] in
+            homeViewController?.surveyViewController.imageLoader = imageLoader
+        }
+        
+        return homeViewController
     }
     
 }

@@ -1,0 +1,11 @@
+//
+//  Staging.xcconfig
+//  SurveyiOSApplication
+//
+//  Created by Tung Vu on 13/06/2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = https:/$()/nimble-survey-web-staging.herokuapp.com/

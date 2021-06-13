@@ -51,7 +51,8 @@ class LoginUseCaseTests: XCTestCase {
         
         let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
-        
+
+        XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Content-Type"), "application/json")
         XCTAssertEqual(urlRequest.httpMethod, "POST")
         XCTAssertEqual(requestedBody, body)
     }
@@ -151,12 +152,6 @@ class LoginUseCaseTests: XCTestCase {
         return (token, tokenJSON)
     }
     
-    private func makeTokenJSONData(from dict: [String: Any]) -> Data {
-        let json = ["attributes": dict]
-
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
     private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
@@ -183,7 +178,7 @@ class LoginUseCaseTests: XCTestCase {
         var capturedError: RemoteLoginService.Error?
         sut.load(with: anyLoginInfo()) { result in
             switch result {
-            case let .failure(error):
+            case let .failure(error as RemoteLoginService.Error):
                 capturedError = error
             default:
                 break

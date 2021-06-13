@@ -13,7 +13,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
         
-        XCTAssertTrue(client.requestedGETURLRequests.isEmpty)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -24,7 +24,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         
         sut.load(query: query) {_ in}
         
-        XCTAssertEqual(client.requestedGETURLRequests.map {$0.url}, [expectedURL])
+        XCTAssertEqual(client.requestedURLs, [expectedURL])
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
@@ -36,7 +36,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         sut.load(query: query) {_ in}
         sut.load(query: query) {_ in}
 
-        XCTAssertEqual(client.requestedGETURLRequests.map {$0.url}, [expectedURL, expectedURL])
+        XCTAssertEqual(client.requestedURLs, [expectedURL, expectedURL])
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -85,7 +85,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: RemoteSurveysLoader? = RemoteSurveysLoader(url: anyURL(), client: client)
         
-        var capturedResult: Result<[Survey], RemoteSurveysLoader.Error>?
+        var capturedResult: RemoteSurveysLoader.RemoteLoadSurveyResult?
         sut?.load(query: anyQuery()) { capturedResult = $0}
         
         sut = nil
@@ -135,7 +135,7 @@ class LoadSurveysFromRemoteUseCaseTests: XCTestCase {
         var capturedError: RemoteSurveysLoader.Error?
         sut.load(query: anyQuery()) { result in
             switch result {
-            case let .failure(error):
+            case let .failure(error as RemoteSurveysLoader.Error):
                 capturedError = error
             default:
                 break

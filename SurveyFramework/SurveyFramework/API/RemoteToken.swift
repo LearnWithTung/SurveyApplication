@@ -8,8 +8,12 @@
 import Foundation
 
 struct Root: Decodable {
-    let attributes: RemoteToken
+    let data: SessionAttributes
     
+    struct SessionAttributes: Decodable {
+        let attributes: RemoteToken
+    }
+        
     struct RemoteToken: Decodable {
         let access_token: String
         let token_type: String

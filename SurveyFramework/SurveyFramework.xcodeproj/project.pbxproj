@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		90A0B6624D6CF988258EF6E4 /* Pods_SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FD7C411DCF465115A66891 /* Pods_SurveyFramework.framework */; };
+		DF3E97F82675D401004FA3AE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F72675D401004FA3AE /* LoginService.swift */; };
+		DF3E98002675DCF2004FA3AE /* SurveyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97FF2675DCF2004FA3AE /* SurveyLoader.swift */; };
+		DF3E982D267610E2004FA3AE /* Token+FactoryMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E982C267610E2004FA3AE /* Token+FactoryMethods.swift */; };
 		DFEC162F26723F33008990FB /* SurveyFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEC162526723F33008990FB /* SurveyFramework.framework */; };
 		DFEC164026723FFF008990FB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC163F26723FFF008990FB /* Token.swift */; };
 		DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC16412672405B008990FB /* LoginUseCaseTests.swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		5B1457FBF92197305C333795 /* Pods-SurveyFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.debug.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		C45FC90E3D339BD850D5D3A0 /* Pods-SurveyFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyFramework.release.xcconfig"; path = "Target Support Files/Pods-SurveyFramework/Pods-SurveyFramework.release.xcconfig"; sourceTree = "<group>"; };
+		DF3E97F72675D401004FA3AE /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		DF3E97FF2675DCF2004FA3AE /* SurveyLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyLoader.swift; sourceTree = "<group>"; };
+		DF3E982C267610E2004FA3AE /* Token+FactoryMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+FactoryMethods.swift"; sourceTree = "<group>"; };
 		DFEC162526723F33008990FB /* SurveyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SurveyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFEC162926723F33008990FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFEC162E26723F33008990FB /* SurveyFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurveyFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +159,8 @@
 				DFEC163F26723FFF008990FB /* Token.swift */,
 				DFEC164726724A1F008990FB /* Credentials.swift */,
 				DFEC165D26726AE6008990FB /* Survey.swift */,
+				DF3E97F72675D401004FA3AE /* LoginService.swift */,
+				DF3E97FF2675DCF2004FA3AE /* SurveyLoader.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 			children = (
 				DFEC166226726BC5008990FB /* HTTPClientSpy.swift */,
 				DFEC166B2672F0E8008990FB /* TestHelperMethods.swift */,
+				DF3E982C267610E2004FA3AE /* Token+FactoryMethods.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -428,11 +437,13 @@
 				DFEC164826724A1F008990FB /* Credentials.swift in Sources */,
 				DFEC164626724A03008990FB /* HTTPClient.swift in Sources */,
 				DFEC164A26725E0D008990FB /* RemoteLoginMappers.swift in Sources */,
+				DF3E97F82675D401004FA3AE /* LoginService.swift in Sources */,
 				DFEC165B26726883008990FB /* TokenSaver.swift in Sources */,
 				DFEC16762672F7FA008990FB /* RemoteTokenMappers.swift in Sources */,
 				DFEC165926726850008990FB /* TokenLoader.swift in Sources */,
 				DFEC16782672F90F008990FB /* RemoteToken.swift in Sources */,
 				DFEC16672672EED3008990FB /* RemoteSurveysMappers.swift in Sources */,
+				DF3E98002675DCF2004FA3AE /* SurveyLoader.swift in Sources */,
 				DFEC166A2672EFB6008990FB /* HTTPURLResponse+StatusCode.swift in Sources */,
 				DFEC16552672664A008990FB /* KeychainTokenStore.swift in Sources */,
 				DFEC16742672F4C9008990FB /* RemoteTokenLoader.swift in Sources */,
@@ -443,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF3E982D267610E2004FA3AE /* Token+FactoryMethods.swift in Sources */,
 				DFEC16422672405B008990FB /* LoginUseCaseTests.swift in Sources */,
 				DFEC166326726BC5008990FB /* HTTPClientSpy.swift in Sources */,
 				DFEC166C2672F0E9008990FB /* TestHelperMethods.swift in Sources */,
