@@ -9,30 +9,6 @@ import XCTest
 import SurveyiOSApplication
 import SurveyFramework
 
-class AppStartFlow {
-    private let loader: TokenLoader
-    private let authFlow: Flow
-    private let mainFlow: Flow
-    
-    init(loader: TokenLoader, authFlow: Flow, mainFlow: Flow) {
-        self.loader = loader
-        self.authFlow = authFlow
-        self.mainFlow = mainFlow
-    }
-    
-    func start() {
-        loader.load {[weak self] result in
-            switch result {
-            case .success:
-                self?.mainFlow.start()
-            case .failure:
-                self?.authFlow.start()
-            }
-        }
-    }
-    
-}
-
 class AppStartFlowTests: XCTestCase {
     
     func test_start_startAuthFlowOnLoadTokenFromStoreFailed() {
