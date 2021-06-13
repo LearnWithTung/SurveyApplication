@@ -42,6 +42,7 @@ public class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email.isValidEmail, !password.isEmpty else {return}
         
+        loadingView.isHidden = false
         loadingView.showIndicator()
         delegate?.login(email: email, password: password)
     }
