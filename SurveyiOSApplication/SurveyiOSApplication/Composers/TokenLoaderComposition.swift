@@ -26,15 +26,19 @@ public final class TokenLoaderComposition: TokenLoader {
             case let .success(token) where self.isValidToken(token):
                 completion(.success(token))
             case let .success(expiredToken):
-                self.remoteTokenLoader.load(withRefreshToken: expiredToken.refreshToken) {[weak self] newTokenResult in
-                    guard self != nil else {return}
-                    switch newTokenResult {
-                    case let .success(newToken):
-                        completion(.success(newToken))
-                    case let .failure(error):
-                        completion(.failure(error))
-                    }
-                }
+                self.requestNewToken(with: expiredToken, completion: completion)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func requestNewToken(with expiredToken: Token, completion: @escaping (TokenSaverResult) -> Void) {
+        remoteTokenLoader.load(withRefreshToken: expiredToken.refreshToken) {[weak self] newTokenResult in
+            guard self != nil else {return}
+            switch newTokenResult {
+            case let .success(newToken):
+                completion(.success(newToken))
             case let .failure(error):
                 completion(.failure(error))
             }
