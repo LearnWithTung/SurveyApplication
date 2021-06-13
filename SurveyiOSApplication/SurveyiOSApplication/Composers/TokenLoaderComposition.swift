@@ -23,7 +23,7 @@ public final class TokenLoaderComposition: TokenLoader {
         store.load {[weak self] tokenResult in
             guard let self = self else {return}
             switch tokenResult {
-            case let .success(token) where token.expiredDate > self.currentDate():
+            case let .success(token) where self.isValidToken(token):
                 completion(.success(token))
             case let .success(expiredToken):
                 self.remoteTokenLoader.load(withRefreshToken: expiredToken.refreshToken) {[weak self] newTokenResult in
@@ -39,5 +39,9 @@ public final class TokenLoaderComposition: TokenLoader {
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func isValidToken(_ token: Token) -> Bool {
+        token.expiredDate > self.currentDate()
     }
 }
