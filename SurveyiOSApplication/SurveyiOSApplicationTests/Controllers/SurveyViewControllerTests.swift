@@ -56,6 +56,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.descriptionLabel.text, survey2.description)
         XCTAssertEqual(sut.pageControl.numberOfPages, 2)
         XCTAssertEqual(sut.pageControl.currentPage, 1)
+        XCTAssertEqual(sut.backgroundImageView.image, nil)
     }
     
     func test_userInitiatedNextView_doesNotRenderNextModelOnAtEdge() {
@@ -211,6 +212,7 @@ class SurveyViewControllerTests: XCTestCase {
         XCTAssertEqual(refreshCallCount, 3)
 
     }
+    
     
     // MARK: - Helpers
     private func makeSUT() -> (sut: SurveyViewController, loader: SurveyImageDataLoaderSpy) {

@@ -95,6 +95,7 @@ public class SurveyViewController: UIViewController {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
         pageControl.currentPage = currentIndex
+        backgroundImageView.image = nil
         cancelImageLoad()
         task = imageLoader?.load(from: model.imageURL) {[weak self] result in
             self?.backgroundImageView.image = (try? result.get()).flatMap(UIImage.init)
