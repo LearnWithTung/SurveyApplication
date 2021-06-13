@@ -10,16 +10,28 @@ import SurveyFramework
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    private var credentials: Credentials {
-        let authConfig: AuthConfig = getConfig(fromPlist: "AuthConfig")
-        return authConfig.toCredentials
-    }
     
     var window: UIWindow?
+    var flow: Flow!
+    var navigationController: UINavigationController!
+    var compositionRoot: CompositionRoot!
+    
+    override init() {
+        guard let baseURL = Configurations.baseURL else {return}
+        let authConfig: AuthConfig = getConfig(fromPlist: "AuthConfig")
+
+        compositionRoot = CompositionRoot(baseURL: baseURL, credentials: authConfig.toCredentials)
+        (navigationController, flow) = compositionRoot.compose()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+
+        flow.start()
         
         return true
     }
