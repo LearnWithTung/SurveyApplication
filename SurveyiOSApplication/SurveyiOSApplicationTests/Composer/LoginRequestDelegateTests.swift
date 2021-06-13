@@ -9,30 +9,6 @@ import XCTest
 import SurveyiOSApplication
 import SurveyFramework
 
-class LoginRequestDelegate: LoginViewControllerDelegate {
-    private let service: LoginService
-    private let onSuccess: (Token) -> Void
-    private let onError: (Error) -> Void
-
-    init(service: LoginService, onSuccess: @escaping (Token) -> Void, onError: @escaping (Error) -> Void) {
-        self.service = service
-        self.onSuccess = onSuccess
-        self.onError = onError
-    }
-    
-    func login(email: String, password: String) {
-        service.load(with: .init(email: email, password: password)) {[weak self] result in
-            guard let self = self else {return}
-            switch result {
-            case let .success(token):
-                self.onSuccess(token)
-            case let .failure(error):
-                self.onError(error)
-            }
-        }
-    }
-    
-}
 
 class LoginRequestDelegateTests: XCTestCase {
     
