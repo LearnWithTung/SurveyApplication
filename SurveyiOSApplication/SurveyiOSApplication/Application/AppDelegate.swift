@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import SurveyFramework
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private var credentials: Credentials {
+        let authConfig: AuthConfig = getConfig(fromPlist: "AuthConfig")
+        return authConfig.toCredentials
+    }
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -19,3 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AuthConfig {
+    var toCredentials: Credentials {
+        return Credentials(client_id: client_id, client_secret: client_secret)
+    }
+}
