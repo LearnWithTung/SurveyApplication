@@ -12,10 +12,12 @@ import SurveyFramework
 class LoginRequestDelegate: LoginViewControllerDelegate {
     private let service: LoginService
     private let onSuccess: (Token) -> Void
-    
-    init(service: LoginService, onSuccess: @escaping (Token) -> Void) {
+    private let onError: (Error) -> Void
+
+    init(service: LoginService, onSuccess: @escaping (Token) -> Void, onError: @escaping (Error) -> Void) {
         self.service = service
         self.onSuccess = onSuccess
+        self.onError = onError
     }
     
     func login(email: String, password: String) {
@@ -23,8 +25,8 @@ class LoginRequestDelegate: LoginViewControllerDelegate {
             switch result {
             case let .success(token):
                 self.onSuccess(token)
-            default:
-                break
+            case let .failure(error):
+                self.onError(error)
             }
         }
     }
@@ -62,10 +64,28 @@ class LoginRequestDelegateTests: XCTestCase {
         XCTAssertEqual(capturedTokens.first, token)
     }
     
+    func test_login_delegateMessageWithErrornOnLoginFailed() {
+        let email = "an email"
+        let password = "a password"
+        
+        var capturedErrors = [Error]()
+        let (sut, service) = makeSUT(onError: { error in
+            capturedErrors.append(error)
+        })
+        
+        sut.login(email: email, password: password)
+        
+        let error = NSError(domain: "test", code: 0, userInfo: nil)
+        service.completeWithError(error)
+        
+        XCTAssertEqual(capturedErrors.count, 1)
+        XCTAssertEqual(capturedErrors.first as NSError?, error)
+    }
+    
     // MARK: - Helpers
-    private func makeSUT(onSucess: @escaping (Token) -> Void = {_ in}, file: StaticString = #file, line: UInt = #line) -> (sut: LoginRequestDelegate, service: LoginServiceSpy) {
+    private func makeSUT(onSucess: @escaping (Token) -> Void = {_ in}, onError: @escaping (Error) -> Void = {_ in}, file: StaticString = #file, line: UInt = #line) -> (sut: LoginRequestDelegate, service: LoginServiceSpy) {
         let service = LoginServiceSpy()
-        let sut = LoginRequestDelegate(service: service, onSuccess: onSucess)
+        let sut = LoginRequestDelegate(service: service, onSuccess: onSucess, onError: onError)
         checkForMemoryLeaks(sut, file: file, line: line)
         checkForMemoryLeaks(service, file: file, line: line)
         
@@ -85,6 +105,10 @@ class LoginRequestDelegateTests: XCTestCase {
         
         func completeSucessful(with token: Token, at index: Int = 0) {
             messages[index].completion(.success(token))
+        }
+        
+        func completeWithError(_ error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     
     }
