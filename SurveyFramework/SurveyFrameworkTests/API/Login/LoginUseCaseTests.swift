@@ -152,12 +152,6 @@ class LoginUseCaseTests: XCTestCase {
         return (token, tokenJSON)
     }
     
-    private func makeTokenJSONData(from dict: [String: Any]) -> Data {
-        let json = ["attributes": dict]
-
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
     private func expect(_ sut: RemoteLoginService, toCompleteWithToken token: Token, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         

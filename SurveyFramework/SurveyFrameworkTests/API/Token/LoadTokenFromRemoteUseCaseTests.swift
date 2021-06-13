@@ -149,12 +149,6 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         return (token, tokenJSON)
     }
     
-    private func makeTokenJSONData(from dict: [String: Any]) -> Data {
-        let json = ["attributes": dict]
-
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
     private func anyToken() -> String {
         return "any refresh token"
     }
