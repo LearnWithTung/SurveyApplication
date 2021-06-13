@@ -31,6 +31,18 @@ class MainFlowTests: XCTestCase {
         XCTAssertNotNil(homeViewController)
     }
     
+    func test_start_dispatchToMainThreadFromBackgroundThread() {
+        let (sut, _) = makeSUT()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            sut.start()
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: MainFlow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
