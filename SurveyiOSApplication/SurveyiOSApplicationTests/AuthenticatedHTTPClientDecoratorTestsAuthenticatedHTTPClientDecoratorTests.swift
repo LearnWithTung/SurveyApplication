@@ -87,8 +87,7 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         var capturedResult2: HTTPClient.HTTPClientResult?
         sut.request(from: anyRequest()) {capturedResult2 = $0}
                 
-        let token = Token(accessToken: "access token", tokenType: "token type", expiredDate: Date(), refreshToken: "refresh token")
-        service.completeSuccessfully(with: token)
+        service.completeSuccessfully(with: anyToken())
         
         let values = (Data("any data".utf8), httpURLResponse(200))
         client.complete(with: values, at: 0)
@@ -98,6 +97,32 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
 
         client.complete(with: anyNSError(), at: 1)
         XCTAssertThrowsError(try capturedResult2?.get())
+    }
+    
+    func test_sendRequest_multipleTimesInDifferentThreads_appendingRequestSerially() throws {
+        let client = HTTPClientSpy()
+        let service = TokenLoaderSpy()
+        let sut = AuthenticatedHTTPClientDecorator(decoratee: client, service: service)
+        
+        let exp = expectation(description: "Wait for completion")
+        exp.expectedFulfillmentCount = 2
+        
+        DispatchQueue.global().async {
+            sut.request(from: self.anyRequest()) {_ in}
+            exp.fulfill()
+        }
+        
+        DispatchQueue.global().async {
+            sut.request(from: self.anyRequest()) {_ in}
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(service.requestTokenCallCount, 1)
+        service.completeSuccessfully(with: anyToken())
+        
+        sut.request(from: anyRequest()) {_ in}
+        XCTAssertEqual(service.requestTokenCallCount, 2)
     }
     
     // MARK: - Helpers
@@ -139,6 +164,10 @@ class AuthenticatedHTTPClientDecoratorTests: XCTestCase {
         func completeSuccessfully(with token: Token, at index: Int = 0) {
             completions[index](.success(token))
         }
+    }
+    
+    private func anyToken() -> Token {
+        Token(accessToken: "any", tokenType: "any", expiredDate: Date(), refreshToken: "any")
     }
     
     private func anyNSError() -> NSError {
