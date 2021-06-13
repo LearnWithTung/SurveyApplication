@@ -30,8 +30,8 @@ class TokenLoaderComposition: TokenLoader {
                     switch newTokenResult {
                     case let .success(newToken):
                         completion(.success(newToken))
-                    default:
-                        break
+                    case let .failure(error):
+                        completion(.failure(error))
                     }
                 }
             case let .failure(error):
@@ -121,6 +121,21 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         XCTAssertEqual(try? XCTUnwrap(capturedResult).get(), newToken)
     }
+    
+    func test_getToken_failsOnFailedLoadTokenFromRemote() {
+        let currentDate = Date()
+        let expiredDate = currentDate.adding(seconds: -1)
+        let (loader, store, sut) = makeSUT {currentDate}
+        let token = makeTokenWith(expiredDate: expiredDate)
+        store.save(token: token) {_ in}
+        
+        var capturedResult: TokenLoader.TokenSaverResult?
+        sut.load { capturedResult = $0 }
+        
+        loader.completeWithError()
+        
+        XCTAssertThrowsError(try XCTUnwrap(capturedResult).get())
+    }
 
     // MARK: - Helpers
     private func makeSUT(currentDate: () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (loader: RemoteTokenLoaderSpy, store: KeychainTokenStore, sut: TokenLoaderComposition) {
@@ -177,6 +192,10 @@ class TokenLoaderCompositionTests: XCTestCase {
         
         func completeSuccessful(with token: Token, at index: Int = 0) {
             completions[index](.success(token))
+        }
+        
+        func completeWithError(at index: Int = 0) {
+            completions[index](.failure(.invalidData))
         }
     }
     
