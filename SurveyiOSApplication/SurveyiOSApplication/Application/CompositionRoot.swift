@@ -29,12 +29,20 @@ class CompositionRoot {
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
         let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, currentDate: Date.init)
         
-        let loginDelegate = LoginRequestDelegate(service: service) { token in
-            store.save(token: token) {_ in}
-            
-        } onError: { error in
+        let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
+            store?.save(token: token) {[weak self, weak mainFlow, weak rootNc] result in
+                switch result {
+                case .success:
+                    mainFlow?.start()
+                case .failure:
+                    guard let navController = rootNc else {return}
+                    self?.displayError(message: "Unexpected error. Please try later.", showIn: navController)
+                }
+            }
+        } onError: {[weak self, weak rootNc] _ in
             // display error
-            
+            guard let navController = rootNc else {return}
+            self?.displayError(message: "Invalid username or password", showIn: navController)
         }
 
         let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate)
@@ -59,4 +67,10 @@ class CompositionRoot {
         return baseURL.appendingPathComponent("api/v1/surveys")
     }
 
+    private func displayError(message: String, showIn navController: UINavigationController) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        navController.present(alertController, animated: true)
+    }
 }
