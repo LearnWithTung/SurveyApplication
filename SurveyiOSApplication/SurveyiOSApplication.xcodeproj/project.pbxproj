@@ -229,7 +229,6 @@
 		DF3E97BF26744B0F004FA3AE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */,
 				DF3E97DB2674A386004FA3AE /* UIImage+TestHelper.swift */,
 			);
 			path = Helpers;
@@ -246,6 +245,7 @@
 		DF9876C3267353A80017577D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DF3E97C026744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift */,
 				DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */,
 			);
 			path = Helpers;
