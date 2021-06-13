@@ -9,27 +9,6 @@ import XCTest
 import UIKit
 import SurveyiOSApplication
 
-class MainFlow {
-    private let navController: UINavigationController
-    private let delegate: HomeViewControllerDelegate
-    private let currentDate: () -> Date
-    
-    public init(navController: UINavigationController,
-                delegate: HomeViewControllerDelegate,
-                currentDate: @escaping () -> Date) {
-        self.navController = navController
-        self.delegate = delegate
-        self.currentDate = currentDate
-    }
-    
-    func start(){
-        let vc = HomeUIComposer.homeComposedWith(delegate: delegate, currentDate: currentDate)
-        
-        navController.setViewControllers([vc], animated: true)
-    }
-    
-}
-
 class MainFlowTests: XCTestCase {
     
     func test_init_doesNotStart() {
