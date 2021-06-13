@@ -51,7 +51,8 @@ class LoginUseCaseTests: XCTestCase {
         
         let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
-        
+
+        XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Content-Type"), "application/json")
         XCTAssertEqual(urlRequest.httpMethod, "POST")
         XCTAssertEqual(requestedBody, body)
     }

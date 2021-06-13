@@ -60,6 +60,8 @@ public class RemoteLoginService: LoginService {
         let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         request.httpMethod = "POST"
         request.httpBody = bodyData
         
