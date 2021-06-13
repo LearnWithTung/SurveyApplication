@@ -8,7 +8,7 @@
 import SurveyFramework
 import Alamofire
 
-class AlamofireHTTPClient: HTTPClient {
+final class AlamofireHTTPClient: HTTPClient {
     
     func request(from url: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
         AF.request(url).responseJSON { result in

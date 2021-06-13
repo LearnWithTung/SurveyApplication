@@ -19,4 +19,5 @@ target 'SurveyiOSApplication' do
 
   # Pods for SurveyiOSApplication
   pod 'Alamofire'
+  pod 'Kingfisher'
 end
