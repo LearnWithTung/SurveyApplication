@@ -41,9 +41,7 @@ class CompositionRoot {
         let loginDelegate = LoginRequestDelegate(service: service)
 
         let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate, store: store)
-        authFlow.onLoginSuccess = { [weak mainFlowDecorator] in
-            mainFlowDecorator?.start()
-        }
+        
         let authFlowDecorator = MainQueueDispatchDecorator(decoratee: authFlow as Flow)
         
         loginDelegate.onError = {[weak authFlow] _ in
@@ -52,6 +50,7 @@ class CompositionRoot {
         loginDelegate.onSuccess = authFlow.didLoginSuccess
         
         let flow = AppStartFlow(loader: store, authFlow: authFlowDecorator, mainFlow: mainFlowDecorator)
+        authFlow.onLoginSuccess = flow.didLogin
 
         return (rootNc, flow)
     }

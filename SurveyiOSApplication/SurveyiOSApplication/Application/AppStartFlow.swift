@@ -29,4 +29,8 @@ public class AppStartFlow: Flow {
         }
     }
     
+    public func didLogin() {
+        mainFlow.start()
+    }
+    
 }
