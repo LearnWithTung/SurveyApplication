@@ -271,20 +271,20 @@
                                     <action selector="takeSurveyButtonTapped:" destination="xli-hl-ebT" eventType="touchUpInside" id="dA9-T9-Iwv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Description Description Description Description Description Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-Qh-CTA">
-                                <rect key="frame" x="30" y="791" width="269" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Description Description Description Description Description Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-Qh-CTA">
+                                <rect key="frame" x="30" y="796" width="269" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Title Title Title Title Title Title Title Title Title Title Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ7-vf-wmT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Title Title Title Title Title Title Title Title Title Title Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ7-vf-wmT">
                                 <rect key="frame" x="30" y="731" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKg-je-wvt" customClass="CustomPageControl" customModule="SurveyiOSApplication" customModuleProvider="target">
-                                <rect key="frame" x="30" y="686" width="354" height="30"/>
+                                <rect key="frame" x="30" y="677" width="354" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2ct-wa-ifg"/>
@@ -300,9 +300,9 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZZ7-vf-wmT" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="top" constant="-5" id="1pa-f4-f3Z"/>
+                            <constraint firstItem="KGi-Qh-CTA" firstAttribute="top" secondItem="ZZ7-vf-wmT" secondAttribute="bottom" constant="24" id="2yh-ad-Z05"/>
                             <constraint firstItem="RIv-tt-gXN" firstAttribute="leading" secondItem="t8g-2j-HE7" secondAttribute="leading" id="9YC-oj-6Jz"/>
                             <constraint firstItem="ZZ7-vf-wmT" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="SxF-6e-h71"/>
-                            <constraint firstItem="KGi-Qh-CTA" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" id="c5J-t5-n0v"/>
                             <constraint firstItem="KGi-Qh-CTA" firstAttribute="leading" secondItem="t8g-2j-HE7" secondAttribute="leading" constant="30" id="c8A-rL-rQw"/>
                             <constraint firstItem="eKg-je-wvt" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" id="cJk-Ha-Wup"/>
                             <constraint firstItem="t8g-2j-HE7" firstAttribute="bottom" secondItem="7ff-8O-J4d" secondAttribute="bottom" constant="30" id="cP8-KK-CKu"/>
@@ -310,7 +310,7 @@
                             <constraint firstAttribute="bottom" secondItem="RIv-tt-gXN" secondAttribute="bottom" id="dU9-HP-5i9"/>
                             <constraint firstItem="RIv-tt-gXN" firstAttribute="top" secondItem="GVA-HT-cbo" secondAttribute="top" id="f7B-Dc-UHA"/>
                             <constraint firstItem="ZZ7-vf-wmT" firstAttribute="leading" secondItem="KGi-Qh-CTA" secondAttribute="leading" id="fks-bF-vUe"/>
-                            <constraint firstItem="ZZ7-vf-wmT" firstAttribute="top" secondItem="eKg-je-wvt" secondAttribute="bottom" constant="15" id="gzJ-FH-VaI"/>
+                            <constraint firstItem="ZZ7-vf-wmT" firstAttribute="top" secondItem="eKg-je-wvt" secondAttribute="bottom" constant="24" id="gzJ-FH-VaI"/>
                             <constraint firstItem="t8g-2j-HE7" firstAttribute="trailing" secondItem="RIv-tt-gXN" secondAttribute="trailing" id="rox-gO-NeN"/>
                             <constraint firstItem="t8g-2j-HE7" firstAttribute="trailing" secondItem="7ff-8O-J4d" secondAttribute="trailing" constant="30" id="vhg-qb-r0N"/>
                             <constraint firstItem="eKg-je-wvt" firstAttribute="leading" secondItem="ZZ7-vf-wmT" secondAttribute="leading" id="xje-QT-ylB"/>
