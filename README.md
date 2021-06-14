@@ -132,12 +132,16 @@
 
 ### `SurveyFramework` target
 
+#### Contains business logic.
+#### platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS)
 #### 32 test cases
 #### Coverage: 93,7 %
 #### Total run time: 0.456 seconds
 
 ### `SurveyiOSApplication` target
 
+#### Contains compositions
+#### Platform-specific (iOS)
 ####  69 test cases
 #### Coverage: 81,3 %
 #### Total run time: 0.8 seconds
