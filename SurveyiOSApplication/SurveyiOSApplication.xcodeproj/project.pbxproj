@@ -60,6 +60,7 @@
 		DF3E983A2676DFA5004FA3AE /* Token+FactoryMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98392676DFA5004FA3AE /* Token+FactoryMethods.swift */; };
 		DF3E983C2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983B2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift */; };
 		DF3E98402676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983F2676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift */; };
+		DF3E98422676F5C3004FA3AE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98412676F5C3004FA3AE /* SideMenuViewController.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -155,6 +156,7 @@
 		DF3E98392676DFA5004FA3AE /* Token+FactoryMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+FactoryMethods.swift"; sourceTree = "<group>"; };
 		DF3E983B2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
 		DF3E983F2676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
+		DF3E98412676F5C3004FA3AE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +268,7 @@
 				DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */,
 				DF3E97D026748934004FA3AE /* SurveyViewController.swift */,
 				DF3E983426764FCC004FA3AE /* SurveyDetailViewController.swift */,
+				DF3E98412676F5C3004FA3AE /* SideMenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DF3E983126764E49004FA3AE /* SurveyDetailFlow.swift in Sources */,
 				DF3E97C32674593C004FA3AE /* Date+Extensions.swift in Sources */,
+				DF3E98422676F5C3004FA3AE /* SideMenuViewController.swift in Sources */,
 				DF3E97F02675CA52004FA3AE /* TokenLoaderComposition.swift in Sources */,
 				DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */,
 				DF3E981D2675FA0D004FA3AE /* MainFlow.swift in Sources */,
