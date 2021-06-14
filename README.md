@@ -12,7 +12,7 @@
 1. Create a host iOS application and run the tests on it.
 2. Run the tests on macOS target.
 
-* I notice that your development endpoint doesn't work properly so please run the app with `Release` configuration 
+* I notice that your staging API doesn't work properly so please run the app with `Release` configuration to use production API.
 
 
 ## 📊 Stats
