@@ -44,11 +44,11 @@ public final class AuthFlow: Flow {
     }
     
     private func displayError(message: String) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(action)
-            self.navController.present(alertController, animated: true)
+            self?.navController.present(alertController, animated: true)
         }
     }
     

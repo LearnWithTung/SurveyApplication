@@ -33,3 +33,7 @@ extension UIButton {
         sendActions(for: .touchUpInside)
     }
 }
+
+func anyNSError() -> NSError {
+    NSError(domain: "test", code: 0, userInfo: nil)
+}
