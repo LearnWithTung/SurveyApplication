@@ -115,13 +115,12 @@ class HomeViewControllerTests: XCTestCase {
     }
     
     func test_requestsLogout_messageRoot() {
-        let (sut, _) = makeSUT()
-        sut.loadViewIfNeeded()
-        
         var requestCallCount = 0
-        sut.onLogoutRequest = {
+        let (sut, _) = makeSUT(onLogout: {
             requestCallCount += 1
-        }
+        })
+        
+        sut.loadViewIfNeeded()
         
         sut.userInitiatedLogout()
         
@@ -129,10 +128,10 @@ class HomeViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, onLogout: @escaping () -> Void = {}, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
-        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate)
+        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate, onLogoutRequest: onLogout)
         
         checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)
@@ -160,6 +159,6 @@ private extension HomeViewController {
     }
     
     func userInitiatedLogout() {
-        self.menuViewController.logoutButton.simulateTap()
+        self.sideMenuView.logoutButton.simulateTap()
     }
 }

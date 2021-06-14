@@ -32,15 +32,13 @@ public final class MainFlow: Flow {
     }
     
     public func start(){
-        let vc = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate)
+        let vc = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate) { [weak self] in
+            self?.store.clear()
+            self?.onLogout?()
+        }
         
         vc.toSurveyDetails = { [weak self] in
             self?.surveyDetailFlow.start()
-        }
-        
-        vc.onLogoutRequest = { [weak self] in
-            self?.store.clear()
-            self?.onLogout?()
         }
         
         navController.setViewControllers([vc], animated: true)

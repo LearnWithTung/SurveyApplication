@@ -23,10 +23,9 @@ public class HomeViewController: UIViewController {
     
     @IBOutlet public private(set) weak var loadingView: LoadingView!
     @IBOutlet public private(set) weak var dateLabel: UILabel!
-    @IBOutlet weak var sideMenuView: SideMenuView!
+    @IBOutlet public private(set) weak var sideMenuView: SideMenuView!
 
     public private(set) var surveyViewController: SurveyViewController!
-    
     
     public var onLogoutRequest: (() -> Void)?
     
@@ -36,14 +35,19 @@ public class HomeViewController: UIViewController {
 
         load()
         
-        dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
-        sideMenuView.onDismiss = { [weak self] in
-            self?.sideMenuView.animateMenu(isHidden: true)
-        }
+        setupLayout()
     }
     
     @IBAction func showMenuButtonTapped(_ sender: Any) {
         sideMenuView.animateMenu(isHidden: false)
+    }
+    
+    private func setupLayout() {
+        dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
+        sideMenuView.onDismiss = { [weak self] in
+            self?.sideMenuView.animateMenu(isHidden: true)
+        }
+        sideMenuView.onLogout = onLogoutRequest
     }
     
     private func refresh() {

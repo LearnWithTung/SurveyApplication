@@ -76,6 +76,9 @@
                             <state key="normal" title="Logout">
                                 <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="logoutButtonTapped:" destination="-1" eventType="touchUpInside" id="9WQ-GC-Dic"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.22365906830000001" green="0.2236968577" blue="0.22365081310000001" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>

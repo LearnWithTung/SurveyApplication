@@ -10,7 +10,7 @@ import UIKit
 public final class HomeUIComposer {
     private init() {}
     
-    public static func homeComposedWith(delegate: HomeViewControllerDelegate, imageLoader: SurveyImageDataLoader, currentDate:  @escaping () -> Date) -> HomeViewController {
+    public static func homeComposedWith(delegate: HomeViewControllerDelegate, imageLoader: SurveyImageDataLoader, currentDate:  @escaping () -> Date, onLogoutRequest: @escaping (() -> Void)) -> HomeViewController {
         let bundle = Bundle(for: HomeViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let homeViewController: HomeViewController = storyboard.instantiate()
@@ -20,6 +20,8 @@ public final class HomeUIComposer {
         homeViewController.onViewDidLoad = { [weak homeViewController] in
             homeViewController?.surveyViewController.imageLoader = imageLoader
         }
+        
+        homeViewController.onLogoutRequest = onLogoutRequest
         
         return homeViewController
     }

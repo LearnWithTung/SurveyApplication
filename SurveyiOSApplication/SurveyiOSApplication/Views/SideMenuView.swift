@@ -7,12 +7,13 @@
 
 import UIKit
 
-class SideMenuView: UIView {
+public class SideMenuView: UIView {
     
     @IBOutlet public private(set) weak var logoutButton: UIButton!
     @IBOutlet weak var viewContainerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewContainer: UIView!
     var onDismiss: (() -> Void)?
+    var onLogout: (() -> Void)?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -25,6 +26,10 @@ class SideMenuView: UIView {
     
     @objc private func dismissMenu() {
         onDismiss?()
+    }
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        onLogout?()
     }
     
     private func customInit(){
