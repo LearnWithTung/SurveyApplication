@@ -36,7 +36,9 @@ public final class KeychainTokenStore {
     private var key: String {
         return "KeychainTokenStore.AccessToken"
     }
+}
 
+extension KeychainTokenStore: TokenCleaner {
     public func clear() {
         let query = [
             kSecClass: kSecClassGenericPassword,
@@ -46,6 +48,7 @@ public final class KeychainTokenStore {
         SecItemDelete(query)
     }
 }
+
 
 extension KeychainTokenStore: TokenSaver {
     public func save(token: Token, completion: @escaping (Result<Void, Swift.Error>) -> Void) {
