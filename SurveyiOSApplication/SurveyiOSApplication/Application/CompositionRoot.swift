@@ -38,24 +38,24 @@ class CompositionRoot {
         let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
         
-        let loginDelegate = LoginRequestDelegate(service: service) {[weak store] token in
-            store?.save(token: token) {[weak self, weak mainFlowDecorator, weak rootNc] result in
+        let loginDelegate = LoginRequestDelegate(service: service)
+
+        let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate)
+        let authFlowDecorator = MainQueueDispatchDecorator(decoratee: authFlow as Flow)
+        
+        loginDelegate.onError = {[weak authFlow] _ in
+            authFlow?.didLoginWithError("Invalid username or password")
+        }
+        loginDelegate.onSuccess = {[weak store] token in
+            store?.save(token: token) {[weak mainFlowDecorator, weak authFlow] result in
                 switch result {
                 case .success:
                     mainFlowDecorator?.start()
                 case .failure:
-                    guard let navController = rootNc else {return}
-                    self?.displayError(message: "Unexpected error. Please try later.", showIn: navController)
+                    authFlow?.didLoginWithError("Unexpected error. Please try later.")
                 }
             }
-        } onError: {[weak self, weak rootNc] _ in
-            // display error
-            guard let navController = rootNc else {return}
-            self?.displayError(message: "Invalid username or password", showIn: navController)
         }
-
-        let authFlow: Flow = AuthFlow(navController: rootNc, delegate: loginDelegate)
-        let authFlowDecorator = MainQueueDispatchDecorator(decoratee: authFlow)
         
         let flow = AppStartFlow(loader: store, authFlow: authFlowDecorator, mainFlow: mainFlowDecorator)
 
@@ -81,12 +81,4 @@ class CompositionRoot {
         return baseURL.appendingPathComponent("api/v1/oauth/token")
     }
 
-    private func displayError(message: String, showIn navController: UINavigationController) {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(action)
-            navController.present(alertController, animated: true)
-        }
-    }
 }

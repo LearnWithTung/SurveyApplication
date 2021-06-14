@@ -23,4 +23,17 @@ public final class AuthFlow: Flow {
         navController.setViewControllers([vc], animated: true)
     }
     
+    public func didLoginWithError(_ message: String) {
+        displayError(message: message)
+    }
+    
+    private func displayError(message: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.navController.present(alertController, animated: true)
+        }
+    }
+    
 }
