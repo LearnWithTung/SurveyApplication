@@ -1,5 +1,19 @@
 # Survey iOS Application
 
+## How to use
+
+1. clone project
+2. cd  `SurveyiOSApplication/SurveyiOSApplication/`            
+3. run  `pod install`
+4. open `SurveyiOSApplication.xcworkspace`
+
+##  ⚠️ 
+* If you run tests from  `SurveyFramework` on iOS  you'll see two tests `test_load_returnsSavedToken` and `test_load_returnsLastSavedToken`  fails due to testing Keychain require a host application. You can make it pass by:
+1. Create a dummy host application and run the tests on it.
+2. Run the test on macOS.
+
+* I notice that your development endpoint doesn't work properly so please run the app with `Release` configuration 
+
 ## Use Case Specs
 
 ### Login Use Case
