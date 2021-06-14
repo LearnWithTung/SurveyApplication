@@ -51,7 +51,8 @@ class CompositionRoot {
         
         let flow = AppStartFlow(loader: store, authFlow: authFlowDecorator, mainFlow: mainFlowDecorator)
         authFlow.onLoginSuccess = flow.didLogin
-
+        mainFlow.onLogout = flow.didLogout
+        
         return (rootNc, flow)
     }
     

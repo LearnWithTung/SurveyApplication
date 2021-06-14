@@ -13,6 +13,7 @@ public final class MainFlow: Flow {
     private let currentDate: () -> Date
     private let imageLoader: SurveyImageDataLoader
     private let surveyDetailFlow: Flow
+    var onLogout: (() -> Void)?
     
     public init(navController: UINavigationController,
                 delegate: HomeViewControllerDelegate,
@@ -31,6 +32,10 @@ public final class MainFlow: Flow {
         
         vc.toSurveyDetails = { [weak self] in
             self?.surveyDetailFlow.start()
+        }
+        
+        vc.onLogoutRequest = { [weak self] in
+            self?.onLogout?()
         }
         
         navController.setViewControllers([vc], animated: true)
