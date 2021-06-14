@@ -20,7 +20,7 @@
 #### `SurveyFramework` target
 
 1. Contains business logic. 
-2. platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS).
+2. platform-agnostic. Can run on any platforms (iOS, macOS, iPadOS, tvOS, WatchOS).
 3. Total `32` test cases.
 4. Coverage: `93,7%`.
 5. Total run time: `0.456` seconds.
