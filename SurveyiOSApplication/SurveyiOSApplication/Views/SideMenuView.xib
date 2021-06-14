@@ -19,6 +19,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuView" customModule="SurveyiOSApplication" customModuleProvider="target">
             <connections>
                 <outlet property="logoutButton" destination="K1z-H2-qDP" id="9Ki-RA-hAj"/>
+                <outlet property="viewContainer" destination="SiG-ZE-A5d" id="Kt0-rH-O1F"/>
+                <outlet property="viewContainerLeadingConstraint" destination="Bn4-YQ-QFS" id="MPe-24-p6r"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,7 +33,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiG-ZE-A5d" userLabel="View Container">
-                    <rect key="frame" x="149" y="0.0" width="265" height="896"/>
+                    <rect key="frame" x="414" y="0.0" width="265" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjA-H1-6ww" userLabel="Profile Image View">
                             <rect key="frame" x="209" y="79" width="36" height="39.5"/>
@@ -95,13 +97,13 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="0jU-HO-etk" secondAttribute="bottom" id="6W5-Zx-gtV"/>
                 <constraint firstItem="0jU-HO-etk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6hH-eJ-Mbd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SiG-ZE-A5d" secondAttribute="leading" id="Bn4-YQ-QFS"/>
                 <constraint firstItem="SiG-ZE-A5d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DY2-El-Slh"/>
                 <constraint firstItem="BdA-d0-MFz" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Dfq-7M-mES"/>
                 <constraint firstItem="0jU-HO-etk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FVF-CL-V8u"/>
                 <constraint firstItem="0jU-HO-etk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Q3F-BD-mH1"/>
                 <constraint firstItem="SiG-ZE-A5d" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="240:375" id="fck-ef-0oe"/>
                 <constraint firstItem="HjA-H1-6ww" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="35" id="fhe-AN-SY2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SiG-ZE-A5d" secondAttribute="trailing" id="k8H-ae-vGy"/>
                 <constraint firstAttribute="bottom" secondItem="SiG-ZE-A5d" secondAttribute="bottom" id="rBL-ze-feL"/>
             </constraints>
             <point key="canvasLocation" x="132" y="110"/>

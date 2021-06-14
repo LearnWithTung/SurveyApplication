@@ -37,9 +37,13 @@ public class HomeViewController: UIViewController {
         load()
         
         dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
+        sideMenuView.onDismiss = { [weak self] in
+            self?.sideMenuView.animateMenu(isHidden: true)
+        }
     }
     
     @IBAction func showMenuButtonTapped(_ sender: Any) {
+        sideMenuView.animateMenu(isHidden: false)
     }
     
     private func refresh() {
