@@ -114,36 +114,30 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.requestLoadSurveysCallCount, 2)
     }
     
+    func test_requestsLogout_messageRoot() {
+        var requestCallCount = 0
+        let (sut, _) = makeSUT(onLogout: {
+            requestCallCount += 1
+        })
+        
+        sut.loadViewIfNeeded()
+        
+        sut.userInitiatedLogout()
+        
+        XCTAssertEqual(requestCallCount, 1)
+    }
+    
     // MARK: - Helpers
-    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, onLogout: @escaping () -> Void = {}, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
-        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate)
+        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate, onLogoutRequest: onLogout)
         
         checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, delegate)
-    }
-    
-    private class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
-        var requestLoadSurveysCallCount: Int = 0
-        private var completions = [(Result<[RepresentationSurvey], Error>) -> Void]()
-        
-        func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
-            requestLoadSurveysCallCount += 1
-            completions.append(completion)
-        }
-        
-        func completeLoadingSurveySuccess(with surveys: [RepresentationSurvey], at index: Int = 0) {
-            completions[index](.success(surveys))
-        }
-        
-        func completeLoadingSurveyWithError(_ error: Error, at index: Int = 0) {
-            completions[index](.failure(error))
-        }
-        
     }
 }
 
@@ -162,5 +156,9 @@ private extension HomeViewController {
     
     func renderedDate() -> String? {
         return dateLabel.text
+    }
+    
+    func userInitiatedLogout() {
+        self.sideMenuView.logoutButton.simulateTap()
     }
 }

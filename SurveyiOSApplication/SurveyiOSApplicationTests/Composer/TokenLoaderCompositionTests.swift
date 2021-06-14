@@ -231,12 +231,6 @@ class TokenLoaderCompositionTests: XCTestCase {
             messages[index].refreshToken
         }
     }
-    
-    private func anyNonExpirationToken(currentDate: Date) -> Token {
-        let validDate = currentDate.adding(seconds: 1)
-        return makeTokenWith(expiredDate: validDate)
-    }
-
 
 }
 

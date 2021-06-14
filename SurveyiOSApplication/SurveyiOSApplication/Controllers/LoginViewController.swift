@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol LoginViewControllerDelegate {
-    func login(email: String, password: String)
+    func login(email: String, password: String, completion: @escaping () -> Void)
 }
 
 public class LoginViewController: UIViewController {
@@ -44,12 +44,12 @@ public class LoginViewController: UIViewController {
         
         loadingView.isHidden = false
         loadingView.showIndicator()
-        delegate?.login(email: email, password: password)
+        delegate?.login(email: email, password: password) {[weak self] in
+            self?.loadingView.isHidden = true
+        }
     }
     
     private func appearingAnimation() {
-        self.fieldsContainer.alpha = 0
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5) {
                 self.logoImageCenterYConstraint.isActive = false
@@ -66,6 +66,7 @@ public class LoginViewController: UIViewController {
     }
     
     private func setupViewsAttributes() {
+        fieldsContainer.alpha = 0
         loginButton.layer.cornerRadius = 12
         let btn = UIButton(type: .system)
         btn.setTitle("Forgot?", for: .normal)

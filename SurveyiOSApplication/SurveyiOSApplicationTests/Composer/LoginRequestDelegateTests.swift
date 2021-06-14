@@ -17,7 +17,7 @@ class LoginRequestDelegateTests: XCTestCase {
         let email = "an email"
         let password = "a password"
         
-        sut.login(email: email, password: password)
+        sut.login(email: email, password: password) {}
         
         XCTAssertEqual(service.getRequestedInfo().email, email)
         XCTAssertEqual(service.getRequestedInfo().password, password)
@@ -29,7 +29,7 @@ class LoginRequestDelegateTests: XCTestCase {
             capturedTokens.append(token)
         }
         
-        sut.login(email: "an email", password: "a password")
+        sut.login(email: "an email", password: "a password") {}
 
         let token = makeTokenWith(expiredDate: Date())
         service.completeSucessful(with: token)
@@ -44,7 +44,7 @@ class LoginRequestDelegateTests: XCTestCase {
             capturedErrors.append(error)
         })
         
-        sut.login(email: "an email", password: "a password")
+        sut.login(email: "an email", password: "a password") {}
         
         let error = anyNSError()
         service.completeWithError(error)
@@ -57,13 +57,15 @@ class LoginRequestDelegateTests: XCTestCase {
         let service = LoginServiceSpy()
         var capturedToken: Token?
         var capturedError: Error?
-        var sut: LoginRequestDelegate? = LoginRequestDelegate(service: service) {
+        var sut: LoginRequestDelegate? = LoginRequestDelegate(service: service)
+        sut?.onSuccess = {
             capturedToken = $0
-        } onError: {
+        }
+        sut?.onError = {
             capturedError = $0
         }
-
-        sut?.login(email: "an email", password: "a password")
+        
+        sut?.login(email: "an email", password: "a password") {}
         
         sut = nil
         
@@ -77,7 +79,9 @@ class LoginRequestDelegateTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(onSucess: @escaping (Token) -> Void = {_ in}, onError: @escaping (Error) -> Void = {_ in}, file: StaticString = #file, line: UInt = #line) -> (sut: LoginRequestDelegate, service: LoginServiceSpy) {
         let service = LoginServiceSpy()
-        let sut = LoginRequestDelegate(service: service, onSuccess: onSucess, onError: onError)
+        let sut = LoginRequestDelegate(service: service)
+        sut.onSuccess = onSucess
+        sut.onError = onError
         checkForMemoryLeaks(sut, file: file, line: line)
         checkForMemoryLeaks(service, file: file, line: line)
         

@@ -157,25 +157,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxo-lM-PyL">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxo-lM-PyL" userLabel="Survey Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
                                     <segue destination="xli-hl-ebT" kind="embed" identifier="SurveyViewController" id="hr4-uS-vAt"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-6Z-K2Y" userLabel="Profile Image View">
-                                <rect key="frame" x="354.5" y="81.5" width="39.5" height="40"/>
+                                <rect key="frame" x="354.5" y="79" width="39.5" height="39.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic" translatesAutoresizingMaskIntoConstraints="NO" id="zGk-49-JBk">
-                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="39.5"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-6C-xzW">
+                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="39.5"/>
+                                        <connections>
+                                            <action selector="showMenuButtonTapped:" destination="duR-zH-3mo" eventType="touchUpInside" id="Eqa-Tz-V9h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="zGk-49-JBk" firstAttribute="top" secondItem="Ezl-6Z-K2Y" secondAttribute="top" id="1Jo-LQ-sIr"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Cz-6C-xzW" secondAttribute="bottom" id="55q-8F-ym1"/>
                                     <constraint firstAttribute="height" constant="39.670000000000002" id="N1H-uP-ggn"/>
                                     <constraint firstAttribute="trailing" secondItem="zGk-49-JBk" secondAttribute="trailing" id="PNq-aa-Fs1"/>
                                     <constraint firstAttribute="bottom" secondItem="zGk-49-JBk" secondAttribute="bottom" id="QjY-oI-9rS"/>
+                                    <constraint firstItem="6Cz-6C-xzW" firstAttribute="top" secondItem="Ezl-6Z-K2Y" secondAttribute="top" id="sKO-SW-BZx"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Cz-6C-xzW" secondAttribute="trailing" id="uxY-V2-rFY"/>
+                                    <constraint firstItem="6Cz-6C-xzW" firstAttribute="leading" secondItem="Ezl-6Z-K2Y" secondAttribute="leading" id="wBp-Kd-WmT"/>
                                     <constraint firstItem="zGk-49-JBk" firstAttribute="leading" secondItem="Ezl-6Z-K2Y" secondAttribute="leading" id="xoe-ey-ekZ"/>
                                 </constraints>
                             </view>
@@ -195,6 +205,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kh-QH-4m4" customClass="SideMenuView" customModule="SurveyiOSApplication" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="piw-Ec-KCB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -202,29 +216,34 @@
                             <constraint firstItem="hzg-NW-LyU" firstAttribute="leading" secondItem="piw-Ec-KCB" secondAttribute="leading" id="5gM-vw-ZWP"/>
                             <constraint firstItem="hzg-NW-LyU" firstAttribute="trailing" secondItem="piw-Ec-KCB" secondAttribute="trailing" id="9Gk-y4-TiS"/>
                             <constraint firstItem="ciZ-U7-cna" firstAttribute="top" secondItem="piw-Ec-KCB" secondAttribute="top" constant="19" id="Dfi-Lo-PyL"/>
+                            <constraint firstItem="1kh-QH-4m4" firstAttribute="top" secondItem="xvT-ER-1gx" secondAttribute="top" id="Dry-n3-8CV"/>
+                            <constraint firstItem="Ezl-6Z-K2Y" firstAttribute="top" secondItem="piw-Ec-KCB" secondAttribute="top" constant="35" id="G0d-ed-pRo"/>
                             <constraint firstItem="piw-Ec-KCB" firstAttribute="trailing" secondItem="Ezl-6Z-K2Y" secondAttribute="trailing" constant="20" id="JVT-0N-5RZ"/>
                             <constraint firstItem="Er2-MS-5Tf" firstAttribute="top" secondItem="ciZ-U7-cna" secondAttribute="bottom" constant="5" id="O2b-8b-F6b"/>
                             <constraint firstItem="Er2-MS-5Tf" firstAttribute="leading" secondItem="ciZ-U7-cna" secondAttribute="leading" id="ONw-tY-8c0"/>
                             <constraint firstItem="Ezl-6Z-K2Y" firstAttribute="width" secondItem="Ezl-6Z-K2Y" secondAttribute="height" multiplier="1:1" id="OW1-Ao-1ZI"/>
                             <constraint firstItem="hzg-NW-LyU" firstAttribute="top" secondItem="xvT-ER-1gx" secondAttribute="top" id="SGb-Dj-CWh"/>
+                            <constraint firstItem="1kh-QH-4m4" firstAttribute="trailing" secondItem="piw-Ec-KCB" secondAttribute="trailing" id="SUK-eP-uYB"/>
                             <constraint firstAttribute="bottom" secondItem="hzg-NW-LyU" secondAttribute="bottom" id="TjI-c8-G89"/>
                             <constraint firstAttribute="bottom" secondItem="yxo-lM-PyL" secondAttribute="bottom" id="Uxh-ob-eEA"/>
+                            <constraint firstItem="1kh-QH-4m4" firstAttribute="leading" secondItem="piw-Ec-KCB" secondAttribute="leading" id="cYa-dS-yqd"/>
                             <constraint firstItem="yxo-lM-PyL" firstAttribute="leading" secondItem="piw-Ec-KCB" secondAttribute="leading" id="dNk-kn-ICX"/>
-                            <constraint firstItem="Ezl-6Z-K2Y" firstAttribute="centerY" secondItem="Er2-MS-5Tf" secondAttribute="centerY" constant="-3" id="jhg-Kp-xGe"/>
                             <constraint firstItem="yxo-lM-PyL" firstAttribute="top" secondItem="xvT-ER-1gx" secondAttribute="top" id="rCa-SX-J82"/>
                             <constraint firstItem="piw-Ec-KCB" firstAttribute="trailing" secondItem="yxo-lM-PyL" secondAttribute="trailing" id="sHG-mw-pCR"/>
                             <constraint firstItem="ciZ-U7-cna" firstAttribute="leading" secondItem="piw-Ec-KCB" secondAttribute="leading" constant="20" id="uLk-JH-hVy"/>
+                            <constraint firstAttribute="bottom" secondItem="1kh-QH-4m4" secondAttribute="bottom" id="xZ7-hf-cyT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8yj-7t-Bid"/>
                     <connections>
                         <outlet property="dateLabel" destination="ciZ-U7-cna" id="rtL-ar-0Cf"/>
                         <outlet property="loadingView" destination="hzg-NW-LyU" id="g5A-4K-HfQ"/>
+                        <outlet property="sideMenuView" destination="1kh-QH-4m4" id="h67-mb-sP7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59V-yj-qiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="117"/>
+            <point key="canvasLocation" x="937.68115942028987" y="116.51785714285714"/>
         </scene>
         <!--Survey View Controller-->
         <scene sceneID="gVU-Yb-aF8">

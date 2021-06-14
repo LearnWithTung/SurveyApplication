@@ -29,4 +29,11 @@ public class AppStartFlow: Flow {
         }
     }
     
+    public func didLogin() {
+        mainFlow.start()
+    }
+    
+    public func didLogout() {
+        authFlow.start()
+    }
 }

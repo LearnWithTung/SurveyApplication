@@ -10,23 +10,22 @@ import SurveyFramework
 
 public final class LoginRequestDelegate: LoginViewControllerDelegate {
     private let service: LoginService
-    private let onSuccess: (Token) -> Void
-    private let onError: (Error) -> Void
+    public var onSuccess: ((Token) -> Void)?
+    public var onError: ((Error) -> Void)?
 
-    public init(service: LoginService, onSuccess: @escaping (Token) -> Void, onError: @escaping (Error) -> Void) {
+    public init(service: LoginService) {
         self.service = service
-        self.onSuccess = onSuccess
-        self.onError = onError
     }
     
-    public func login(email: String, password: String) {
+    public func login(email: String, password: String, completion: @escaping () -> Void) {
         service.load(with: .init(email: email, password: password)) {[weak self] result in
             guard let self = self else {return}
+            completion()
             switch result {
             case let .success(token):
-                self.onSuccess(token)
+                self.onSuccess?(token)
             case let .failure(error):
-                self.onError(error)
+                self.onError?(error)
             }
         }
     }
