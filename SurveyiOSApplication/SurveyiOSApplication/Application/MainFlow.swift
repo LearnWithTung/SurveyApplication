@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SurveyFramework
 
 public final class MainFlow: Flow {
     private let navController: UINavigationController
     private let delegate: HomeViewControllerDelegate
+    private let store: TokenCleaner
     private let currentDate: () -> Date
     private let imageLoader: SurveyImageDataLoader
     private let surveyDetailFlow: Flow
@@ -17,11 +19,13 @@ public final class MainFlow: Flow {
     
     public init(navController: UINavigationController,
                 delegate: HomeViewControllerDelegate,
+                store: TokenCleaner,
                 imageLoader: SurveyImageDataLoader,
                 currentDate: @escaping () -> Date,
                 surveyDetailFlow: Flow) {
         self.navController = navController
         self.delegate = delegate
+        self.store = store
         self.imageLoader = imageLoader
         self.currentDate = currentDate
         self.surveyDetailFlow = surveyDetailFlow
@@ -35,6 +39,7 @@ public final class MainFlow: Flow {
         }
         
         vc.onLogoutRequest = { [weak self] in
+            self?.store.clear()
             self?.onLogout?()
         }
         
