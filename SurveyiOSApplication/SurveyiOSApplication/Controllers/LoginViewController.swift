@@ -50,8 +50,6 @@ public class LoginViewController: UIViewController {
     }
     
     private func appearingAnimation() {
-        self.fieldsContainer.alpha = 0
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5) {
                 self.logoImageCenterYConstraint.isActive = false
@@ -68,6 +66,7 @@ public class LoginViewController: UIViewController {
     }
     
     private func setupViewsAttributes() {
+        fieldsContainer.alpha = 0
         loginButton.layer.cornerRadius = 12
         let btn = UIButton(type: .system)
         btn.setTitle("Forgot?", for: .normal)
