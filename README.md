@@ -128,3 +128,21 @@ or
 1. Execute "logout" command with above data.
 2. System clears the cache.
 3. System delivers success message.
+
+## Stats
+
+### `SurveyFramework` target
+
+#### 32 test cases
+
+#### Coverage: 93,7 %
+
+#### Total run time: 0.456 seconds
+
+### `SurveyiOSApplication` target
+
+####  69 test cases
+
+#### Coverage: 81,3 %
+
+#### Total run time: 0.8 seconds
