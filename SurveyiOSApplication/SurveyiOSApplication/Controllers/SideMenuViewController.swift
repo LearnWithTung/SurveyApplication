@@ -7,9 +7,12 @@
 
 import UIKit
 
-class SideMenuViewController: UIViewController {
+public class SideMenuViewController: UIViewController {
     
-    @IBOutlet weak var logoutButton: UIButton!
+    var onLogout: (() -> Void)?
+    @IBOutlet public private(set) weak var logoutButton: UIButton!
     
-    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        onLogout?()
+    }
 }

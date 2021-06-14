@@ -23,9 +23,11 @@ public class HomeViewController: UIViewController {
     
     @IBOutlet public private(set) weak var loadingView: LoadingView!
     @IBOutlet public private(set) weak var dateLabel: UILabel!
-    @IBOutlet public private(set) weak var logoutButton: UIButton!
+    @IBOutlet public private(set) weak var showMenuButton: UIButton!
     
     public private(set) var surveyViewController: SurveyViewController!
+    public private(set) var menuViewController: SideMenuViewController!
+
     public var onLogoutRequest: (() -> Void)?
     
     public override func viewDidLoad() {
@@ -35,10 +37,6 @@ public class HomeViewController: UIViewController {
         load()
         
         dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
-    }
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        onLogoutRequest?()
     }
     
     private func refresh() {
@@ -65,6 +63,11 @@ public class HomeViewController: UIViewController {
             }
             self.surveyViewController.onSurveyDetails = {[weak self] in
                 self?.toSurveyDetails?()
+            }
+        } else if segue.identifier == "SideMenuViewController", let viewController = segue.destination as? SideMenuViewController {
+            self.menuViewController = viewController
+            viewController.onLogout = { [weak self] in
+                self?.onLogoutRequest?()
             }
         }
     }

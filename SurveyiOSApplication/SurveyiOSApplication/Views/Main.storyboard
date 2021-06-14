@@ -174,9 +174,6 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-6C-xzW">
                                         <rect key="frame" x="0.0" y="0.0" width="39.5" height="39.5"/>
-                                        <connections>
-                                            <action selector="logoutButtonTapped:" destination="duR-zH-3mo" eventType="touchUpInside" id="abR-wd-urw"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -211,7 +208,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDj-Is-1N7" userLabel="Menu Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="yOI-Zq-EaP" kind="embed" id="JIJ-Oz-ye8"/>
+                                    <segue destination="yOI-Zq-EaP" kind="embed" identifier="SideMenuViewController" id="JIJ-Oz-ye8"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -243,7 +240,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="ciZ-U7-cna" id="rtL-ar-0Cf"/>
                         <outlet property="loadingView" destination="hzg-NW-LyU" id="g5A-4K-HfQ"/>
-                        <outlet property="logoutButton" destination="6Cz-6C-xzW" id="BQe-pW-VQq"/>
+                        <outlet property="showMenuButton" destination="6Cz-6C-xzW" id="kGk-Vb-Cx4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59V-yj-qiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -369,10 +366,10 @@
             </objects>
             <point key="canvasLocation" x="2662" y="117"/>
         </scene>
-        <!--View Controller-->
+        <!--Side Menu View Controller-->
         <scene sceneID="Ih6-Dk-mLb">
             <objects>
-                <viewController id="yOI-Zq-EaP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideMenuViewController" id="yOI-Zq-EaP" customClass="SideMenuViewController" customModule="SurveyiOSApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrm-42-9Ma">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -427,6 +424,9 @@
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="yOI-Zq-EaP" eventType="touchUpInside" id="EOe-Nj-erS"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctd-0C-GZ4">
                                 <rect key="frame" x="169" y="142.5" width="225" height="1"/>
@@ -456,6 +456,9 @@
                             <constraint firstItem="Zoy-4X-hEg" firstAttribute="leading" secondItem="oHl-oh-M8V" secondAttribute="leading" id="yxz-cB-sdt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logoutButton" destination="XQz-Oq-eRz" id="W6y-r8-mOA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOe-4j-SgI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

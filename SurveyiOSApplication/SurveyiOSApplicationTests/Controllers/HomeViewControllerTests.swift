@@ -160,6 +160,6 @@ private extension HomeViewController {
     }
     
     func userInitiatedLogout() {
-        self.logoutButton.simulateTap()
+        self.menuViewController.logoutButton.simulateTap()
     }
 }
