@@ -21,18 +21,18 @@
 
 1. Contains business logic. 
 2. platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS).
-3. Total 32 test cases.
-4. Coverage: 93,7%.
-5. Total run time: 0.456 seconds.
+3. Total `32` test cases.
+4. Coverage: `93,7%`.
+5. Total run time: `0.456` seconds.
 
 #### `SurveyiOSApplication` target.
 
 1. Contains UI+Representation Layer.
 2. Contains compositions.
 3. Platform-specific (iOS).
-4. Total 69 test cases.
-5. Coverage: 81,3%.
-5. Total run time: 0.8 seconds.
+4. Total `69` test cases.
+5. Coverage: `81,3%`.
+5. Total run time: `0.8` seconds.
 
 
 ## Use Case Specs
