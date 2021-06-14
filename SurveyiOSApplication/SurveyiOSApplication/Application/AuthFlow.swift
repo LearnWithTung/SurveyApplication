@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import SurveyFramework
 
 public final class AuthFlow: Flow {
     private let navController: UINavigationController
     private let delegate: LoginViewControllerDelegate
+    private let store: TokenSaver
+    public var onLoginSuccess: (() -> Void)?
     
     public init(navController: UINavigationController,
-         delegate: LoginViewControllerDelegate) {
+         delegate: LoginViewControllerDelegate,
+         store: TokenSaver) {
         self.navController = navController
         self.delegate = delegate
+        self.store = store
     }
     
     public func start() {
@@ -25,6 +30,17 @@ public final class AuthFlow: Flow {
     
     public func didLoginWithError(_ message: String) {
         displayError(message: message)
+    }
+    
+    public func didLoginSuccess(_ token: Token) {
+        store.save(token: token) {[weak self] result in
+            switch result {
+            case .success:
+                self?.onLoginSuccess?()
+            case .failure:
+                self?.displayError(message: "Unexpected error. Please try later.")
+            }
+        }
     }
     
     private func displayError(message: String) {

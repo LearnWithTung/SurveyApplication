@@ -40,22 +40,16 @@ class CompositionRoot {
         
         let loginDelegate = LoginRequestDelegate(service: service)
 
-        let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate)
+        let authFlow = AuthFlow(navController: rootNc, delegate: loginDelegate, store: store)
+        authFlow.onLoginSuccess = { [weak mainFlowDecorator] in
+            mainFlowDecorator?.start()
+        }
         let authFlowDecorator = MainQueueDispatchDecorator(decoratee: authFlow as Flow)
         
         loginDelegate.onError = {[weak authFlow] _ in
             authFlow?.didLoginWithError("Invalid username or password")
         }
-        loginDelegate.onSuccess = {[weak store] token in
-            store?.save(token: token) {[weak mainFlowDecorator, weak authFlow] result in
-                switch result {
-                case .success:
-                    mainFlowDecorator?.start()
-                case .failure:
-                    authFlow?.didLoginWithError("Unexpected error. Please try later.")
-                }
-            }
-        }
+        loginDelegate.onSuccess = authFlow.didLoginSuccess
         
         let flow = AppStartFlow(loader: store, authFlow: authFlowDecorator, mainFlow: mainFlowDecorator)
 
