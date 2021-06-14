@@ -46,7 +46,7 @@ class MainFlowTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Flow, navigationController: NavigationControllerSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
-        let delegateSpy = DelegateSpy()
+        let delegateSpy = HomeViewControllerDelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
         let sut: Flow = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, imageLoader: fakeImageLoader, currentDate: Date.init, surveyDetailFlow: FlowTests())
         let decorator = MainQueueDispatchDecorator(decoratee: sut)
@@ -57,10 +57,6 @@ class MainFlowTests: XCTestCase {
         checkForMemoryLeaks(decorator, file: file, line: line)
 
         return (decorator, navigationControllerSpy)
-    }
-    
-    private class DelegateSpy: HomeViewControllerDelegate {
-        func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {}
     }
     
     private func getHomeViewController(from navigationController: NavigationControllerSpy) -> HomeViewController? {

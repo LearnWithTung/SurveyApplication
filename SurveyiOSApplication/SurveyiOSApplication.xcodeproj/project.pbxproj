@@ -59,6 +59,7 @@
 		DF3E9837267653CD004FA3AE /* UILabel+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E9836267653CD004FA3AE /* UILabel+Animation.swift */; };
 		DF3E983A2676DFA5004FA3AE /* Token+FactoryMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E98392676DFA5004FA3AE /* Token+FactoryMethods.swift */; };
 		DF3E983C2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983B2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift */; };
+		DF3E98402676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E983F2676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift */; };
 		DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C126734A770017577D /* UIImage+Extensions.swift */; };
 		DF9876C5267353BC0017577D /* UIExtension+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */; };
 		DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA8A03926731F37008FF1D9 /* AppDelegate.swift */; };
@@ -153,6 +154,7 @@
 		DF3E9836267653CD004FA3AE /* UILabel+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Animation.swift"; sourceTree = "<group>"; };
 		DF3E98392676DFA5004FA3AE /* Token+FactoryMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+FactoryMethods.swift"; sourceTree = "<group>"; };
 		DF3E983B2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
+		DF3E983F2676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
 		DF9876C126734A770017577D /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DF9876C4267353BC0017577D /* UIExtension+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIExtension+TestHelpers.swift"; sourceTree = "<group>"; };
 		DFA8A03626731F37008FF1D9 /* SurveyiOSApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurveyiOSApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,6 +353,7 @@
 				DF3E982E267638BE004FA3AE /* FakeImageDataLoader.swift */,
 				DF3E98392676DFA5004FA3AE /* Token+FactoryMethods.swift */,
 				DF3E983B2676E855004FA3AE /* LoginViewControllerDelegateSpy.swift */,
+				DF3E983F2676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF3E97EE2675A99A004FA3AE /* TokenLoaderCompositionTests.swift in Sources */,
+				DF3E98402676EC1C004FA3AE /* HomeViewControllerDelegateSpy.swift in Sources */,
 				DFA8A07026733E56008FF1D9 /* LoginViewControllerTests.swift in Sources */,
 				DF3E97C126744B2B004FA3AE /* XCTestCase+TrackingMemoryLeaks.swift in Sources */,
 				DF3E98172675F28C004FA3AE /* AuthFlowTests.swift in Sources */,
