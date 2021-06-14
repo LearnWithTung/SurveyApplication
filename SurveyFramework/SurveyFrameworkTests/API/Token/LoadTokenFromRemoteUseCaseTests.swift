@@ -50,7 +50,7 @@ class LoadTokenFromRemoteUseCaseTests: XCTestCase {
         let urlRequest = client.requestedURLRequests[0]
         let requestedBody = try! JSONSerialization.jsonObject(with: urlRequest.httpBody!) as! [String: String]
         
-        XCTAssertEqual(urlRequest.httpMethod, "GET")
+        XCTAssertEqual(urlRequest.httpMethod, "POST")
         XCTAssertEqual(requestedBody, body)
     }
     
