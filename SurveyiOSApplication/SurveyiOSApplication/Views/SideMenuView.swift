@@ -39,12 +39,29 @@ public class SideMenuView: UIView {
     }
     
     func animateMenu(isHidden: Bool) {
+        if isHidden {
+            animateOut()
+        } else {
+            animateIn()
+        }
+    }
+    
+    private func animateIn() {
         self.isHidden = false
-        alpha = isHidden ? 1 : 0
+        alpha = 0
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-            self.alpha = isHidden ? 0 : 1
-            self.viewContainerLeadingConstraint.constant = isHidden ? 0 : self.viewContainer.bounds.width
+            self.alpha =  1
+            self.viewContainerLeadingConstraint.constant = self.viewContainer.bounds.width
             self.layoutIfNeeded()
+        }
+    }
+    
+    private func animateOut() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.viewContainerLeadingConstraint.constant = 0
+            self.layoutIfNeeded()
+        }) { _ in
+            self.alpha = 0
         }
     }
     
