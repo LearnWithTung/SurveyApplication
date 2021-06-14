@@ -33,4 +33,7 @@ public class AppStartFlow: Flow {
         mainFlow.start()
     }
     
+    public func didLogout() {
+        authFlow.start()
+    }
 }

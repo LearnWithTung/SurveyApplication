@@ -46,6 +46,15 @@ class AppStartFlowTests: XCTestCase {
         XCTAssertEqual(mainFlow.startCount, 1)
     }
     
+    func test_didLogout_startsAuthFlow() {
+        let stub = TokenLoaderStub(stubbedToken: makeTokenWith(expiredDate: Date()))
+        let (sut, authFlow, _) = makeSUT(loader: stub)
+        
+        sut.didLogout()
+        
+        XCTAssertEqual(authFlow.startCount, 1)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(loader: TokenLoaderStub, file: StaticString = #file, line: UInt = #line) -> (sut: AppStartFlow, authFlow: FlowTests, mainFlow: FlowTests) {
         let authFlow = FlowTests()
