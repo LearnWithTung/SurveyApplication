@@ -18,6 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuView" customModule="SurveyiOSApplication" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundView" destination="0jU-HO-etk" id="NlV-nZ-W5Q"/>
                 <outlet property="logoutButton" destination="K1z-H2-qDP" id="9Ki-RA-hAj"/>
                 <outlet property="viewContainer" destination="SiG-ZE-A5d" id="Kt0-rH-O1F"/>
                 <outlet property="viewContainerLeadingConstraint" destination="Bn4-YQ-QFS" id="MPe-24-p6r"/>
@@ -58,7 +59,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v0.1.0 (1562903885)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdA-d0-MFz">
-                            <rect key="frame" x="20" y="851" width="102" height="11"/>
+                            <rect key="frame" x="20" y="861" width="102" height="11"/>
                             <fontDescription key="fontDescription" name="NeuzeitSLTStd-Book" family="Neuzeit S LT Std" pointSize="11"/>
                             <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -102,7 +103,7 @@
                 <constraint firstItem="0jU-HO-etk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6hH-eJ-Mbd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SiG-ZE-A5d" secondAttribute="leading" id="Bn4-YQ-QFS"/>
                 <constraint firstItem="SiG-ZE-A5d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DY2-El-Slh"/>
-                <constraint firstItem="BdA-d0-MFz" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Dfq-7M-mES"/>
+                <constraint firstItem="BdA-d0-MFz" firstAttribute="bottom" secondItem="SiG-ZE-A5d" secondAttribute="bottom" constant="-24" id="Dfq-7M-mES"/>
                 <constraint firstItem="0jU-HO-etk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FVF-CL-V8u"/>
                 <constraint firstItem="0jU-HO-etk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Q3F-BD-mH1"/>
                 <constraint firstItem="SiG-ZE-A5d" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="240:375" id="fck-ef-0oe"/>

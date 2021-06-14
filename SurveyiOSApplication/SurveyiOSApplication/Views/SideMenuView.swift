@@ -9,6 +9,7 @@ import UIKit
 
 public class SideMenuView: UIView {
     
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet public private(set) weak var logoutButton: UIButton!
     @IBOutlet weak var viewContainerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewContainer: UIView!
@@ -19,18 +20,21 @@ public class SideMenuView: UIView {
         super.init(coder: coder)
         
         customInit()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
-        addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func dismissMenu() {
-        onDismiss?()
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         onLogout?()
     }
+    
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let firstTouch = touches.first {
+            let hitView = self.hitTest(firstTouch.location(in: self), with: event)
+            if hitView == self.backgroundView {
+                self.onDismiss?()
+            }
+        }
+    }
+    
     
     private func customInit(){
         let contentView = UINib(nibName: "SideMenuView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
