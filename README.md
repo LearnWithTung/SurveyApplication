@@ -8,11 +8,33 @@
 4. open `SurveyiOSApplication.xcworkspace`
 
 ##  ⚠️ 
-* If you run tests from  `SurveyFramework` on iOS  you'll see two tests `test_load_returnsSavedToken` and `test_load_returnsLastSavedToken`  fails due to testing Keychain requires a host application. You can make it pass by either:
+* If you run tests from  `SurveyFramework` on iOS target you'll see two tests `test_load_returnsSavedToken` and `test_load_returnsLastSavedToken`  fails due to testing Keychain requires a host application. You can make it pass by either:
 1. Create a host iOS application and run the tests on it.
-2. Run the test on macOS.
+2. Run the test on macOS tar.
 
 * I notice that your development endpoint doesn't work properly so please run the app with `Release` configuration 
+
+#
+
+## 📊 Stats
+
+### `SurveyFramework` target
+
+#### Contains business logic.
+#### platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS)
+#### 32 test cases
+#### Coverage: 93,7 %
+#### Total run time: 0.456 seconds
+
+### `SurveyiOSApplication` target
+#### Contains UI+Representation Layer 
+#### Contains compositions
+#### Platform-specific (iOS)
+####  69 test cases
+#### Coverage: 81,3 %
+#### Total run time: 0.8 seconds
+
+#
 
 ## Use Case Specs
 
@@ -127,21 +149,3 @@
 1. Execute "logout" command with above data.
 2. System clears the cache.
 3. System delivers success message.
-
-## 📊 Stats
-
-### `SurveyFramework` target
-
-#### Contains business logic.
-#### platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS)
-#### 32 test cases
-#### Coverage: 93,7 %
-#### Total run time: 0.456 seconds
-
-### `SurveyiOSApplication` target
-#### Contains UI+Representation Layer 
-#### Contains compositions
-#### Platform-specific (iOS)
-####  69 test cases
-#### Coverage: 81,3 %
-#### Total run time: 0.8 seconds
