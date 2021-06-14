@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol LoginViewControllerDelegate {
-    func login(email: String, password: String)
+    func login(email: String, password: String, completion: @escaping () -> Void)
 }
 
 public class LoginViewController: UIViewController {
@@ -44,7 +44,9 @@ public class LoginViewController: UIViewController {
         
         loadingView.isHidden = false
         loadingView.showIndicator()
-        delegate?.login(email: email, password: password)
+        delegate?.login(email: email, password: password) {[weak self] in
+            self?.loadingView.isHidden = true
+        }
     }
     
     private func appearingAnimation() {

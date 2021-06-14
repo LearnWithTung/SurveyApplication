@@ -17,7 +17,7 @@ class LoginRequestDelegateTests: XCTestCase {
         let email = "an email"
         let password = "a password"
         
-        sut.login(email: email, password: password)
+        sut.login(email: email, password: password) {}
         
         XCTAssertEqual(service.getRequestedInfo().email, email)
         XCTAssertEqual(service.getRequestedInfo().password, password)
@@ -29,7 +29,7 @@ class LoginRequestDelegateTests: XCTestCase {
             capturedTokens.append(token)
         }
         
-        sut.login(email: "an email", password: "a password")
+        sut.login(email: "an email", password: "a password") {}
 
         let token = makeTokenWith(expiredDate: Date())
         service.completeSucessful(with: token)
@@ -44,7 +44,7 @@ class LoginRequestDelegateTests: XCTestCase {
             capturedErrors.append(error)
         })
         
-        sut.login(email: "an email", password: "a password")
+        sut.login(email: "an email", password: "a password") {}
         
         let error = anyNSError()
         service.completeWithError(error)
@@ -65,7 +65,7 @@ class LoginRequestDelegateTests: XCTestCase {
             capturedError = $0
         }
         
-        sut?.login(email: "an email", password: "a password")
+        sut?.login(email: "an email", password: "a password") {}
         
         sut = nil
         

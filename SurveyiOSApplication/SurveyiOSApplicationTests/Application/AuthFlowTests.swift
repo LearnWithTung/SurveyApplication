@@ -79,7 +79,7 @@ class AuthFlowTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Flow, authFlow: AuthFlow, navigationController: NavigationControllerSpy, store: TokenSaverSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
-        let delegate = DelegateSpy()
+        let delegate = LoginViewControllerDelegateSpy()
         let store = TokenSaverSpy()
         let sut: Flow = AuthFlow(navController: navigationControllerSpy, delegate: delegate, store: store)
         let decorator = MainQueueDispatchDecorator(decoratee: sut)
@@ -107,12 +107,6 @@ class AuthFlowTests: XCTestCase {
         
         func saveTokenFailed(at index: Int = 0){
             completions[index](.failure(anyNSError()))
-        }
-    }
-    
-    private class DelegateSpy: LoginViewControllerDelegate {
-        func login(email: String, password: String) {
-            
         }
     }
     
