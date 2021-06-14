@@ -118,3 +118,13 @@ or
 
 #### Invalid data error - error course:
 1. System delivers invalid data error.
+
+
+### Logout Use Case
+
+#### Data:
+
+#### Primary course:
+1. Execute "logout" command with above data.
+2. System clears the cache.
+3. System delivers success message.
