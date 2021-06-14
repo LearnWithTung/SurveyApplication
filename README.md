@@ -14,27 +14,26 @@
 
 * I notice that your development endpoint doesn't work properly so please run the app with `Release` configuration 
 
-#
 
 ## 📊 Stats
 
-### `SurveyFramework` target
+#### `SurveyFramework` target
 
-#### Contains business logic.
-#### platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS)
-#### 32 test cases
-#### Coverage: 93,7 %
-#### Total run time: 0.456 seconds
+1. Contains business logic. 
+2. platform-agnostic. Can run on any platforms (iOS, macOS, tvOS, WatchOS).
+3. Total 32 test cases.
+4. Coverage: 93,7%.
+5. Total run time: 0.456 seconds.
 
-### `SurveyiOSApplication` target
-#### Contains UI+Representation Layer 
-#### Contains compositions
-#### Platform-specific (iOS)
-####  69 test cases
-#### Coverage: 81,3 %
-#### Total run time: 0.8 seconds
+#### `SurveyiOSApplication` target.
 
-#
+1. Contains UI+Representation Layer.
+2. Contains compositions.
+3. Platform-specific (iOS).
+4. Total 69 test cases.
+5. Coverage: 81,3%.
+5. Total run time: 0.8 seconds.
+
 
 ## Use Case Specs
 
