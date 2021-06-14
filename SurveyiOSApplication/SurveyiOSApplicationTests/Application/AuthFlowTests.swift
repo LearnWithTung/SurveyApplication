@@ -52,6 +52,18 @@ class AuthFlowTests: XCTestCase {
         XCTAssertEqual(store.requetsCallCount, 1)
     }
     
+    func test_saveNewTokenSuccess_messagesRoot() {
+        let (_, authFlow, _, store) = makeSUT()
+
+        var messages = 0
+        authFlow.onLoginSuccess = {messages += 1}
+        
+        authFlow.didLoginSuccess(anyNonExpirationToken(currentDate: Date()))
+        store.saveTokenSuccessful()
+
+        XCTAssertEqual(messages, 1)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Flow, authFlow: AuthFlow, navigationController: NavigationControllerSpy, store: TokenSaverSpy) {
         let navigationControllerSpy = NavigationControllerSpy()
@@ -70,8 +82,15 @@ class AuthFlowTests: XCTestCase {
     
     private class TokenSaverSpy: TokenSaver {
         var requetsCallCount: Int = 0
+        private var completions = [(TokenSaverResult) -> Void]()
+        
         func save(token: Token, completion: @escaping (TokenSaverResult) -> Void) {
             requetsCallCount += 1
+            completions.append(completion)
+        }
+        
+        func saveTokenSuccessful(at index: Int = 0) {
+            completions[index](.success(()))
         }
     }
     
