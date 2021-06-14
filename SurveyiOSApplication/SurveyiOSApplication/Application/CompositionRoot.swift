@@ -35,8 +35,8 @@ class CompositionRoot {
         let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
         let downloader = ImageDownloader(name: "SurveyImageDownloader")
         let imageLoader = KingfisherImageDataLoader(downloader: downloader)
-        let mainFlow: Flow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
-        let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow)
+        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
+        let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow as Flow)
         
         let loginDelegate = LoginRequestDelegate(service: service)
 

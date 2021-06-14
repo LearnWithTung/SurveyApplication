@@ -191,6 +191,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cz-6C-xzW">
+                                <rect key="frame" x="184" y="433" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="duR-zH-3mo" eventType="touchUpInside" id="abR-wd-urw"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NW-LyU" customClass="LoadingView" customModule="SurveyiOSApplication" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -220,6 +228,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="ciZ-U7-cna" id="rtL-ar-0Cf"/>
                         <outlet property="loadingView" destination="hzg-NW-LyU" id="g5A-4K-HfQ"/>
+                        <outlet property="logoutButton" destination="6Cz-6C-xzW" id="BQe-pW-VQq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59V-yj-qiY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -21,10 +21,12 @@ public class HomeViewController: UIViewController {
     var onViewDidLoad: (() -> Void)?
     var toSurveyDetails: (() -> Void)?
     
-    @IBOutlet public private(set) var loadingView: LoadingView!
-    @IBOutlet public private(set) var dateLabel: UILabel!
+    @IBOutlet public private(set) weak var loadingView: LoadingView!
+    @IBOutlet public private(set) weak var dateLabel: UILabel!
+    @IBOutlet public private(set) weak var logoutButton: UIButton!
     
     public private(set) var surveyViewController: SurveyViewController!
+    public var onLogoutRequest: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,10 @@ public class HomeViewController: UIViewController {
         load()
         
         dateLabel.text = currentDate?().dateStringWithFormat("EEEE, MMM d").uppercased()
+    }
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        onLogoutRequest?()
     }
     
     private func refresh() {

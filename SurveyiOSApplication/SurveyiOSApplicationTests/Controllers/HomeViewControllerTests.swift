@@ -114,6 +114,20 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.requestLoadSurveysCallCount, 2)
     }
     
+    func test_requestsLogout_messageRoot() {
+        let (sut, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        var requestCallCount = 0
+        sut.onLogoutRequest = {
+            requestCallCount += 1
+        }
+        
+        sut.userInitiatedLogout()
+        
+        XCTAssertEqual(requestCallCount, 1)
+    }
+    
     // MARK: - Helpers
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
@@ -162,5 +176,9 @@ private extension HomeViewController {
     
     func renderedDate() -> String? {
         return dateLabel.text
+    }
+    
+    func userInitiatedLogout() {
+        self.logoutButton.simulateTap()
     }
 }

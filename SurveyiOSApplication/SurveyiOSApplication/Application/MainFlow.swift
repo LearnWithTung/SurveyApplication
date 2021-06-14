@@ -35,5 +35,4 @@ public final class MainFlow: Flow {
         
         navController.setViewControllers([vc], animated: true)
     }
-    
 }
