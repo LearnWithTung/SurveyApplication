@@ -34,7 +34,7 @@
 5. Coverage: `81,3%`.
 5. Total run time: `0.8` seconds.
 
-## Features Requirement
+## Features
 ✅  Log in.
 
 ✅  Log out.
