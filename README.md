@@ -36,9 +36,13 @@
 
 ## Features Requirement
 ✅  Log in.
+
 ✅  Log out.
+
 ✅  Load surveys.
+
 ✅  Pull to refresh (swipe to left) surveys.
+
 ✅  Refresh token.
 
 ## Use Case Specs
