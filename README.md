@@ -34,6 +34,12 @@
 5. Coverage: `81,3%`.
 5. Total run time: `0.8` seconds.
 
+## Features Requirement
+✅  Log in.
+✅  Log out.
+✅  Load surveys.
+✅  Pull to refresh (swipe to left) surveys.
+✅  Refresh token.
 
 ## Use Case Specs
 
