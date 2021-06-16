@@ -10,7 +10,7 @@ import UIKit
 public final class LoginUIComposer {
     private init() {}
     
-    public static func loginComposedWith(delegate: LoginViewControllerDelegate) -> LoginViewController {
+    public static func viewControllerComposedWith(delegate: LoginViewControllerDelegate) -> LoginViewController {
         let bundle = Bundle(for: LoginViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let loginViewController: LoginViewController = storyboard.instantiate()

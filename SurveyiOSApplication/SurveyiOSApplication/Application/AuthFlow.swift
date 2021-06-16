@@ -23,7 +23,7 @@ public final class AuthFlow: Flow {
     }
     
     public func start() {
-        let vc = LoginUIComposer.loginComposedWith(delegate: delegate)
+        let vc = LoginUIComposer.viewControllerComposedWith(delegate: delegate)
         
         navController.setViewControllers([vc], animated: true)
     }
