@@ -20,9 +20,15 @@ struct Root: Decodable {
         let expires_in: Int
         let refresh_token: String
         
-        func toModel(currentDate: Date) -> Token {
+        enum UnexpectedError: Error {
+            case invalidDate
+        }
+        
+        func toModel(currentDate: Date) throws -> Token {
             let calendar = Calendar(identifier: .gregorian)
-            let expiredDate = calendar.date(byAdding: .second, value: expires_in, to: currentDate)!
+            guard let expiredDate = calendar.date(byAdding: .second, value: expires_in, to: currentDate) else {
+                throw UnexpectedError.invalidDate
+            }
             let token = Token(accessToken: access_token, tokenType: token_type, expiredDate: expiredDate, refreshToken: refresh_token)
             
             return token

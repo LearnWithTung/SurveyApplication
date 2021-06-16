@@ -12,8 +12,10 @@ final class RemoteTokenMappers {
     private init() {}
     
     static func map(data: Data, response: HTTPURLResponse, currentDate: Date) -> RemoteTokenLoader.RemoteTokenResult {
-        if response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
-            return .success(root.data.attributes.toModel(currentDate: currentDate))
+        if response.isOK,
+           let root = try? JSONDecoder().decode(Root.self, from: data),
+           let models = try? root.data.attributes.toModel(currentDate: currentDate) {
+            return .success(models)
         }
         return .failure(.invalidData)
     }
