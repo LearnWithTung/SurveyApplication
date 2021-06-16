@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1037F0267A4625003CCA3D /* AlamofireRefreshTokenDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1037EF267A4625003CCA3D /* AlamofireRefreshTokenDecorator.swift */; };
 		DF3E979C2673635C004FA3AE /* NeuzeitSLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */; };
 		DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */; };
 		DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979E26736825004FA3AE /* CustomTextField.xib */; };
@@ -103,6 +104,7 @@
 		017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyiOSApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.release.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.release.xcconfig"; sourceTree = "<group>"; };
 		9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.debug.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.debug.xcconfig"; sourceTree = "<group>"; };
+		DF1037EF267A4625003CCA3D /* AlamofireRefreshTokenDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRefreshTokenDecorator.swift; sourceTree = "<group>"; };
 		DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-Book.otf"; sourceTree = "<group>"; };
 		DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-BookHeavy.otf"; sourceTree = "<group>"; };
 		DF3E979E26736825004FA3AE /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */,
 				DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */,
 				DF3E98012675E329004FA3AE /* SurveyRequestDelegate.swift */,
+				DF1037EF267A4625003CCA3D /* AlamofireRefreshTokenDecorator.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				DF3E98022675E329004FA3AE /* SurveyRequestDelegate.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DF3E98462677057B004FA3AE /* SideMenuView.swift in Sources */,
+				DF1037F0267A4625003CCA3D /* AlamofireRefreshTokenDecorator.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
 				DF3E98132675EFEB004FA3AE /* KingfisherImageDataLoader.swift in Sources */,
 				DF3E97DE2674B867004FA3AE /* UIStoryboard+Extensions.swift in Sources */,
