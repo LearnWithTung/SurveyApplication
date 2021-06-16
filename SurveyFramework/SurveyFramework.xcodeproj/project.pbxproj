@@ -113,6 +113,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF1037D9267A349F003CCA3D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DFEC164726724A1F008990FB /* Credentials.swift */,
+				DFEC163F26723FFF008990FB /* Token.swift */,
+				DF3E97F72675D401004FA3AE /* LoginService.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DF1037DA267A34B2003CCA3D /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97FF2675DCF2004FA3AE /* SurveyLoader.swift */,
+				DFEC165D26726AE6008990FB /* Survey.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
 		DFEC161B26723F33008990FB = {
 			isa = PBXGroup;
 			children = (
@@ -158,11 +177,8 @@
 		DFEC164B26725F8A008990FB /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				DFEC163F26723FFF008990FB /* Token.swift */,
-				DFEC164726724A1F008990FB /* Credentials.swift */,
-				DFEC165D26726AE6008990FB /* Survey.swift */,
-				DF3E97F72675D401004FA3AE /* LoginService.swift */,
-				DF3E97FF2675DCF2004FA3AE /* SurveyLoader.swift */,
+				DF1037DA267A34B2003CCA3D /* Surveys */,
+				DF1037D9267A349F003CCA3D /* Login */,
 			);
 			path = Feature;
 			sourceTree = "<group>";

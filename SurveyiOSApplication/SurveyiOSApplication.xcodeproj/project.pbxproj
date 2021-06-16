@@ -213,6 +213,110 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DF1037DB267A34CA003CCA3D /* UI Composer */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97CE26746C4F004FA3AE /* HomeUIComposer.swift */,
+				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
+			);
+			path = "UI Composer";
+			sourceTree = "<group>";
+		};
+		DF1037DC267A3506003CCA3D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E98012675E329004FA3AE /* SurveyRequestDelegate.swift */,
+				DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		DF1037DD267A351D003CCA3D /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97E926751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift */,
+				DF3E97E12674C907004FA3AE /* MainQueueDispatchDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		DF1037DE267A354B003CCA3D /* TokenLoader */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */,
+			);
+			path = TokenLoader;
+			sourceTree = "<group>";
+		};
+		DF1037DF267A3559003CCA3D /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E98102675EF1B004FA3AE /* AlamofireHTTPClient.swift */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		DF1037E0267A3560003CCA3D /* CustomPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97D52674901E004FA3AE /* CustomPageControl.swift */,
+				DF3E97D42674901E004FA3AE /* CustomPageControl.xib */,
+			);
+			path = CustomPageControl;
+			sourceTree = "<group>";
+		};
+		DF1037E1267A356F003CCA3D /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97C926746B26004FA3AE /* LoadingView.swift */,
+				DF3E97C826746B26004FA3AE /* LoadingView.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		DF1037E2267A3575003CCA3D /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E979E26736825004FA3AE /* CustomTextField.xib */,
+				DF3E97A0267368AA004FA3AE /* CustomTextField.swift */,
+			);
+			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		DF1037E3267A357F003CCA3D /* SideMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E98452677057B004FA3AE /* SideMenuView.swift */,
+				DF3E98432677051D004FA3AE /* SideMenuView.xib */,
+			);
+			path = SideMenuView;
+			sourceTree = "<group>";
+		};
+		DF1037E4267A3587003CCA3D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DF1037E5267A358C003CCA3D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DF1037E6267A3590003CCA3D /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E983426764FCC004FA3AE /* SurveyDetailViewController.swift */,
+				DF3E97D026748934004FA3AE /* SurveyViewController.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
 		DF3E97A226737195004FA3AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,15 +356,11 @@
 		DF3E97A5267371B2004FA3AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E97D52674901E004FA3AE /* CustomPageControl.swift */,
-				DF3E97D42674901E004FA3AE /* CustomPageControl.xib */,
-				DF3E97C926746B26004FA3AE /* LoadingView.swift */,
-				DF3E97C826746B26004FA3AE /* LoadingView.xib */,
-				DF3E97A0267368AA004FA3AE /* CustomTextField.swift */,
-				DF3E979E26736825004FA3AE /* CustomTextField.xib */,
+				DF1037E3267A357F003CCA3D /* SideMenuView */,
+				DF1037E2267A3575003CCA3D /* CustomTextField */,
+				DF1037E1267A356F003CCA3D /* LoadingView */,
+				DF1037E0267A3560003CCA3D /* CustomPageControl */,
 				DFA8A07526734013008FF1D9 /* Main.storyboard */,
-				DF3E98432677051D004FA3AE /* SideMenuView.xib */,
-				DF3E98452677057B004FA3AE /* SideMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,10 +368,9 @@
 		DF3E97A6267371C3004FA3AE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DFA8A07126733F75008FF1D9 /* LoginViewController.swift */,
-				DF3E97BD2673BCA6004FA3AE /* HomeViewController.swift */,
-				DF3E97D026748934004FA3AE /* SurveyViewController.swift */,
-				DF3E983426764FCC004FA3AE /* SurveyDetailViewController.swift */,
+				DF1037E6267A3590003CCA3D /* Surveys */,
+				DF1037E5267A358C003CCA3D /* Home */,
+				DF1037E4267A3587003CCA3D /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -290,14 +389,11 @@
 		DF3E97A8267371FC004FA3AE /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E98102675EF1B004FA3AE /* AlamofireHTTPClient.swift */,
-				DFA8A07326733FA0008FF1D9 /* LoginUIComposer.swift */,
-				DF3E97CE26746C4F004FA3AE /* HomeUIComposer.swift */,
-				DF3E97E12674C907004FA3AE /* MainQueueDispatchDecorator.swift */,
-				DF3E97E926751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift */,
-				DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */,
-				DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */,
-				DF3E98012675E329004FA3AE /* SurveyRequestDelegate.swift */,
+				DF1037DF267A3559003CCA3D /* HTTPClient */,
+				DF1037DE267A354B003CCA3D /* TokenLoader */,
+				DF1037DD267A351D003CCA3D /* Decorators */,
+				DF1037DC267A3506003CCA3D /* Delegates */,
+				DF1037DB267A34CA003CCA3D /* UI Composer */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
