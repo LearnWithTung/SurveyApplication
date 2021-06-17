@@ -41,7 +41,7 @@ class CustomPageControl: UIView {
     private func customInit(){
         let contentView = UINib(nibName: "CustomPageControl", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(contentView)
-        contentView.frame = self.bounds
+        contentView.frame = bounds
     }
     
     private func updateDots() {

@@ -33,7 +33,7 @@ public class SurveyRequestDelegate: HomeViewControllerDelegate {
 private extension Array where Element == Survey {
     
     func toRepresentation() -> [RepresentationSurvey] {
-        self.map {
+        map {
             let originalURLString = $0.attributes.imageURL.absoluteString
             let newURL = URL(string: originalURLString + "l")!
             return RepresentationSurvey(title: $0.attributes.title, description: $0.attributes.description, imageURL: newURL)
