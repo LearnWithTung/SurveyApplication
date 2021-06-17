@@ -29,12 +29,15 @@ public final class RemoteSurveysLoader: SurveyLoader {
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
+        case unexpected
     }
     
     public typealias RemoteLoadSurveyResult = SurveyLoader.LoadSurveyResult
     
     public func load(query: SurveyQuery, completion: @escaping (RemoteLoadSurveyResult) -> Void) {
-        let request = makeRequest(from: query)
+        guard let request = makeRequest(from: query) else {
+            return completion(.failure(Error.unexpected))
+        }
         client.request(from: request) {[weak self] result in
             guard self != nil else {return}
             
@@ -47,14 +50,16 @@ public final class RemoteSurveysLoader: SurveyLoader {
         }
     }
     
-    private func makeRequest(from query: SurveyQuery) -> URLRequest {
-        var urlComponent = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+    private func makeRequest(from query: SurveyQuery) -> URLRequest? {
+        guard var urlComponent = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return nil
+        }
         urlComponent.queryItems = [
             URLQueryItem(name: "page[number]", value: "\(query.pageNumber)"),
             URLQueryItem(name: "page[size]", value: "\(query.pageSize)")
         ]
         
-        let enrichURL = urlComponent.url!
+        guard let enrichURL = urlComponent.url else {return nil}
         return URLRequest(url: enrichURL)
     }
     

@@ -131,7 +131,7 @@ class HomeViewControllerTests: XCTestCase {
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, onLogout: @escaping () -> Void = {}, file: StaticString = #file, line: UInt = #line) -> (sut: HomeViewController, delegate: HomeViewControllerDelegateSpy) {
         let delegate = HomeViewControllerDelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
-        let sut = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate, onLogoutRequest: onLogout)
+        let sut = HomeUIComposer.viewControllerComposedWith(delegate: delegate, imageLoader: fakeImageLoader, currentDate: currentDate, onLogoutRequest: onLogout)
         
         checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
         checkForMemoryLeaks(delegate, file: file, line: line)

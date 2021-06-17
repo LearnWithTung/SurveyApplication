@@ -32,7 +32,7 @@ public final class MainFlow: Flow {
     }
     
     public func start(){
-        let vc = HomeUIComposer.homeComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate) { [weak self] in
+        let vc = HomeUIComposer.viewControllerComposedWith(delegate: delegate, imageLoader: imageLoader, currentDate: currentDate) { [weak self] in
             self?.store.clear()
             self?.onLogout?()
         }

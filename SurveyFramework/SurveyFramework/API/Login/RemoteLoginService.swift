@@ -57,13 +57,13 @@ public class RemoteLoginService: LoginService {
             "client_id": credentials.client_id,
             "client_secret": credentials.client_secret
         ]
-        let bodyData = try! JSONSerialization.data(withJSONObject: body)
         
         var request = URLRequest(url: url)
+        if let bodyData = try? JSONSerialization.data(withJSONObject: body) {
+            request.httpBody = bodyData
+        }
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
         request.httpMethod = "POST"
-        request.httpBody = bodyData
         
         return request
     }

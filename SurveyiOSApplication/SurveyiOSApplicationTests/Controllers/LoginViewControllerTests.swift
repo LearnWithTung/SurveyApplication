@@ -113,7 +113,7 @@ class LoginViewControllerTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LoginViewController, delegate: LoginViewControllerDelegateSpy) {
         let delegate = LoginViewControllerDelegateSpy()
-        let sut = LoginUIComposer.loginComposedWith(delegate: delegate)
+        let sut = LoginUIComposer.viewControllerComposedWith(delegate: delegate)
         checkForMemoryLeaks(delegate, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         return (sut, delegate)
