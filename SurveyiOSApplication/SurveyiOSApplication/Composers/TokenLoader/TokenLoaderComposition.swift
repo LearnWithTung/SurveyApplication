@@ -61,6 +61,6 @@ public final class TokenLoaderComposition: TokenLoader {
     }
     
     private func isValidToken(_ token: Token) -> Bool {
-        token.expiredDate > self.currentDate()
+        token.expiredDate > currentDate()
     }
 }

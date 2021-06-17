@@ -80,6 +80,6 @@ public class LoginViewController: UIViewController {
     }
     
     @objc private func dismissKeyboard() {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
 }

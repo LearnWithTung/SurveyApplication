@@ -66,7 +66,7 @@ public final class CustomTextField: UIView, UITextFieldDelegate {
     private func customInit(){
         let contentView = UINib(nibName: "CustomTextField", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(contentView)
-        contentView.frame = self.bounds
+        contentView.frame = bounds
     }
     
     func addRightView(_ view: UIView) {

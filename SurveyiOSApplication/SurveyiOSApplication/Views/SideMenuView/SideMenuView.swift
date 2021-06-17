@@ -28,9 +28,9 @@ public class SideMenuView: UIView {
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            let hitView = self.hitTest(firstTouch.location(in: self), with: event)
-            if hitView == self.backgroundView {
-                self.onDismiss?()
+            let hitView = hitTest(firstTouch.location(in: self), with: event)
+            if hitView == backgroundView {
+                onDismiss?()
             }
         }
     }
@@ -39,7 +39,7 @@ public class SideMenuView: UIView {
     private func customInit(){
         let contentView = UINib(nibName: "SideMenuView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(contentView)
-        contentView.frame = self.bounds
+        contentView.frame = bounds
     }
     
     func animateMenu(isHidden: Bool) {
