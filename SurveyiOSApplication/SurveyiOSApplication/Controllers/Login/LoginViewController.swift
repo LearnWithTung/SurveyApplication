@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol LoginViewControllerDelegate {
+public protocol LoginViewControllerDelegate: AnyObject {
     func login(email: String, password: String, completion: @escaping () -> Void)
 }
 
@@ -16,7 +16,7 @@ public class LoginViewController: UIViewController {
         return .lightContent
     }
     
-    var delegate: LoginViewControllerDelegate?
+    weak var delegate: LoginViewControllerDelegate?
     
     @IBOutlet weak var fieldsContainer: UIStackView!
     @IBOutlet weak var backgroundImageView: UIImageView!
