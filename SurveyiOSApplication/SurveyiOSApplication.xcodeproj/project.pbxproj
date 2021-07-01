@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF1037F6267B3B88003CCA3D /* AlamofireRefreshTokenDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1037F5267B3B88003CCA3D /* AlamofireRefreshTokenDecorator.swift */; };
 		DF3E979C2673635C004FA3AE /* NeuzeitSLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */; };
 		DF3E979D2673635C004FA3AE /* NeuzeitSLTStd-BookHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */; };
 		DF3E979F26736825004FA3AE /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3E979E26736825004FA3AE /* CustomTextField.xib */; };
@@ -34,7 +33,7 @@
 		DF3E97E826750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97E726750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift */; };
 		DF3E97EA26751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97E926751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift */; };
 		DF3E97EE2675A99A004FA3AE /* TokenLoaderCompositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97ED2675A99A004FA3AE /* TokenLoaderCompositionTests.swift */; };
-		DF3E97F02675CA52004FA3AE /* TokenLoaderComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */; };
+		DF3E97F02675CA52004FA3AE /* TokenLoaderDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97EF2675CA52004FA3AE /* TokenLoaderDecorator.swift */; };
 		DF3E97F42675D160004FA3AE /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F32675D160004FA3AE /* TestHelpers.swift */; };
 		DF3E97F62675D229004FA3AE /* LoginRequestDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F52675D229004FA3AE /* LoginRequestDelegateTests.swift */; };
 		DF3E97FA2675DA96004FA3AE /* LoginRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */; };
@@ -104,7 +103,6 @@
 		017E5DAB3C53186E7756B665 /* Pods_SurveyiOSApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyiOSApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F8D68ADC141B9F0D832733 /* Pods-SurveyiOSApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.release.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.release.xcconfig"; sourceTree = "<group>"; };
 		9602EB91256759B64ECBA7F7 /* Pods-SurveyiOSApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyiOSApplication.debug.xcconfig"; path = "Target Support Files/Pods-SurveyiOSApplication/Pods-SurveyiOSApplication.debug.xcconfig"; sourceTree = "<group>"; };
-		DF1037F5267B3B88003CCA3D /* AlamofireRefreshTokenDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireRefreshTokenDecorator.swift; sourceTree = "<group>"; };
 		DF3E979A26736318004FA3AE /* NeuzeitSLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-Book.otf"; sourceTree = "<group>"; };
 		DF3E979B26736318004FA3AE /* NeuzeitSLTStd-BookHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NeuzeitSLTStd-BookHeavy.otf"; sourceTree = "<group>"; };
 		DF3E979E26736825004FA3AE /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
@@ -130,7 +128,7 @@
 		DF3E97E726750D3F004FA3AE /* AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecoratorTestsAuthenticatedHTTPClientDecoratorTests.swift; sourceTree = "<group>"; };
 		DF3E97E926751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedHTTPClientDecorator.swift; sourceTree = "<group>"; };
 		DF3E97ED2675A99A004FA3AE /* TokenLoaderCompositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoaderCompositionTests.swift; sourceTree = "<group>"; };
-		DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoaderComposition.swift; sourceTree = "<group>"; };
+		DF3E97EF2675CA52004FA3AE /* TokenLoaderDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLoaderDecorator.swift; sourceTree = "<group>"; };
 		DF3E97F32675D160004FA3AE /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		DF3E97F52675D229004FA3AE /* LoginRequestDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestDelegateTests.swift; sourceTree = "<group>"; };
 		DF3E97F92675DA96004FA3AE /* LoginRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestDelegate.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 		DF1037DD267A351D003CCA3D /* Decorators */ = {
 			isa = PBXGroup;
 			children = (
-				DF1037F5267B3B88003CCA3D /* AlamofireRefreshTokenDecorator.swift */,
 				DF3E97E926751F85004FA3AE /* AuthenticatedHTTPClientDecorator.swift */,
 				DF3E97E12674C907004FA3AE /* MainQueueDispatchDecorator.swift */,
 			);
@@ -246,7 +243,7 @@
 		DF1037DE267A354B003CCA3D /* TokenLoader */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E97EF2675CA52004FA3AE /* TokenLoaderComposition.swift */,
+				DF3E97EF2675CA52004FA3AE /* TokenLoaderDecorator.swift */,
 			);
 			path = TokenLoader;
 			sourceTree = "<group>";
@@ -682,7 +679,7 @@
 				DFA8A07226733F75008FF1D9 /* LoginViewController.swift in Sources */,
 				DF3E983126764E49004FA3AE /* SurveyDetailFlow.swift in Sources */,
 				DF3E97C32674593C004FA3AE /* Date+Extensions.swift in Sources */,
-				DF3E97F02675CA52004FA3AE /* TokenLoaderComposition.swift in Sources */,
+				DF3E97F02675CA52004FA3AE /* TokenLoaderDecorator.swift in Sources */,
 				DF3E97CB26746B26004FA3AE /* LoadingView.swift in Sources */,
 				DF3E981D2675FA0D004FA3AE /* MainFlow.swift in Sources */,
 				DF3E97DA2674A172004FA3AE /* SurveyImageDataLoader.swift in Sources */,
@@ -696,7 +693,6 @@
 				DF3E98022675E329004FA3AE /* SurveyRequestDelegate.swift in Sources */,
 				DF9876C226734A770017577D /* UIImage+Extensions.swift in Sources */,
 				DF3E98462677057B004FA3AE /* SideMenuView.swift in Sources */,
-				DF1037F6267B3B88003CCA3D /* AlamofireRefreshTokenDecorator.swift in Sources */,
 				DFA8A03A26731F37008FF1D9 /* AppDelegate.swift in Sources */,
 				DF3E98132675EFEB004FA3AE /* KingfisherImageDataLoader.swift in Sources */,
 				DF3E97DE2674B867004FA3AE /* UIStoryboard+Extensions.swift in Sources */,

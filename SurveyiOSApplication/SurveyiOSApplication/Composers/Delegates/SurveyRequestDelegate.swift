@@ -10,9 +10,11 @@ import SurveyFramework
 
 public class SurveyRequestDelegate: HomeViewControllerDelegate {
     private let loader: SurveyLoader
+    private let didCompleteLogin: () -> Void
     
-    public init(loader: SurveyLoader) {
+    public init(loader: SurveyLoader, didCompleteLogin: @escaping () -> Void) {
         self.loader = loader
+        self.didCompleteLogin = didCompleteLogin
     }
     
     public func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void) {
@@ -26,6 +28,10 @@ public class SurveyRequestDelegate: HomeViewControllerDelegate {
                 completion(.failure(error))
             }
         }
+    }
+    
+    public func navigateToSurveyDetails() {
+        didCompleteLogin()
     }
     
 }

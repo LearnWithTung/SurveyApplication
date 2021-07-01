@@ -26,16 +26,18 @@ class CompositionRoot {
         let service = RemoteLoginService(url: loginURL, client: client, credentials: credentials, currentDate: Date.init)
         let tokenLoaderURL = makeTokenLoaderURL(from: baseURL)
         let remoteTokenLoader = RemoteTokenLoader(url: tokenLoaderURL, client: client, credentials: credentials, currentDate: Date.init)
-        let tokenLoaderComposite = TokenLoaderComposition(store: store, remoteTokenLoader: remoteTokenLoader, currentDate: Date.init)
+        let tokenLoaderComposite = TokenLoaderDecorator(store: store, remoteTokenLoader: remoteTokenLoader, currentDate: Date.init)
         let authenticatedClient = AuthenticatedHTTPClientDecorator(decoratee: client, service: tokenLoaderComposite)
         let surveyURL = makeLoadSurveysURL(from: baseURL)
         
         let surveyDetailFlow = SurveyDetailFlow(navController: rootNc)
         
-        let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient))
+        let mainDelegate = SurveyRequestDelegate(loader: RemoteSurveysLoader(url: surveyURL, client: authenticatedClient)) { [surveyDetailFlow] in
+            surveyDetailFlow.start()
+        }
         let downloader = ImageDownloader(name: "SurveyImageDownloader")
         let imageLoader = KingfisherImageDataLoader(downloader: downloader)
-        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, store: store, imageLoader: imageLoader, currentDate: Date.init, surveyDetailFlow: surveyDetailFlow)
+        let mainFlow = MainFlow(navController: rootNc, delegate: mainDelegate, store: store, imageLoader: imageLoader, currentDate: Date.init)
         let mainFlowDecorator = MainQueueDispatchDecorator(decoratee: mainFlow as Flow)
         
         let loginDelegate = LoginRequestDelegate(service: service)

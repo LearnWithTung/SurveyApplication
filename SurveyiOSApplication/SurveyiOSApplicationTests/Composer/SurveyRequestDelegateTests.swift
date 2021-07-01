@@ -59,7 +59,7 @@ class SurveyRequestsDelegateTests: XCTestCase {
     
     func test_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let loader = SurveyLoaderSpy()
-        var sut: SurveyRequestDelegate? = SurveyRequestDelegate(loader: loader)
+        var sut: SurveyRequestDelegate? = SurveyRequestDelegate(loader: loader, didCompleteLogin: { })
         
         var capturedResult: Result<[RepresentationSurvey], Error>?
         sut?.loadSurvey { capturedResult = $0}
@@ -74,7 +74,7 @@ class SurveyRequestsDelegateTests: XCTestCase {
     // MARK: - Helpers
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: SurveyRequestDelegate, loader: SurveyLoaderSpy) {
         let loader = SurveyLoaderSpy()
-        let sut = SurveyRequestDelegate(loader: loader)
+        let sut = SurveyRequestDelegate(loader: loader) {}
         checkForMemoryLeaks(loader, file: file, line: line)
         checkForMemoryLeaks(sut, file: file, line: line)
         

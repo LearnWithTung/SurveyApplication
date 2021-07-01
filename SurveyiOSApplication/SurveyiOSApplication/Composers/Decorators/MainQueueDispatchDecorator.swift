@@ -36,6 +36,10 @@ extension MainQueueDispatchDecorator: HomeViewControllerDelegate where T == Home
             }
         }
     }
+    
+    public func navigateToSurveyDetails() {
+        decoratee.navigateToSurveyDetails()
+    }
 }
 
 extension MainQueueDispatchDecorator: Flow where T == Flow {

@@ -8,7 +8,7 @@
 import Foundation
 import SurveyFramework
 
-public final class TokenLoaderComposition: TokenLoader {
+public final class TokenLoaderDecorator: TokenLoader {
     private let store: KeychainTokenStore
     private let remoteTokenLoader: RemoteTokenLoader
     private let currentDate: () -> Date

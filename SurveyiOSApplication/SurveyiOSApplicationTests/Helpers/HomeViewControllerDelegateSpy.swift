@@ -24,4 +24,8 @@ class HomeViewControllerDelegateSpy: HomeViewControllerDelegate {
     func completeLoadingSurveyWithError(_ error: Error, at index: Int = 0) {
         completions[index](.failure(error))
     }
+    
+    func navigateToSurveyDetails() {
+        
+    }
 }

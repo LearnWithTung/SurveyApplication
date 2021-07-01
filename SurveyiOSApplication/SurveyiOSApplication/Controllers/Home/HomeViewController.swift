@@ -9,6 +9,7 @@ import UIKit
 
 public protocol HomeViewControllerDelegate {
     func loadSurvey(pageNumber: Int, pageSize: Int, completion: @escaping (Result<[RepresentationSurvey], Error>) -> Void)
+    func navigateToSurveyDetails()
 }
 
 public class HomeViewController: UIViewController {
@@ -19,7 +20,6 @@ public class HomeViewController: UIViewController {
     var currentDate: (() -> Date)?
     var delegate: HomeViewControllerDelegate?
     var onViewDidLoad: (() -> Void)?
-    var toSurveyDetails: (() -> Void)?
     
     @IBOutlet public private(set) weak var loadingView: LoadingView!
     @IBOutlet public private(set) weak var dateLabel: UILabel!
@@ -73,7 +73,7 @@ public class HomeViewController: UIViewController {
                 self?.refresh()
             }
             self.surveyViewController.onSurveyDetails = {[weak self] in
-                self?.toSurveyDetails?()
+                self?.delegate?.navigateToSurveyDetails()
             }
         }
     }

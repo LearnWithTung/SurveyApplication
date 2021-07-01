@@ -62,7 +62,7 @@ class MainFlowTests: XCTestCase {
         let delegateSpy = HomeViewControllerDelegateSpy()
         let fakeImageLoader = FakeImageDataLoader()
         let store = TokenCleanerSpy()
-        let sut: Flow = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, store: store, imageLoader: fakeImageLoader, currentDate: Date.init, surveyDetailFlow: FlowTests())
+        let sut: Flow = MainFlow(navController: navigationControllerSpy, delegate: delegateSpy, store: store, imageLoader: fakeImageLoader, currentDate: Date.init)
         let decorator = MainQueueDispatchDecorator(decoratee: sut)
 
         checkForMemoryLeaks(fakeImageLoader, file: file, line: line)
