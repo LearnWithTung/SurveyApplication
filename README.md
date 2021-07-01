@@ -1,6 +1,6 @@
 # Survey iOS Application
 
-Please take some time to take a look through the project to see how I develop an application and if my coding style is a good fit for your company. 
+This challenge is from @Nimble. Please take some time to take a look through the project to see how I develop an application and if my coding style is a good fit for your company. 
 
 ## How to use
 
