@@ -1,11 +1,18 @@
 # Survey iOS Application
 
+Please take some time to take a look through the project to see how I develop an application and if my coding style is a good fit for your company. 
+
 ## How to use
 
 1. clone project
 2. cd  `SurveyiOSApplication/SurveyiOSApplication/`            
 3. run  `pod install`
 4. open `SurveyiOSApplication.xcworkspace`
+5. login with the development account: 
+```
+account: dev@nimblehq.co
+password: 12345678
+```
 
 ##  Notice 
 ⚠️  If you run tests from  `SurveyFramework` framework on an iOS target you'll see two tests `test_load_returnsSavedToken` and `test_load_returnsLastSavedToken`  fails due to testing Keychain requires a host application. You can make it pass by either:
@@ -41,6 +48,9 @@
 ✅  Pull to refresh (swipe to left) surveys.
 
 ✅  Refresh token automatically.
+
+## Architecture
+![](Architecture.jpg)
 
 ## Use Case Specs
 
