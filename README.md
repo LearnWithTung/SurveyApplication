@@ -12,9 +12,6 @@
 1. Create a host iOS application and run the tests on it.
 2. Run the tests on macOS target.
 
-⚠️  I notice that your staging API doesn't work properly so please run the app with `Release` configuration to use production API.
-
-
 ## 📊 Stats
 
 #### `SurveyFramework` target
@@ -43,7 +40,7 @@
 
 ✅  Pull to refresh (swipe to left) surveys.
 
-✅  Refresh token.
+✅  Refresh token automatically.
 
 ## Use Case Specs
 
