@@ -1,6 +1,6 @@
 # Survey iOS Application
 
-This challenge is from @Nimble. Please take some time to take a look through the project to see how I develop an application and if my coding style is a good fit for your company. 
+A coding challenge from @Nimble. Show best practices on unit testing, architecture, modularization
 
 ## How to use
 
